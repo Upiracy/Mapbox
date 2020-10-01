@@ -453,7 +453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663770210}
   m_LocalRotation: {x: -0.52873635, y: -0.32085657, z: 0.2253574, w: -0.7527968}
-  m_LocalPosition: {x: 6.8503375, y: 27.841661, z: -50.832912}
+  m_LocalPosition: {x: 14.5, y: 86.5, z: -61.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -632,7 +632,7 @@ PrefabInstance:
     - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
         type: 3}
       propertyPath: _options.locationOptions.latitudeLongitude
-      value: 23.116222, 113.332665
+      value: 30.5383635, 114.362502
       objectReference: {fileID: 0}
     - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
         type: 3}
@@ -757,7 +757,7 @@ PrefabInstance:
     - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
         type: 3}
       propertyPath: _options.extentOptions.extentType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
         type: 3}
@@ -778,6 +778,46 @@ PrefabInstance:
         type: 3}
       propertyPath: _options.extentOptions.defaultExtents.rangeAroundCenterOptions.south
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
+        type: 3}
+      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.extrusionScaleFactor
+      value: 6.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
+        type: 3}
+      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.propertyName
+      value: height
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
+        type: 3}
+      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.propertyDescription
+      value: Number. Height of building or part of building.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
+        type: 3}
+      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].coreOptions.combineMeshes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
+        type: 3}
+      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].colliderOptions.colliderType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
+        type: 3}
+      propertyPath: _options.extentOptions.defaultExtents.rangeAroundTransformOptions.targetTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
+        type: 3}
+      propertyPath: _options.extentOptions.defaultExtents.rangeAroundTransformOptions.visibleBuffer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052300586587671949, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
+        type: 3}
+      propertyPath: _options.extentOptions.defaultExtents.rangeAroundTransformOptions.disposeBuffer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4052300586587671950, guid: 8bdfea5b82b2d424eb00067e1a8ecec5,
         type: 3}
