@@ -1,0 +1,4 @@
+pk.eyJ1IjoidXBpcmFjeSIsImEiOiJja2ZsNWhkemwxbDR4MnludjhqZWdmOXp1In0.PYozpoiYh2uG8j3kpLH-Dw
+
+将上面的Token码填入工具栏Mapbox->Setup->Access Token中,点击Submit
+等待一段时间显示Valid后即可，如果显示Invalid请联系我(张家瑜)

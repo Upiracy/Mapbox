@@ -1,0 +1,16 @@
+Materials文件夹：
+	BuildingRoof：建筑物屋顶材质
+	BuildingSide：建筑物侧面材质
+	GroundMaterial：地面材质(网络地图的平面版本会作为MainTex输入该材质)
+	TrafficMaterial：路面材质
+	TreelawnMaterial：绿化地段材质
+	WaterMateiral：水面材质
+
+建筑物高度：
+	Map ->	FEATRUES -> Buildings -> Modeliing -> Scale Factor：整体调整高度的倍率
+	Map ->	FEATRUES -> Buildings -> Modeliing -> Minimun Height：锁最小高度
+	Map ->	FEATRUES -> Buildings -> Modeliing -> Maximun Height：锁最大高度
+
+道路形态：
+	Map ->	FEATRUES -> Traffic：直接把钩点掉，就可以取消道路
+	Map ->	FEATRUES -> Traffic -> Width：该道路的宽度
