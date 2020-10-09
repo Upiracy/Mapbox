@@ -48,12 +48,15 @@ public class LockCamera : MonoBehaviour
         transform.position = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
         */
 
+
+        //Debug.Log(linkedObject.velocity);
         StartCoroutine(DelayAffect(linkedObject.velocity));
     }
 
     IEnumerator DelayAffect(Vector3 velocity)
     {
         for(int i = 0; i < delay; i++) yield return 0;
+
         rgb.velocity = velocity;
     }
 

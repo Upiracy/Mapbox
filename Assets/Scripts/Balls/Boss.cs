@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class Boss : Ball
 {
-    [SerializeField] Ball playerBall;
-    [SerializeField] JoyStick joyStick;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +13,6 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerBall.Roll(new Vector3(joyStick.deltaPos.x, 0, joyStick.deltaPos.y));
+        
     }
 }

@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SmallBlackBall
+  - GreyBall
+  - RedBall
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Wall
   - 
   - 
   - 
