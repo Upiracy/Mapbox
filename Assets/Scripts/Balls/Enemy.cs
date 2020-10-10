@@ -9,6 +9,7 @@ public class Enemy : Ball
     // Start is called before the first frame update
     void Start()
     {
+        rb = transform.GetComponent<Rigidbody>();
         enemyPool.Clear();
     }
 

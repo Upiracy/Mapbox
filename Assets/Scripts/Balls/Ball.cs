@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public Rigidbody rb;
+    public float friction, maxSpeed;
     public float speed=1;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = transform.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -19,7 +21,21 @@ public class Ball : MonoBehaviour
 
     public void Roll(Vector3 direction)
     {
-        GetComponent<Rigidbody>().velocity += direction * speed;
+        rb.velocity += direction * speed;
+        if (rb.velocity.sqrMagnitude > 0)
+        {
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
+            rb.velocity -= rb.velocity.normalized * friction;
+
+            if (rb.velocity.sqrMagnitude <= 0.25f * friction * friction)
+            {
+                rb.velocity = Vector3.zero;
+            }
+
+        }
     }
 
     /*

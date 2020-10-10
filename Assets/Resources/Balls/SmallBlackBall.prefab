@@ -107,6 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f8fc37060fae94eb4340502e6cdcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  friction: 0.2
+  maxSpeed: 10
   speed: 1
 --- !u!54 &5611679312303674441
 Rigidbody:

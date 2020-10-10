@@ -107,7 +107,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4933b01cf7e36c14eb64bc01f61f0d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  friction: 0.2
+  maxSpeed: 5
   speed: 1
+  factor1: {x: 0, y: 0, z: 0}
+  factor2: {x: 0, y: 0, z: 0}
+  factor3: {x: 0, y: 0, z: 0}
+  factor4: {x: 0, y: 0, z: 0}
+  factor5: {x: 0, y: 0, z: 0}
+  factor6: {x: 0, y: 0, z: 0}
+  weight1: 1
+  weight2: 0.01
+  weight3: 0.1
+  weight4: 1
+  weight5: 0.1
+  weight6: 10
 --- !u!54 &1781652999384368751
 Rigidbody:
   m_ObjectHideFlags: 0

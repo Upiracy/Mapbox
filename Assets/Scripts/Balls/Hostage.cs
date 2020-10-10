@@ -6,9 +6,11 @@ public class Hostage : Ball
 {
     private bool hasCollided = false;
     private static Stack<GameObject> hostagePool = new Stack<GameObject>();
+    public static List<Hostage> greyBalls = new List<Hostage>();
     // Start is called before the first frame update
     void Start()
     {
+        rb = transform.GetComponent<Rigidbody>();
         hostagePool.Clear();
     }
 
@@ -53,6 +55,8 @@ public class Hostage : Ball
 
         hostagePool.Push(gameObject);
         gameObject.SetActive(false);
+
+        greyBalls.Remove(this);
     }
 
     public static void GenerateSelf(Vector3 pos)
@@ -70,6 +74,10 @@ public class Hostage : Ball
             go = Instantiate<GameObject>((GameObject)Resources.Load("Balls/GreyBall"));
             
         }
+
+        go.transform.parent = GameObject.Find("GreyBalls").transform;
         go.transform.position = pos;
+
+        greyBalls.Add(go.GetComponent<Hostage>());
     }
 }
