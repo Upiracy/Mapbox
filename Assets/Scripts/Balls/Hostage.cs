@@ -7,6 +7,7 @@ public class Hostage : Ball
     private bool hasCollided = false;
     private static Stack<GameObject> hostagePool = new Stack<GameObject>();
     public static List<Hostage> greyBalls = new List<Hostage>();
+    static int GreyMaxNum=20;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +62,9 @@ public class Hostage : Ball
 
     public static void GenerateSelf(Vector3 pos)
     {
+        if (GreyMaxNum <= greyBalls.Count)
+            return;
+
         Debug.Log("生成灰球");
         GameManager.SetBallNum("grey", true);
         GameObject go;

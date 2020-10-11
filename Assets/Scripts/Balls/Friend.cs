@@ -43,8 +43,8 @@ Spherecast找墙面
 遇到墙 权重方向为墙法线方向
      */
     #endregion
-    public Vector3 factor1, factor2, factor3, factor4, factor5, factor6;
-    [SerializeField] float weight1=1, weight2=1, weight3=1, weight4=1, weight5=1, weight6=1;
+    public Vector3 factor1, factor2, factor3, factor4, factor5, factor6,factor7;
+    [SerializeField] float weight1=1, weight2=1, weight3=1, weight4=1, weight5=1, weight6=1,weight7=1;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +55,7 @@ Spherecast找墙面
     // Update is called once per frame
     void Update()
     {
-        Roll(weight1 * factor1 + weight2 * factor2 + weight3 * factor3 + weight4 * factor4 + weight5 * factor5 + weight6 * factor6);
+        Roll(weight1 * factor1 + weight2 * factor2 + weight3 * factor3 + weight4 * factor4 + weight5 * factor5 + weight6 * factor6 + weight7 * factor7);
     }
     private void LateUpdate()
     {

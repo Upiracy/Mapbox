@@ -35,7 +35,7 @@ namespace Mapbox.Examples
         {
             yield return new WaitForSeconds(1);
 
-           // FindPlayer(new Vector3(-106, 0, -17));
+           // FindPlayer(new Vector3(80, 0, -50));
         }
 
         // Update is called once per frame

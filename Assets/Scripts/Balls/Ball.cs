@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public Rigidbody rb;
-    public float friction, maxSpeed;
+    public float friction,f, maxSpeed;
     public float speed=1;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,7 @@ public class Ball : MonoBehaviour
 
     public void Roll(Vector3 direction)
     {
+        rb.freezeRotation = false;
         rb.velocity += direction * speed;
         if (rb.velocity.sqrMagnitude > 0)
         {
@@ -29,10 +30,21 @@ public class Ball : MonoBehaviour
                 rb.velocity = rb.velocity.normalized * maxSpeed;
             }
             rb.velocity -= rb.velocity.normalized * friction;
+            rb.velocity -= rb.velocity.sqrMagnitude * rb.velocity.normalized * f;
 
             if (rb.velocity.sqrMagnitude <= 0.25f * friction * friction)
             {
                 rb.velocity = Vector3.zero;
+                
+            }
+            if (rb.velocity == Vector3.zero)
+            {
+                rb.freezeRotation = true;
+                //gameObject.transform.r
+            }
+            else
+            {
+                rb.freezeRotation = false;
             }
 
         }
