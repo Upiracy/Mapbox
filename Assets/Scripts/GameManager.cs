@@ -10,10 +10,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+       // Enemy.GenerateSelf(new Vector3(0, 3, 0));
         InitializeBalls();
     }
 
+    /// <summary>
+    /// 随机生成一批灰球和黑球
+    /// TODO:生成的位置随机性不够
+    /// </summary>
     private void InitializeBalls()
     {
         //生成一堆灰球黑球

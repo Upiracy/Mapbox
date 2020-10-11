@@ -20,8 +20,9 @@ public class RedBallsManager : MonoBehaviour
         {
             Friend.GenerateSelf(transform.position + new Vector3(i, 0, 0));
         }
-        StartCoroutine(Set());
         */
+        StartCoroutine(Set());
+        
     }
 
     IEnumerator Set()
@@ -35,7 +36,10 @@ public class RedBallsManager : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// 红球的集群算法
+    /// TODO:遇到凹形墙会卡死
+    /// </summary>
     void SetFactor()
     {
         List<Friend> reds = Friend.redBalls;
@@ -93,7 +97,7 @@ public class RedBallsManager : MonoBehaviour
 
         //算出因素1的均值
         //因素2 3 赋值
-        float r = reds[0].transform.localScale.x*2;
+        float r = 1;
         RaycastHit hit;
         for (int i = 0; i < reds.Count; i++)
         {
