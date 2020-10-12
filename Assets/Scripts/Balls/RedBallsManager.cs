@@ -7,16 +7,22 @@ public class RedBallsManager : MonoBehaviour
     [SerializeField] GameObject playerBall;
     [SerializeField] float sphereCastMaxDis=1;
     [SerializeField] float setTimeGap = 1;
+    [SerializeField] float factor5555;
     // Start is called before the first frame update
     void Start()
     {
-        Hostage.GenerateSelf(transform.position + new Vector3(0, 0, 5));
+        /*
+        for(int i=0;i<5;i++)
+
+        Hostage.GenerateSelf(transform.position + new Vector3(i*3, 0, 10));
 
         for(int i=0;i<10;i++)
         {
             Friend.GenerateSelf(transform.position + new Vector3(i, 0, 0));
         }
+        */
         StartCoroutine(Set());
+        
     }
 
     IEnumerator Set()
@@ -30,7 +36,10 @@ public class RedBallsManager : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// 红球的集群算法
+    /// TODO:遇到凹形墙会卡死
+    /// </summary>
     void SetFactor()
     {
         List<Friend> reds = Friend.redBalls;
@@ -72,10 +81,12 @@ public class RedBallsManager : MonoBehaviour
             }
             Debug.Log(minIndex);
             reds[i].factor5 = playerBall.transform.position - reds[i].transform.position;
+            reds[i].factor5 -= (playerBall.transform.position - reds[i].transform.position).normalized*factor5555;
             if (greys.Count <= 0)
                 reds[i].factor4 = Vector3.zero;
             else
-                reds[i].factor4 = (greys[minIndex].transform.position - reds[i].transform.position) * (1 / reds[i].factor5.magnitude);
+                reds[i].factor4 = (greys[minIndex].transform.position - reds[i].transform.position);
+                //reds[i].factor4 = (greys[minIndex].transform.position - reds[i].transform.position) * (1 / reds[i].factor5.magnitude);
 
             factors2 += reds[i].transform.position;
             factors3 += reds[i].GetComponent<Rigidbody>().velocity.normalized;
@@ -86,7 +97,7 @@ public class RedBallsManager : MonoBehaviour
 
         //算出因素1的均值
         //因素2 3 赋值
-        float r = reds[0].transform.localScale.x*0.5f;
+        float r = 1;
         RaycastHit hit;
         for (int i = 0; i < reds.Count; i++)
         {
@@ -97,15 +108,17 @@ public class RedBallsManager : MonoBehaviour
             //因素6 
             if(Physics.SphereCast(reds[i].transform.position, r, reds[i].GetComponent<Rigidbody>().velocity,out hit, sphereCastMaxDis, 1 << 10))
             {
-                reds[i].factor6 = hit.normal;
+                reds[i].factor6 = hit.normal * reds[i].rb.velocity.magnitude*0.1f + Vector3.Cross(hit.normal,Vector3.up ).normalized *20 ;
             }
             else
             {
                 reds[i].factor6 = Vector3.zero;
             }
+
+            reds[i].factor7 = Vector3.Cross(Vector3.up, reds[i].GetComponent<Rigidbody>().velocity).normalized * Random.Range(-1, 1);
         }
 
-        Debug.LogFormat("{0},{1}",reds[0].factor1, Friend.redBalls[0].factor1);
+      //  Debug.LogFormat("{0},{1}",reds[0].factor1, Friend.redBalls[0].factor1);
        // Debug.Log(Friend.redBalls[0].factor1);
 
     }

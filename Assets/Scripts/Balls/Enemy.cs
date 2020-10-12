@@ -6,6 +6,8 @@ public class Enemy : Ball
 {
     private bool hasCollided = false;
     private static Stack<GameObject> enemyPool = new Stack<GameObject>();
+    public static List<Enemy> blackBalls = new List<Enemy>();
+    private static int BlackMaxNum=20;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,10 +53,15 @@ public class Enemy : Ball
 
         enemyPool.Push(gameObject);
         gameObject.SetActive(false);
+
+        blackBalls.Remove(this);
     }
 
     public static void GenerateSelf(Vector3 pos)
     {
+        if (BlackMaxNum <= blackBalls.Count)
+            return;
+
         Debug.Log("生成黑球");
         GameManager.SetBallNum("black", true);
         GameObject go;
@@ -68,6 +75,10 @@ public class Enemy : Ball
             go = Instantiate<GameObject>((GameObject)Resources.Load("Balls/SmallBlackBall"));
 
         }
+        go.transform.parent = GameObject.Find("BlackBalls").transform;
+
         go.transform.position = pos;
+
+        blackBalls.Add(go.GetComponent<Enemy>());
     }
 }
