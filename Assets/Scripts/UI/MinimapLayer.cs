@@ -10,7 +10,7 @@ public class MinimapLayer : MonoBehaviour
    
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
         ChangeLayer(gameObject.transform, "UI");
     }
