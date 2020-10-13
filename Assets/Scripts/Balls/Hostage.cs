@@ -10,14 +10,14 @@ public class Hostage : Ball
     public static List<Hostage> greyBalls = new List<Hostage>();
     static int GreyMaxNum=20;
     public List<Vector3> vecs;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = transform.GetComponent<Rigidbody>();
         hostagePool.Clear();
         Vector3 pos = new Vector3(Random.Range(-50,50), 0, Random.Range(-50,50));
-        vecs = GameObject.Find("Manager").GetComponent<FindPath>().FindTarget(transform.position,pos);
-        Debug.Log(pos);
+        GameObject.Find("Manager").GetComponent<FindPath>().FindTarget(transform.position,pos, SetPath);
     }
 
     // Update is called once per frame
@@ -52,6 +52,12 @@ public class Hostage : Ball
             Enemy.GenerateSelf(transform.position);
             hasCollided = true;
         }
+    }
+
+    void SetPath(List<Vector3> path)
+    {
+        this.vecs = path;
+        Debug.Log(vecs.Count);
     }
 
     protected void DestroySelf()

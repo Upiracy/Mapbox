@@ -17,8 +17,6 @@ namespace Mapbox.Examples
         [SerializeField]
         AbstractMap map;
         Directions.Directions _directions;
-        Action<List<Vector3>> callback;
-        List<Vector3> directions;
 
         [SerializeField]
         Transform startPoint;
@@ -45,54 +43,48 @@ namespace Mapbox.Examples
 
         }
 
-        public List<Vector3> FindTarget(Vector3 startPos, Vector3 destination)
+        public void FindTarget(Vector3 startPos, Vector3 destination, Action<List<Vector3>> callback)
         {
             // Debug.Log(transform.localPosition);
             startPoint.position = startPos;
             endPoint.position = destination;
-            Query(StorePosition, startPoint, endPoint, map);
-           // GetPositions(directions);
-            return directions;
+            ResponseHandler handler = new ResponseHandler(callback, map);
+            Query(callback, startPoint, endPoint, map, handler);
         }
 
-        void StorePosition(List<Vector3> vecs)
+        private void Query(Action<List<Vector3>> vecs, Transform start, Transform end, AbstractMap map, ResponseHandler handler)
         {
-            directions = vecs;
-        }
-
-        void GetPositions(List<Vector3> vecs)
-        {
-            UnityEngine.Debug.Log("GetPositions");
-            foreach (var i in vecs)
-            {
-                UnityEngine.Debug.Log(i);
-                GameObject point = Instantiate<GameObject>((GameObject)Resources.Load("Point"), transform.position, transform.rotation);
-                point.transform.position = i;
-            }
-        }
-
-        private void Query(Action<List<Vector3>> vecs, Transform start, Transform end, AbstractMap map)
-        {
-            if (callback == null)
-                callback = vecs;
-
             Vector2d[] wp = new Vector2d[2];
             wp[0] = start.GetGeoPosition(map.CenterMercator, map.WorldRelativeScale);
             wp[1] = end.GetGeoPosition(map.CenterMercator, map.WorldRelativeScale);
             DirectionResource _directionResource = new DirectionResource(wp, RoutingProfile.Walking);
             _directionResource.Steps = true;
 
-            _directions.Query(_directionResource, HandleDirectionsResponse);
+            _directions.Query(_directionResource, handler.HandleDirectionsResponse);
         }
 
-        void HandleDirectionsResponse(DirectionsResponse response)
+
+    }
+
+    class ResponseHandler
+    {
+        public Action<List<Vector3>> callback;
+        AbstractMap map;
+
+        public ResponseHandler(Action<List<Vector3>> callback, AbstractMap map)
+        {
+            this.map = map;
+            this.callback = callback;
+        }
+
+        public void HandleDirectionsResponse(DirectionsResponse response)
         {
             if (null == response.Routes || response.Routes.Count < 1)
             {
                 return;
             }
 
-            var dat = new List<Vector3>();
+            List<Vector3> dat = new List<Vector3>();
             foreach (var point in response.Routes[0].Geometry)
             {
                 dat.Add(Conversions.GeoToWorldPosition(point.x, point.y, map.CenterMercator, map.WorldRelativeScale).ToVector3xz());
@@ -101,3 +93,4 @@ namespace Mapbox.Examples
         }
     }
 }
+
