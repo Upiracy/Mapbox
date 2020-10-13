@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mapbox.Examples;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +9,15 @@ public class Hostage : Ball
     private static Stack<GameObject> hostagePool = new Stack<GameObject>();
     public static List<Hostage> greyBalls = new List<Hostage>();
     static int GreyMaxNum=20;
+    public List<Vector3> vecs;
     // Start is called before the first frame update
     void Start()
     {
         rb = transform.GetComponent<Rigidbody>();
         hostagePool.Clear();
+        Vector3 pos = new Vector3(Random.Range(-50,50), 0, Random.Range(-50,50));
+        vecs = GameObject.Find("Manager").GetComponent<FindPath>().FindTarget(transform.position,pos);
+        Debug.Log(pos);
     }
 
     // Update is called once per frame
@@ -83,5 +88,14 @@ public class Hostage : Ball
         go.transform.position = pos;
 
         greyBalls.Add(go.GetComponent<Hostage>());
+    }
+
+    public void RandomMove()
+    {
+       // FindPath fp=
+        while(true)
+        {
+
+        }
     }
 }

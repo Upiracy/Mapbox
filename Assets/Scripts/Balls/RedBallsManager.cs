@@ -29,7 +29,7 @@ public class RedBallsManager : MonoBehaviour
     {
         while(true)
         {
-            Debug.Log("set");
+            //Debug.Log("set");
             SetFactor();
             yield return new WaitForSeconds(setTimeGap);
         }
@@ -79,7 +79,7 @@ public class RedBallsManager : MonoBehaviour
                     minIndex = j;
                 }
             }
-            Debug.Log(minIndex);
+           // Debug.Log(minIndex);
             reds[i].factor5 = playerBall.transform.position - reds[i].transform.position;
             reds[i].factor5 -= (playerBall.transform.position - reds[i].transform.position).normalized*factor5555;
             if (greys.Count <= 0)

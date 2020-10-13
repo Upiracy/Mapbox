@@ -18,6 +18,7 @@ namespace Mapbox.Examples
         AbstractMap map;
         Directions.Directions _directions;
         Action<List<Vector3>> callback;
+        List<Vector3> directions;
 
         [SerializeField]
         Transform startPoint;
@@ -28,14 +29,14 @@ namespace Mapbox.Examples
         {
             _directions = MapboxAccess.Instance.Directions;
 
-            
+
         }
 
         IEnumerator Start()
         {
             yield return new WaitForSeconds(1);
 
-           // FindPlayer(new Vector3(80, 0, -50));
+            // FindPlayer(new Vector3(80, 0, -50));
         }
 
         // Update is called once per frame
@@ -44,12 +45,19 @@ namespace Mapbox.Examples
 
         }
 
-        public void FindPlayer(Vector3 destination)
+        public List<Vector3> FindTarget(Vector3 startPos, Vector3 destination)
         {
-           // Debug.Log(transform.localPosition);
-            startPoint.position = transform.localPosition;
+            // Debug.Log(transform.localPosition);
+            startPoint.position = startPos;
             endPoint.position = destination;
-            Query(GetPositions, startPoint, endPoint, map);
+            Query(StorePosition, startPoint, endPoint, map);
+           // GetPositions(directions);
+            return directions;
+        }
+
+        void StorePosition(List<Vector3> vecs)
+        {
+            directions = vecs;
         }
 
         void GetPositions(List<Vector3> vecs)
@@ -83,7 +91,7 @@ namespace Mapbox.Examples
             {
                 return;
             }
-       
+
             var dat = new List<Vector3>();
             foreach (var point in response.Routes[0].Geometry)
             {

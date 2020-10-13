@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
         //生成一堆灰球黑球
         int newGreyNum = 10;
         int newBalckNum = 10;
-        int rangeMin = -10;
-        int rangeMax = 10;
+        int rangeMin = -50;
+        int rangeMax = 50;
         RaycastHit hit;
         for (int i = 0; i < newGreyNum; i++)
         {
@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Hostage.GenerateSelf(hit.point);
-                Debug.Log("未射中");
+                Hostage.GenerateSelf(pos + dir);
+                Debug.LogFormat("未射中,{0}", pos + dir);
             }
             
         }
@@ -53,9 +53,9 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Enemy.GenerateSelf(hit.point);
+                Enemy.GenerateSelf(pos+dir);
 
-               Debug.Log("未射中");
+                Debug.LogFormat("未射中,{0}",pos + dir);
             }
         }
     }
