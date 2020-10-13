@@ -8,6 +8,7 @@ TagManager:
   - GreyBall
   - RedBall
   - Boss
+  - AirWall
   layers:
   - Default
   - TransparentFX

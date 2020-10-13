@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Ball : MonoBehaviour
 {
     public Rigidbody rb;
     public float friction,f, maxSpeed;
     public float speed=1;
+    public List<Vector3> vecs;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,12 @@ public class Ball : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetPath(List<Vector3> path)
+    {
+        vecs = path;
+       // Debug.Log(vecs.Count);
     }
 
     public void Roll(Vector3 direction)

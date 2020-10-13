@@ -7,6 +7,7 @@ public class Friend : Ball
     private bool hasCollided = false;
     private static Stack<GameObject> friendPool = new Stack<GameObject>();
     public static List<Friend> redBalls = new List<Friend>();
+    GameManager gm;
     #region 权重解释
     /*
      1趋向于远离周围红球
@@ -50,6 +51,7 @@ Spherecast找墙面
     {
         rb = transform.GetComponent<Rigidbody>();
         friendPool.Clear();
+        gm = GameObject.Find("Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -82,10 +84,39 @@ Spherecast找墙面
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "AirWall")
+        {
+            DestroySelf();
+            float rangeMin = 40;
+            float rangeMax = 60;
+            RaycastHit hit;
+            Vector3 pos = other.transform.position;
+            if (other.transform.position != GameObject.Find("PlayerBall").transform.position)
+            {
+                Debug.LogErrorFormat("空气墙的位置和主角位置不一样{0},{1}", other.transform.position, GameObject.Find("PlayerBall").transform.position);
+            }
+            Vector3 dir = new Vector3((Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax), 0, (Random.Range(-1, 1) + 0.5f) *2 * Random.Range(rangeMin, rangeMax));
+            pos += dir.normalized * 20;
+            if (Physics.Raycast(pos, dir, out hit, 50, 1 << 10))
+            {
+               // Debug.LogFormat("空气墙后重生：射线射中,位置{0}", hit.point - dir.normalized * 0.5f);
+                GenerateSelf(hit.point - dir.normalized * 0.5f);
+            }
+            else
+            {
+              //  Debug.LogFormat("空气墙后重生：射线没有射中,位置{0}", (pos + dir));
+                GenerateSelf(pos + dir);
+            }
+        }
+    }
+
     protected void DestroySelf()
     {
+        rb.velocity = Vector3.zero;
         Debug.Log("销毁红球");
-        GameManager.SetBallNum("red", false);
+        gm.SetBallNum("red", false);
 
         friendPool.Push(gameObject);
         gameObject.SetActive(false);
@@ -96,7 +127,7 @@ Spherecast找墙面
     public static void GenerateSelf(Vector3 pos)
     {
         Debug.Log("生成红球");
-        GameManager.SetBallNum("red", true);
+        GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("red", true);
 
         GameObject go;
         if (friendPool.Count > 0)

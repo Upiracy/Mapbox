@@ -79,6 +79,7 @@ namespace Mapbox.Examples
 
         public void HandleDirectionsResponse(DirectionsResponse response)
         {
+            UnityEngine.Debug.Log(response);
             if (null == response.Routes || response.Routes.Count < 1)
             {
                 return;

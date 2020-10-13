@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mapbox.Examples;
+using UnityEngine.SocialPlatforms;
 
 public class Enemy : Ball
 {
@@ -8,17 +10,79 @@ public class Enemy : Ball
     private static Stack<GameObject> enemyPool = new Stack<GameObject>();
     public static List<Enemy> blackBalls = new List<Enemy>();
     private static int BlackMaxNum=20;
+    [SerializeField] float sqrDis;
+    [SerializeField] Vector3 direction;
+    bool openCorouitine = false;
+    GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = transform.GetComponent<Rigidbody>();
+        gm = GameObject.Find("Manager").GetComponent<GameManager>();
         enemyPool.Clear();
+        StartCoroutine(RandomMove());
     }
 
     // Update is called once per frame
     void Update()
     {
+        int index = FindRedBall();
+        if (index>=0)
+        {
+            direction = (Friend.redBalls[index].transform.position-transform.position).normalized;
+            StopCoroutine(RandomMove());
+            openCorouitine = false;
+        }
+        else
+        {
+            if (!openCorouitine)
+            {
+                StartCoroutine(RandomMove());
+                openCorouitine = true;
+            }
+
+        }
+
+        Roll(direction);
+;    }
+
+    int FindRedBall()
+    {
+        for(int i=0;i<Friend.redBalls.Count;i++)
+        {
+            if((Friend.redBalls[i].transform.position-transform.position).sqrMagnitude<sqrDis)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    IEnumerator RandomMove()
+    {
         
+        while (true)
+        {
+
+            Vector3 pos = new Vector3(Random.Range(-50, 50), 0, Random.Range(-50, 50));
+            GameObject.Find("Manager").GetComponent<FindPath>().FindTarget(transform.position, pos, SetPath);
+            yield return new WaitForSeconds(4);
+            foreach (Vector3 v in vecs)
+            {
+                direction = (v - transform.position).normalized;
+                while (true)
+                {
+                    if ((v - transform.position).sqrMagnitude <= 1)
+                        break;
+                    yield return 0;
+                }
+
+                yield return 0;
+            }
+
+            yield return 0;
+        }
     }
 
     private void LateUpdate()
@@ -46,10 +110,39 @@ public class Enemy : Ball
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "AirWall")
+        {
+            DestroySelf();
+            float rangeMin = 40;
+            float rangeMax = 60;
+            RaycastHit hit;
+            Vector3 pos = other.transform.position;
+            if (other.transform.position != GameObject.Find("PlayerBall").transform.position)
+            {
+                Debug.LogErrorFormat("空气墙的位置和主角位置不一样{0},{1}", other.transform.position, GameObject.Find("PlayerBall").transform.position);
+            }
+            Vector3 dir = new Vector3((Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax), 0, (Random.Range(-1, 1) + 0.5f) *2 * Random.Range(rangeMin, rangeMax));
+            pos += dir.normalized * 20;
+            if (Physics.Raycast(pos, dir, out hit, 50, 1 << 10))
+            {
+               // Debug.LogFormat("空气墙后重生：射线射中,位置{0}", hit.point - dir.normalized * 0.5f);
+                GenerateSelf(hit.point - dir.normalized * 0.5f);
+            }
+            else
+            {
+              //  Debug.LogFormat("空气墙后重生：射线没有射中,位置{0}", (pos + dir));
+                GenerateSelf(pos + dir);
+            }
+        }
+    }
+
     protected void DestroySelf()
     {
+        rb.velocity = Vector3.zero;
         Debug.Log("销毁黑球");
-        GameManager.SetBallNum("black", false);
+        gm.SetBallNum("black", false);
 
         enemyPool.Push(gameObject);
         gameObject.SetActive(false);
@@ -63,7 +156,7 @@ public class Enemy : Ball
             return;
 
         Debug.Log("生成黑球");
-        GameManager.SetBallNum("black", true);
+        GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
         GameObject go;
         if (enemyPool.Count > 0)
         {
