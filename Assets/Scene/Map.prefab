@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &175167231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 175167233}
+  - component: {fileID: 175167232}
+  m_Layer: 0
+  m_Name: TileProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &175167233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175167231}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2064446485535378121}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175167232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175167231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756a01a914208439d8d2fc8dcd68b229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cbtpOptions:
+    camera: {fileID: 0}
+    visibleBuffer: 0
+    disposeBuffer: 0
 --- !u!1 &2064446485535378122
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,7 +74,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 175167233}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _options:
     locationOptions:
-      latitudeLongitude: 37.784179, -122.401583
+      latitudeLongitude: 30.5500125, 114.287533
       zoom: 16
     extentOptions:
       extentType: 0
@@ -70,8 +118,8 @@ MonoBehaviour:
       scalingType: 1
       unityTileSize: 100
     loadingTexture: {fileID: 0}
-    tileMaterial: {fileID: 2100000, guid: b9f23e9bce724fa4daac57ecded470b8, type: 2}
-  _initializeOnStart: 0
+    tileMaterial: {fileID: 2100000, guid: b09813feaa9c60f4294ea7486e4a47ea, type: 2}
+  _initializeOnStart: 1
   _imagery:
     _layerProperty:
       sourceType: 2
@@ -84,7 +132,7 @@ MonoBehaviour:
           UserName: 
       rasterOptions:
         useRetina: 0
-        useCompression: 0
+        useCompression: 1
         useMipMap: 0
   _terrain:
     _layerProperty:
@@ -100,9 +148,9 @@ MonoBehaviour:
       requiredOptions:
         exaggerationFactor: 1
       colliderOptions:
-        addCollider: 0
+        addCollider: 1
       modificationOptions:
-        sampleCount: 10
+        sampleCount: 2
         useRelativeHeight: 1
         earthRadius: 1000
       unityLayerOptions:
@@ -120,35 +168,25 @@ MonoBehaviour:
         - admin
         - aeroway
         - airport_label
-        - barrier_line
         - building
-        - contour
-        - country_label
-        - hillshade
         - housenum_label
-        - landcover
         - landuse
         - landuse_overlay
-        - marine_label
         - motorway_junction
-        - mountain_peak_label
+        - natural_label
         - place_label
         - poi_label
-        - rail_station_label
         - road
-        - road_label
-        - state_label
-        - traffic
+        - structure
+        - transit_stop_label
         - water
-        - water_label
         - waterway
-        - waterway_label
-      _sourceType: 2
+      _sourceType: -2
       sourceOptions:
         isActive: 1
         layerSource:
           Name: Mapbox Terrain
-          Id: mapbox.3d-buildings,mapbox.mapbox-streets-v7,mapbox.mapbox-traffic-v1,mapbox.mapbox-terrain-v2
+          Id: mapbox.mapbox-streets-v8
           Modified: 
           UserName: 
       useOptimizedStyle: 0
@@ -186,116 +224,6 @@ MonoBehaviour:
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
           minimumHeight: 3
-          maximumHeight: 0.5
-          extrusionScaleFactor: 1
-        colliderOptions:
-          colliderType: 2
-        materialOptions:
-          style: 0
-          texturingType: 2
-          materials:
-          - Materials:
-            - {fileID: 2100000, guid: dd22d0eb52da4594e90fbb4dd7ae0baf, type: 2}
-          - Materials:
-            - {fileID: 0}
-          atlasInfo: {fileID: 0}
-          lightStyleOpacity: 1
-          darkStyleOpacity: 1
-          colorStyleColor: {r: 1, g: 1, b: 1, a: 1}
-          samplePalettes: 0
-          colorPalette: {fileID: 0}
-          customStyleOptions:
-            texturingType: 0
-            materials:
-            - Materials:
-              - {fileID: 2100000, guid: dd22d0eb52da4594e90fbb4dd7ae0baf, type: 2}
-            - Materials:
-              - {fileID: 2100000, guid: dd22d0eb52da4594e90fbb4dd7ae0baf, type: 2}
-            atlasInfo: {fileID: 0}
-            colorPalette: {fileID: 0}
-        performanceOptions:
-          isEnabled: 1
-          entityPerCoroutine: 20
-        honorBuildingIdSetting: 1
-        buildingsWithUniqueIds: 0
-        moveFeaturePositionTo: 0
-        MeshModifiers: []
-        GoModifiers:
-        - {fileID: 11400000, guid: 3505ec4e61e3f4c4d88fc3c5548e7144, type: 2}
-        - {fileID: 11400000, guid: e425dc440a40d9a4080794105e9f66ef, type: 2}
-        presetFeatureType: 2
-        _maskValue: 0
-        selectedTypes: 
-      - coreOptions:
-          sourceId: 
-          isActive: 0
-          sublayerName: Traffic
-          geometryType: 3
-          layerName: road
-          snapToTerrain: 0
-          combineMeshes: 0
-        lineGeometryOptions:
-          Width: 1
-          MiterLimit: 0.2
-          RoundLimit: 1.05
-          JoinType: 1
-          CapType: 1
-        filterOptions:
-          _selectedLayerName: road
-          filters:
-          - Key: class
-            KeyDescription: 'One of: ''motorway'', ''motorway_link'', ''trunk'',
-              ''primary'', ''secondary'', ''tertiary'', ''link'', ''street'', ''street_limited'',
-              ''pedestrian'', ''construction'', ''track'', ''service'', ''ferry'',
-              ''path'', ''golf'''
-            PropertyValue: major
-            Min: 0
-            Max: 0
-            filterOperator: 0
-          - Key: class
-            KeyDescription: 'One of: ''motorway'', ''motorway_link'', ''trunk'',
-              ''primary'', ''secondary'', ''tertiary'', ''link'', ''street'', ''street_limited'',
-              ''pedestrian'', ''construction'', ''track'', ''service'', ''ferry'',
-              ''path'', ''golf'''
-            PropertyValue: street
-            Min: 0
-            Max: 0
-            filterOperator: 0
-          - Key: class
-            KeyDescription: 'One of: ''motorway'', ''motorway_link'', ''trunk'',
-              ''primary'', ''secondary'', ''tertiary'', ''link'', ''street'', ''street_limited'',
-              ''pedestrian'', ''construction'', ''track'', ''service'', ''ferry'',
-              ''path'', ''golf'''
-            PropertyValue: tertiary
-            Min: 0
-            Max: 0
-            filterOperator: 0
-          - Key: class
-            KeyDescription: 'One of: ''motorway'', ''motorway_link'', ''trunk'',
-              ''primary'', ''secondary'', ''tertiary'', ''link'', ''street'', ''street_limited'',
-              ''pedestrian'', ''construction'', ''track'', ''service'', ''ferry'',
-              ''path'', ''golf'''
-            PropertyValue: primary
-            Min: 0
-            Max: 0
-            filterOperator: 0
-          - Key: class
-            KeyDescription: 'One of: ''motorway'', ''motorway_link'', ''trunk'',
-              ''primary'', ''secondary'', ''tertiary'', ''link'', ''street'', ''street_limited'',
-              ''pedestrian'', ''construction'', ''track'', ''service'', ''ferry'',
-              ''path'', ''golf'''
-            PropertyValue: secondary
-            Min: 0
-            Max: 0
-            filterOperator: 0
-          combinerType: 0
-        extrusionOptions:
-          _selectedLayerName: road
-          extrusionType: 0
-          extrusionGeometryType: 0
-          propertyName: height
-          propertyDescription: Number. Height of building or part of building.
-          minimumHeight: 3
           maximumHeight: 0.2
           extrusionScaleFactor: 1
         colliderOptions:
@@ -318,9 +246,9 @@ MonoBehaviour:
             texturingType: 0
             materials:
             - Materials:
-              - {fileID: 0}
+              - {fileID: 2100000, guid: 8893d3c546235dd409ce50c07de86aea, type: 2}
             - Materials:
-              - {fileID: 0}
+              - {fileID: 2100000, guid: 8893d3c546235dd409ce50c07de86aea, type: 2}
             atlasInfo: {fileID: 0}
             colorPalette: {fileID: 0}
         performanceOptions:
@@ -329,11 +257,9 @@ MonoBehaviour:
         honorBuildingIdSetting: 1
         buildingsWithUniqueIds: 0
         moveFeaturePositionTo: 0
-        MeshModifiers:
-        - {fileID: 11400000, guid: ed4da4864f7b7394399b675a217cd637, type: 2}
-        GoModifiers:
-        - {fileID: 11400000, guid: 5ad7c36a7a62f8b4cbcbcea8139a12a5, type: 2}
-        presetFeatureType: 1
+        MeshModifiers: []
+        GoModifiers: []
+        presetFeatureType: 2
         _maskValue: 0
         selectedTypes: 
       - coreOptions:
@@ -356,15 +282,15 @@ MonoBehaviour:
           combinerType: 0
         extrusionOptions:
           _selectedLayerName: building
-          extrusionType: 1
+          extrusionType: 4
           extrusionGeometryType: 0
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
           minimumHeight: 3
-          maximumHeight: 1
-          extrusionScaleFactor: 1
+          maximumHeight: 50
+          extrusionScaleFactor: 2.8
         colliderOptions:
-          colliderType: 0
+          colliderType: 2
         materialOptions:
           style: 0
           texturingType: 2
@@ -383,9 +309,9 @@ MonoBehaviour:
             texturingType: 0
             materials:
             - Materials:
-              - {fileID: 2100000, guid: 0f9e3de68a3085e469bd62c8b40e9487, type: 2}
+              - {fileID: 2100000, guid: 6660e8404ed8c034c96f93781a007126, type: 2}
             - Materials:
-              - {fileID: 2100000, guid: 6ec7317f2ac57e2448326cdc68816797, type: 2}
+              - {fileID: 2100000, guid: 9bd5b5e3d2fa26f4b81260f6af728905, type: 2}
             atlasInfo: {fileID: 11400000, guid: 414754d7155df47beb52ca117a774f21,
               type: 2}
             colorPalette: {fileID: 11400000, guid: 57bdfa37edf7a4f7f999d19443497554,
@@ -401,7 +327,137 @@ MonoBehaviour:
         presetFeatureType: 0
         _maskValue: 0
         selectedTypes: 
+      - coreOptions:
+          sourceId: 
+          isActive: 1
+          sublayerName: Water
+          geometryType: 2
+          layerName: water
+          snapToTerrain: 1
+          combineMeshes: 0
+        lineGeometryOptions:
+          Width: 1
+          MiterLimit: 0.2
+          RoundLimit: 1.05
+          JoinType: 1
+          CapType: 1
+        filterOptions:
+          _selectedLayerName: water
+          filters: []
+          combinerType: 0
+        extrusionOptions:
+          _selectedLayerName: water
+          extrusionType: 5
+          extrusionGeometryType: 1
+          propertyName: height
+          propertyDescription: Number. Height of building or part of building.
+          minimumHeight: 3
+          maximumHeight: 0.1
+          extrusionScaleFactor: 1
+        colliderOptions:
+          colliderType: 0
+        materialOptions:
+          style: 0
+          texturingType: 2
+          materials:
+          - Materials:
+            - {fileID: 0}
+          - Materials:
+            - {fileID: 0}
+          atlasInfo: {fileID: 0}
+          lightStyleOpacity: 1
+          darkStyleOpacity: 1
+          colorStyleColor: {r: 0.1764706, g: 0.8509805, b: 1, a: 1}
+          samplePalettes: 0
+          colorPalette: {fileID: 0}
+          customStyleOptions:
+            texturingType: 0
+            materials:
+            - Materials:
+              - {fileID: 2100000, guid: 14af0e8b3d79239499d33ad43c1408a6, type: 2}
+            - Materials:
+              - {fileID: 2100000, guid: 14af0e8b3d79239499d33ad43c1408a6, type: 2}
+            atlasInfo: {fileID: 11400000, guid: 414754d7155df47beb52ca117a774f21,
+              type: 2}
+            colorPalette: {fileID: 11400000, guid: 57bdfa37edf7a4f7f999d19443497554,
+              type: 2}
+        performanceOptions:
+          isEnabled: 1
+          entityPerCoroutine: 20
+        honorBuildingIdSetting: 1
+        buildingsWithUniqueIds: 0
+        moveFeaturePositionTo: 0
+        MeshModifiers: []
+        GoModifiers: []
+        presetFeatureType: 4
+        _maskValue: 0
+        selectedTypes: 
+      - coreOptions:
+          sourceId: 
+          isActive: 1
+          sublayerName: Traffic
+          geometryType: 1
+          layerName: road
+          snapToTerrain: 1
+          combineMeshes: 0
+        lineGeometryOptions:
+          Width: 3
+          MiterLimit: 0.2
+          RoundLimit: 2
+          JoinType: 1
+          CapType: 1
+        filterOptions:
+          _selectedLayerName: road
+          filters: []
+          combinerType: 0
+        extrusionOptions:
+          _selectedLayerName: road
+          extrusionType: 5
+          extrusionGeometryType: 1
+          propertyName: height
+          propertyDescription: Number. Height of building or part of building.
+          minimumHeight: 3
+          maximumHeight: 0.32
+          extrusionScaleFactor: 1
+        colliderOptions:
+          colliderType: 0
+        materialOptions:
+          style: 0
+          texturingType: 2
+          materials:
+          - Materials:
+            - {fileID: 0}
+          - Materials:
+            - {fileID: 0}
+          atlasInfo: {fileID: 11400000, guid: 59ca6a03aa1ab4d5797fc37bc0f37797, type: 2}
+          lightStyleOpacity: 1
+          darkStyleOpacity: 1
+          colorStyleColor: {r: 0.1764706, g: 0.8509805, b: 1, a: 1}
+          samplePalettes: 0
+          colorPalette: {fileID: 0}
+          customStyleOptions:
+            texturingType: 0
+            materials:
+            - Materials:
+              - {fileID: 2100000, guid: 564327c03d6983d479c3021eab7c70d1, type: 2}
+            - Materials:
+              - {fileID: 2100000, guid: 564327c03d6983d479c3021eab7c70d1, type: 2}
+            atlasInfo: {fileID: 11400000, guid: 414754d7155df47beb52ca117a774f21,
+              type: 2}
+            colorPalette: {fileID: 11400000, guid: 57bdfa37edf7a4f7f999d19443497554,
+              type: 2}
+        performanceOptions:
+          isEnabled: 1
+          entityPerCoroutine: 20
+        honorBuildingIdSetting: 0
+        buildingsWithUniqueIds: 1
+        moveFeaturePositionTo: 2
+        MeshModifiers: []
+        GoModifiers: []
+        presetFeatureType: 1
+        _maskValue: 0
+        selectedTypes: 
       locationPrefabList: []
-  _tileProvider: {fileID: 0}
+  _tileProvider: {fileID: 175167232}
   _previewOptions:
-    isPreviewEnabled: 0
+    isPreviewEnabled: 1
