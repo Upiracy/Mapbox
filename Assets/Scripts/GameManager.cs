@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
     private void InitializeBalls()
     {
         //生成一堆灰球黑球
-        float rangeMin = -45;
-        float rangeMax = 45;
+        float rangeMin = -50;
+        float rangeMax = 50;
         RaycastHit hit;
         UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
         for (int i = 0; i < newGreyNum; i++)
@@ -127,8 +127,8 @@ public class GameManager : MonoBehaviour
                     player.transform.localScale = new Vector3(1, 1, 1) * 3;
                     second = true;
 
-                    float rangeMin = 40;
-                    float rangeMax = 60;
+                    float rangeMin = 10;
+                    float rangeMax = 20;
                     RaycastHit hit;
                     Vector3 pos = new Vector3(player.transform.position.x,5, player.transform.position.z);
                     Vector3 dir = new Vector3((Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax), 0, (Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax));

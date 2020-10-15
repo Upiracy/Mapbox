@@ -69,7 +69,7 @@ public class RedBallsManager : MonoBehaviour
             }
 
             //算factor4，对于每一个红球，找最近的灰球
-            float minDis = float.MaxValue;
+            float minDis = 100;
             int minIndex = -1;
             for(int j=0;j<greys.Count;j++)
             {
@@ -82,10 +82,14 @@ public class RedBallsManager : MonoBehaviour
            // Debug.Log(minIndex);
             reds[i].factor5 = playerBall.transform.position - reds[i].transform.position;
             reds[i].factor5 -= (playerBall.transform.position - reds[i].transform.position).normalized*factor5555;
-            if (greys.Count <= 0)
+            if (greys.Count <= 0||minIndex==-1)
                 reds[i].factor4 = Vector3.zero;
-            else
-                reds[i].factor4 = (greys[minIndex].transform.position - reds[i].transform.position);
+            else if(minIndex>=0)
+            {
+                Vector3 v = (greys[minIndex].transform.position - reds[i].transform.position);
+                reds[i].factor4 = v.normalized * (1 / v.magnitude);
+                reds[i].factor5 = Vector3.zero;
+            }
                 //reds[i].factor4 = (greys[minIndex].transform.position - reds[i].transform.position) * (1 / reds[i].factor5.magnitude);
 
             factors2 += reds[i].transform.position;
@@ -108,11 +112,11 @@ public class RedBallsManager : MonoBehaviour
             //因素6 
             if(Physics.SphereCast(reds[i].transform.position, r, reds[i].GetComponent<Rigidbody>().velocity,out hit, sphereCastMaxDis, 1 << 10))
             {
-                reds[i].factor6 = hit.normal * reds[i].rb.velocity.magnitude*0.1f + Vector3.Cross(hit.normal,Vector3.up ).normalized *20 ;
+                reds[i].factor6 += hit.normal * reds[i].rb.velocity.magnitude*0.1f + Vector3.Cross(hit.normal,Vector3.up ).normalized ;
             }
             else
             {
-                reds[i].factor6 = Vector3.zero;
+                reds[i].factor6 *= 0.5f;
             }
 
             reds[i].factor7 = Vector3.Cross(Vector3.up, reds[i].GetComponent<Rigidbody>().velocity).normalized * Random.Range(-1, 1);
