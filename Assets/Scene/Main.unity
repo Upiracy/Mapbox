@@ -237,10 +237,6 @@ MonoBehaviour:
   upBarPoint2: {fileID: 1137328623}
   upMidPer: 0.3
   upBigPer: 0.6
-  r: 20
-  g: 3
-  b: 3
-  status: Big
 --- !u!114 &89510659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,8 +285,8 @@ Canvas:
   m_GameObject: {fileID: 89510657}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 493436625}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -330,6 +326,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175167232, guid: 16e176fa97029b64faced4b778fd457d, type: 3}
+      propertyPath: _cbtpOptions.camera
+      value: 
+      objectReference: {fileID: 493436625}
     - target: {fileID: 2064446485535378121, guid: 16e176fa97029b64faced4b778fd457d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -392,74 +392,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
         type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.size
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].MeshModifiers.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].GoModifiers.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.materials.Array.data[0].Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.materials.Array.data[1].Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.customStyleOptions.materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.customStyleOptions.materials.Array.data[0].Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.customStyleOptions.materials.Array.data[1].Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].GoModifiers.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].MeshModifiers.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].filterOptions.filters.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].GoModifiers.Array.size
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: _options.extentOptions.defaultExtents.cameraBoundsOptions.camera
+      value: 
+      objectReference: {fileID: 493436625}
     - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
         type: 3}
       propertyPath: _options.loadingTexture
@@ -467,565 +402,9 @@ PrefabInstance:
       objectReference: {fileID: 270901318}
     - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
         type: 3}
-      propertyPath: _previewOptions.isPreviewEnabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _options.extentOptions.defaultExtents.cameraBoundsOptions.camera
+      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].materialOptions.materials.Array.data[0].Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 493436625}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _tileProvider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _imagery._layerProperty.sourceType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _imagery._layerProperty.sourceOptions.layerSource.Id
-      value: mapbox://styles/mapbox/dark-v9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty._sourceType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.sourceOptions.layerSource.Id
-      value: mapbox.3d-buildings,mapbox.mapbox-streets-v7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[5]
-      value: country_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[6]
-      value: housenum_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[7]
-      value: landuse
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[8]
-      value: landuse_overlay
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[9]
-      value: marine_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[10]
-      value: motorway_junction
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[11]
-      value: mountain_peak_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[12]
-      value: place_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[13]
-      value: poi_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[14]
-      value: rail_station_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[15]
-      value: road
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[16]
-      value: road_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[17]
-      value: state_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[18]
-      value: water
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[19]
-      value: water_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[20]
-      value: waterway
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[21]
-      value: waterway_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.propertyName
-      value: height
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.propertyDescription
-      value: Number. Height of building or part of building.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.extrusionType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.minimumHeight
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.maximumHeight
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.extrusionScaleFactor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].colliderOptions.colliderType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].MeshModifiers.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 2eaa52b5b6ac0104aa27dc1a2d8785a6,
-        type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].GoModifiers.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].coreOptions.isActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].coreOptions.sublayerName
-      value: Traffic
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].coreOptions.geometryType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].coreOptions.snapToTerrain
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].lineGeometryOptions.Width
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].lineGeometryOptions.MiterLimit
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].lineGeometryOptions.RoundLimit
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].lineGeometryOptions.JoinType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].lineGeometryOptions.CapType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].filterOptions._selectedLayerName
-      value: road
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].extrusionOptions._selectedLayerName
-      value: road
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].extrusionOptions.propertyName
-      value: height
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].extrusionOptions.propertyDescription
-      value: Number. Height of building or part of building.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].extrusionOptions.minimumHeight
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].extrusionOptions.maximumHeight
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].extrusionOptions.extrusionScaleFactor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.texturingType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.lightStyleOpacity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.darkStyleOpacity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.colorStyleColor.r
-      value: 0.1764706
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.colorStyleColor.g
-      value: 0.8509805
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.colorStyleColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.colorStyleColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.customStyleOptions.materials.Array.data[0].Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 564327c03d6983d479c3021eab7c70d1, type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.customStyleOptions.materials.Array.data[1].Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 564327c03d6983d479c3021eab7c70d1, type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.customStyleOptions.atlasInfo
-      value: 
-      objectReference: {fileID: 11400000, guid: 414754d7155df47beb52ca117a774f21,
-        type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.customStyleOptions.colorPalette
-      value: 
-      objectReference: {fileID: 11400000, guid: 57bdfa37edf7a4f7f999d19443497554,
-        type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].performanceOptions.isEnabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].performanceOptions.entityPerCoroutine
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].honorBuildingIdSetting
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].buildingsWithUniqueIds
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].presetFeatureType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[0]
-      value: admin
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[1]
-      value: aeroway
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[2]
-      value: airport_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[3]
-      value: barrier_line
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[4]
-      value: building
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.LayerDisplayNames.Array.data[22]
-      value: waterway_label
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].coreOptions.layerName
-      value: road
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].coreOptions.isActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.performanceOptions.isEnabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _initializeOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _imagery._layerProperty.rasterOptions.useCompression
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _options.tileMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b09813feaa9c60f4294ea7486e4a47ea, type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].materialOptions.customStyleOptions.materials.Array.data[0].Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 14af0e8b3d79239499d33ad43c1408a6, type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].materialOptions.customStyleOptions.materials.Array.data[1].Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 14af0e8b3d79239499d33ad43c1408a6, type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].materialOptions.customStyleOptions.materials.Array.data[0].Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8893d3c546235dd409ce50c07de86aea, type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].materialOptions.customStyleOptions.materials.Array.data[1].Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8893d3c546235dd409ce50c07de86aea, type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].extrusionOptions.extrusionType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].extrusionOptions.extrusionGeometryType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].colliderOptions.colliderType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].coreOptions.geometryType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].extrusionOptions.extrusionType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].extrusionOptions.extrusionGeometryType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].extrusionOptions.maximumHeight
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].materialOptions.customStyleOptions.materials.Array.data[0].Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6660e8404ed8c034c96f93781a007126, type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].materialOptions.customStyleOptions.materials.Array.data[1].Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9bd5b5e3d2fa26f4b81260f6af728905, type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].extrusionOptions.extrusionScaleFactor
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].coreOptions.sublayerName
-      value: Buildings
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].coreOptions.layerName
-      value: building
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].coreOptions.snapToTerrain
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].filterOptions._selectedLayerName
-      value: building
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].extrusionOptions._selectedLayerName
-      value: building
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].colliderOptions.colliderType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].materialOptions.atlasInfo
-      value: 
-      objectReference: {fileID: 11400000, guid: c422f39ca8fe566479230c87805b3301,
-        type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].materialOptions.colorStyleColor.r
-      value: 0.1764706
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].materialOptions.colorStyleColor.g
-      value: 0.8509805
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].materialOptions.customStyleOptions.atlasInfo
-      value: 
-      objectReference: {fileID: 11400000, guid: 414754d7155df47beb52ca117a774f21,
-        type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].materialOptions.customStyleOptions.colorPalette
-      value: 
-      objectReference: {fileID: 11400000, guid: 57bdfa37edf7a4f7f999d19443497554,
-        type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].presetFeatureType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].coreOptions.sublayerName
-      value: Water
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].coreOptions.layerName
-      value: water
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].filterOptions._selectedLayerName
-      value: water
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions._selectedLayerName
-      value: water
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].extrusionOptions.extrusionGeometryType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].materialOptions.atlasInfo
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[2].presetFeatureType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.style
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: dd22d0eb52da4594e90fbb4dd7ae0baf, type: 2}
     - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
         type: 3}
       propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.materials.Array.data[0].Materials.Array.data[0]
@@ -1036,62 +415,6 @@ PrefabInstance:
       propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.materials.Array.data[1].Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2108214781}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].materialOptions.atlasInfo
-      value: 
-      objectReference: {fileID: 11400000, guid: 59ca6a03aa1ab4d5797fc37bc0f37797,
-        type: 2}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].GoModifiers.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].GoModifiers.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _terrain._layerProperty.colliderOptions.addCollider
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.useOptimizedStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.tileJsonData.tileJSONLoaded
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[3].moveFeaturePositionTo
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _options.locationOptions.latitudeLongitude
-      value: 30.5500125, 114.287533
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].extrusionOptions.maximumHeight
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _terrain._layerProperty.elevationLayerType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
-        type: 3}
-      propertyPath: _terrain._layerProperty.modificationOptions.sampleCount
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16e176fa97029b64faced4b778fd457d, type: 3}
 --- !u!1001 &146658720
@@ -2164,6 +1487,7 @@ GameObject:
   - component: {fileID: 493436626}
   - component: {fileID: 493436625}
   - component: {fileID: 493436624}
+  - component: {fileID: 493436627}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2236,6 +1560,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!114 &493436627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493436623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &566835987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2663,7 +2018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128995549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.72, y: 2, z: 0}
+  m_LocalPosition: {x: 20.9, y: 1.62, z: 1.62}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2957,7 +2312,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3007,13 +2362,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327488938}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.5854291, y: 0.31445438, z: 0.11085524, w: 0.7389874}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 52.706, y: 78.887, z: 61.408005}
 --- !u!1 &1460192171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,7 +2880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 29.999, y: 0}
+  m_AnchoredPosition: {x: 29.998993, y: 0}
   m_SizeDelta: {x: -146.8, y: -50.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!21 &2108214781
