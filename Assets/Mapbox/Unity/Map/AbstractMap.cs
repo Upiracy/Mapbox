@@ -481,6 +481,7 @@ namespace Mapbox.Unity.Map
 			{
 				TileProvider.ExtentChanged -= OnMapExtentChanged;
 			}
+			//if(!_mapVisualizer) _mapVisualizer = ScriptableObject.CreateInstance<MapVisualizer>();
 			_mapVisualizer.ClearMap();
 			_mapVisualizer.Destroy();
 		}
