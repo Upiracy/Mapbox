@@ -11,14 +11,21 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image upgradeBar, redBar, greyBar, blackBar, upBarPoint1, upBarPoint2;
     [SerializeField] float upMidPer = 0.3f, upBigPer = 0.6f;
     float upBarSize, ratioSize;
+    private string status = "Small";
+
     void Start()
     {
         upBarSize = upgradeBar.rectTransform.rect.width;
         ratioSize = redBar.rectTransform.rect.width;
     }
 
-    //改变进度条。r,g,b分别为红、灰、黑球数量，status（Small/Mid/Big）为主角状态
-    public void SetUpBar(int r,int g,int b,string status) 
+    //status（Small/Mid/Big）为主角状态
+    public void SetStatus(string s)
+    {
+        status = s;
+    }
+    //改变进度条。r,g,b分别为红、灰、黑球数量
+    public void SetUpBar(int r,int g,int b) 
     {
         if (status.Equals("Small"))
         {
@@ -28,7 +35,7 @@ public class UIManager : MonoBehaviour
             num.text = (upMidPer*100).ToString() + "%";
             upBarPoint1.enabled = false; upBarPoint2.enabled = false;
         }
-        if (status.Equals("Mid"))
+        else if (status.Equals("Mid"))
         {
             upgradeBar.rectTransform.SetSizeWithCurrentAnchors
                 (RectTransform.Axis.Horizontal, r / (float)(r + g + b) / upBigPer * upBarSize);
@@ -37,7 +44,7 @@ public class UIManager : MonoBehaviour
             upBarPoint1.enabled = true; upBarPoint2.enabled = false;
             upBarPoint1.rectTransform.anchoredPosition = new Vector2(upBarSize * upMidPer / upBigPer, 0);
         }
-        if (status.Equals("Big"))
+        else if (status.Equals("Big"))
         {
             upgradeBar.rectTransform.SetSizeWithCurrentAnchors
             (RectTransform.Axis.Horizontal, r / (float)(r + g + b) * upBarSize);
