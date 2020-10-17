@@ -46,6 +46,8 @@ namespace Mapbox.Directions
 
 					var data = Deserialize(str);
 
+					if (str == "") return; //unsafe
+
 					callback(data);
 				});
 		}

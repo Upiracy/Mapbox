@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int newBlackNum = 2;
 
+    [SerializeField] float dropGap;
+    [SerializeField] float preTime;
+    [SerializeField] float dropRange;
+
+    public static bool gameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +32,11 @@ public class GameManager : MonoBehaviour
         sumNum = redNum + blackNum + greyNum;
         second = false;
         third = false;
+        gameOver = false;
         player = GameObject.Find("PlayerBall").GetComponent<Player>();
 
         InitializeBalls();
+        StartCoroutine(DropBullet());
     }
 
     /// <summary>
@@ -79,7 +87,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log((Random.Range(-1, 1) + 0.5f) * 2 );
+
     }
 
     public void SetBallNum(string color,bool add)
@@ -115,7 +123,7 @@ public class GameManager : MonoBehaviour
             }
         }
         sumNum = redNum + blackNum + greyNum;
-        UnityEngine.Debug.Log((float)redNum / sumNum);
+       // UnityEngine.Debug.Log((float)redNum / sumNum);
         if (sumNum > newGreyNum+newBlackNum)
         {
             if ((float)redNum / sumNum >= 0.3 && (float)redNum / sumNum <= 0.6)
@@ -127,22 +135,7 @@ public class GameManager : MonoBehaviour
                     player.transform.localScale = new Vector3(1, 1, 1) * 3;
                     second = true;
 
-                    float rangeMin = 10;
-                    float rangeMax = 20;
-                    RaycastHit hit;
-                    Vector3 pos = new Vector3(player.transform.position.x,5, player.transform.position.z);
-                    Vector3 dir = new Vector3((Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax), 0, (Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax));
-                    if (Physics.Raycast(pos, dir, out hit, 60, 1 << 10))
-                    {
-                        boss.SetActive(true);
-                        boss.transform.position = hit.point - dir.normalized * 3;
-                    }
-                    else
-                    {
-                        boss.SetActive(true);
-                        boss.transform.position = pos + dir;
-                        // Debug.LogFormat("未射中,{0}", pos + dir);
-                    }
+                    GenerateBoss();
 
                 }
             }
@@ -154,15 +147,48 @@ public class GameManager : MonoBehaviour
                     player.state = 3;
                     player.transform.localScale = new Vector3(1, 1, 1) * 5;
                     third = true;
+
+                    StartCoroutine(DropBullet());
                 }
             }
         }
         //调用uimanager函数改变比例条
     }
 
+    /// <summary>
+    /// TODO: 出生点会卡墙，或者在巷道上方
+    /// </summary>
     void GenerateBoss()
     {
-
+        float rangeMin = 10;
+        float rangeMax = 20;
+        RaycastHit hit;
+        Vector3 pos = new Vector3(player.transform.position.x, 5, player.transform.position.z);
+        Vector3 dir = new Vector3((Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax), 0, (Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax));
+        if (Physics.Raycast(pos, dir, out hit, 60, 1 << 10))
+        {
+            boss.SetActive(true);
+            boss.transform.position = hit.point - dir.normalized * 3;
+        }
+        else
+        {
+            boss.SetActive(true);
+            boss.transform.position = pos + dir;
+            // Debug.LogFormat("未射中,{0}", pos + dir);
+        }
     }
 
+    IEnumerator DropBullet()
+    {
+        while(!gameOver)
+        {
+            Vector3 pos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * dropRange + player.transform.position;
+            pos += new Vector3(0, 10, 0); 
+            GameObject shadow = BulletShadow.GenerateShadow(new Vector3(pos.x, 0.05f, pos.z));
+            yield return new WaitForSeconds(preTime);
+            Bullet.GenerateBullet(pos, shadow);
+
+            yield return new WaitForSeconds(dropGap);
+        }
+    }
 }
