@@ -110,7 +110,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   friction: 0
   f: 0
-  maxSpeed: 10
+  maxSpeed: 12
   speed: 1
   vecs: []
   factor1: {x: 0, y: 0, z: 0}

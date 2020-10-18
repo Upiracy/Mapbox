@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms;
 
 public class Enemy : Ball
 {
-    private bool hasCollided = false;
+    private bool hasCollided = true;
     private static Stack<GameObject> enemyPool = new Stack<GameObject>();
     public static List<Enemy> blackBalls = new List<Enemy>();
     private static int BlackMaxNum=20;
@@ -141,7 +141,7 @@ public class Enemy : Ball
     protected void DestroySelf()
     {
         rb.velocity = Vector3.zero;
-        Debug.Log("销毁黑球");
+        //Debug.Log("销毁黑球");
         gm.SetBallNum("black", false);
 
         enemyPool.Push(gameObject);
@@ -155,7 +155,7 @@ public class Enemy : Ball
         if (BlackMaxNum <= blackBalls.Count)
             return;
 
-        Debug.Log("生成黑球");
+        //Debug.Log("生成黑球");
         GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
         GameObject go;
         if (enemyPool.Count > 0)

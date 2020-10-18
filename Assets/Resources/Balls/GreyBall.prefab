@@ -97,7 +97,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   friction: 0.2
   f: 0
-  maxSpeed: 6
+  maxSpeed: 8
   speed: 1
   vecs: []
   direction: {x: 0, y: 0, z: 0}

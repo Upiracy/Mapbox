@@ -559,7 +559,7 @@ Transform:
   m_GameObject: {fileID: 632427694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.6, y: 4.14, z: 13.84}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -1195,7 +1195,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 70
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1656513308
 GameObject:
@@ -1658,6 +1658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBall: {fileID: 28867057}
   joyStick: {fileID: 1852433159}
+  maxAngle: 50
 --- !u!4 &2106018771
 Transform:
   m_ObjectHideFlags: 0
@@ -1689,11 +1690,11 @@ MonoBehaviour:
   greyBallR: 0.5
   blackBallR: 0.5
   boss: {fileID: 632427694}
-  newGreyNum: 10
+  newGreyNum: 20
   newBlackNum: 2
-  dropGap: 2
-  preTime: 3
-  dropRange: 3
+  dropGap: 1
+  preTime: 1
+  dropRange: 0.5
 --- !u!114 &2106018773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,31 +1905,25 @@ MonoBehaviour:
         - admin
         - aeroway
         - airport_label
-        - barrier_line
         - building
-        - country_label
         - housenum_label
         - landuse
         - landuse_overlay
-        - marine_label
         - motorway_junction
-        - mountain_peak_label
+        - natural_label
         - place_label
         - poi_label
-        - rail_station_label
         - road
-        - road_label
-        - state_label
+        - structure
+        - transit_stop_label
         - water
-        - water_label
         - waterway
-        - waterway_label
-      _sourceType: 0
+      _sourceType: -2
       sourceOptions:
         isActive: 1
         layerSource:
           Name: Mapbox Terrain
-          Id: mapbox.3d-buildings,mapbox.mapbox-streets-v7
+          Id: mapbox.mapbox-streets-v8
           Modified: 
           UserName: 
       useOptimizedStyle: 0
@@ -2030,7 +2025,7 @@ MonoBehaviour:
           propertyDescription: Number. Height of building or part of building.
           minimumHeight: 3
           maximumHeight: 50
-          extrusionScaleFactor: 2
+          extrusionScaleFactor: 5
         colliderOptions:
           colliderType: 2
         materialOptions:
@@ -2051,9 +2046,9 @@ MonoBehaviour:
             texturingType: 0
             materials:
             - Materials:
-              - {fileID: 2100000, guid: 085d6d5892b1ea24fb23993aa5342aef, type: 2}
+              - {fileID: 2100000, guid: 9ff15c9a1153e2f489a7e40d36a44bd3, type: 2}
             - Materials:
-              - {fileID: 2100000, guid: 085d6d5892b1ea24fb23993aa5342aef, type: 2}
+              - {fileID: 2100000, guid: 9ff15c9a1153e2f489a7e40d36a44bd3, type: 2}
             atlasInfo: {fileID: 11400000, guid: 414754d7155df47beb52ca117a774f21,
               type: 2}
             colorPalette: {fileID: 11400000, guid: 57bdfa37edf7a4f7f999d19443497554,
