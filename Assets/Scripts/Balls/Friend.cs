@@ -82,6 +82,21 @@ Spherecast找墙面
             Enemy.GenerateSelf(transform.position);
             hasCollided = true;
         }
+
+        if(collision.gameObject.tag == "Boss" || collision.gameObject.tag == "SmallBlackBall" || collision.gameObject.tag == "RedBall" || collision.gameObject.tag == "GreyBall" || collision.gameObject.tag == "Player")
+        {
+            //Debug.Log(collision.gameObject.tag);
+            Rebound(collision);
+           // Debug.Log(rb.velocity);
+            hasCollided = true;
+        }
+
+        if (collision.gameObject.layer == 10)
+        {
+            //CollideWall(collision.contacts[0].normal);
+            //Debug.Log("撞墙");
+            hasCollided = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)

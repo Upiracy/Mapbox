@@ -186,9 +186,10 @@ MonoBehaviour:
   rb: {fileID: 0}
   friction: 0.05
   f: 0
-  maxSpeed: 10
+  maxSpeed: 12
   speed: 1
   vecs: []
+  reboundForce: 1
   state: 3
 --- !u!23 &28867058
 MeshRenderer:
@@ -582,6 +583,7 @@ MonoBehaviour:
   maxSpeed: 2
   speed: 1
   vecs: []
+  reboundForce: 0.5
   direction: {x: 0, y: 0, z: 0}
   scaleDes: 0.5
 --- !u!1 &669688312
@@ -1367,7 +1369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deltaPos: {x: 0, y: 0}
   r: 250
-  cutDis: 1
+  cutDis: 2
 --- !u!114 &1852433160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,9 +1460,9 @@ GameObject:
   - component: {fileID: 2040415294}
   - component: {fileID: 2040415292}
   - component: {fileID: 2040415293}
-  - component: {fileID: 2040415296}
   - component: {fileID: 2040415295}
   - component: {fileID: 2040415297}
+  - component: {fileID: 2040415296}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1547,7 +1549,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedObject: {fileID: 28867055}
-  delay: 1
+  delay: 2
+  CamSpeed: 4
 --- !u!54 &2040415296
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1556,13 +1559,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040415291}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
+  m_Mass: 0.1
+  m_Drag: 0.1
+  m_AngularDrag: 0.1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!114 &2040415297
 MonoBehaviour:
@@ -1659,6 +1662,7 @@ MonoBehaviour:
   playerBall: {fileID: 28867057}
   joyStick: {fileID: 1852433159}
   maxAngle: 50
+  maxSpeed: 0
 --- !u!4 &2106018771
 Transform:
   m_ObjectHideFlags: 0
@@ -1695,6 +1699,9 @@ MonoBehaviour:
   dropGap: 1
   preTime: 1
   dropRange: 0.5
+  speed1: 100
+  speed2: 80
+  speed3: 50
 --- !u!114 &2106018773
 MonoBehaviour:
   m_ObjectHideFlags: 0

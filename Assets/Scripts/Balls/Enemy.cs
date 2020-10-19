@@ -108,6 +108,19 @@ public class Enemy : Ball
             Friend.GenerateSelf(transform.position);
             hasCollided = true;
         }
+
+        if(collision.gameObject.tag == "Boss" || collision.gameObject.tag == "SmallBlackBall" || collision.gameObject.tag == "RedBall" || collision.gameObject.tag == "GreyBall" || collision.gameObject.tag == "Player")
+        {
+            Rebound(collision);
+            hasCollided = true;
+        }
+
+        if (collision.gameObject.layer == 10)
+        {
+            //CollideWall(collision.contacts[0].normal);
+            //Debug.Log("撞墙");
+            hasCollided = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)

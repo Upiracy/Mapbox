@@ -7,12 +7,13 @@ public class LockCamera : MonoBehaviour
 {
     //[SerializeField] float positionFactor, velocityFactor;
 
-    private Vector3 linkedPosition;
+    private Vector3 linkedPosition, deltaPosition;
     [SerializeField] Rigidbody linkedObject = null;
     [SerializeField] int delay = 1;
 
     Rigidbody rgb = null;
     Camera cam = null;
+    [SerializeField] float CamSpeed;
 
     void Start()
     {
@@ -29,10 +30,17 @@ public class LockCamera : MonoBehaviour
             throw new System.Exception("Can not find a plane.");
         }
 
+        deltaPosition = transform.position - linkedPosition;
         linkedObject.transform.position = linkedPosition;
     }
 
-    void Update()
+    private void Update()
+    {
+         Debug.Log("相机" + rgb.velocity);
+        //Debug.Log(transform.position - linkedObject.position);
+    }
+
+    void LateUpdate()
     {
         /*
         Vector3 deltaPosition = linkedObject.transform.position - linkedPosition - transform.position;
@@ -55,9 +63,12 @@ public class LockCamera : MonoBehaviour
 
     IEnumerator DelayAffect(Vector3 velocity)
     {
+        Vector3 pos = linkedObject.position;
+
         for(int i = 0; i < delay; i++) yield return 0;
 
-        rgb.velocity = velocity;
+       // if((velocity + (pos + deltaPosition - transform.position).normalized * rgb.velocity.magnitude - rgb.velocity).magnitude>1)
+        rgb.velocity = CamSpeed *  (pos + deltaPosition-transform.position);
     }
 
 }

@@ -113,6 +113,7 @@ MonoBehaviour:
   maxSpeed: 12
   speed: 1
   vecs: []
+  reboundForce: 1
   factor1: {x: 0, y: 0, z: 0}
   factor2: {x: 0, y: 0, z: 0}
   factor3: {x: 0, y: 0, z: 0}
