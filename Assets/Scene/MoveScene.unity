@@ -1927,7 +1927,7 @@ PrefabInstance:
     - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
         type: 3}
       propertyPath: _previewOptions.isPreviewEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2064446485535378123, guid: 16e176fa97029b64faced4b778fd457d,
         type: 3}
