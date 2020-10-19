@@ -9,6 +9,8 @@ TagManager:
   - RedBall
   - Boss
   - AirWall
+  - Bullet
+  - Shadow
   layers:
   - Default
   - TransparentFX

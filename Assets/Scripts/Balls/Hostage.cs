@@ -10,7 +10,7 @@ using UnityEngine;
 /// </summary>
 public class Hostage : Ball
 {
-    private bool hasCollided = false;
+    private bool hasCollided = true;
     private static Stack<GameObject> hostagePool = new Stack<GameObject>();
     public static List<Hostage> greyBalls = new List<Hostage>();
     static int GreyMaxNum=20;
@@ -30,6 +30,7 @@ public class Hostage : Ball
 
     IEnumerator RandomMove()
     {
+        Debug.Log("灰球寻路");
         while (true)
         {
 
@@ -88,6 +89,11 @@ public class Hostage : Ball
             Enemy.GenerateSelf(transform.position);
             hasCollided = true;
         }
+        else if (collision.gameObject.tag == "Wall")
+        {
+            StopCoroutine(RandomMove());
+            StartCoroutine(RandomMove());
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -121,7 +127,7 @@ public class Hostage : Ball
     protected void DestroySelf()
     {
         rb.velocity = Vector3.zero;
-        Debug.Log("销毁灰球");
+       // Debug.Log("销毁灰球");
         gm.SetBallNum("grey", false);
 
         hostagePool.Push(gameObject);
@@ -135,7 +141,7 @@ public class Hostage : Ball
         if (GreyMaxNum <= greyBalls.Count)
             return;
 
-        Debug.Log("生成灰球");
+        //Debug.Log("生成灰球");
         GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("grey", true);
         GameObject go;
         if (hostagePool.Count>0)

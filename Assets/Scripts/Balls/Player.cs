@@ -26,7 +26,8 @@ public class Player : Ball
     private void OnCollisionEnter(Collision collision)
     {
         if ((collision.gameObject.tag == "SmallBlackBall" && state == 1) ||
-             collision.gameObject.tag == "Boss" )
+             collision.gameObject.tag == "Boss" ||
+             collision.gameObject.tag == "Bullet")
         {
             //主角变灰
             DestroySelf();

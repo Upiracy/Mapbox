@@ -115,7 +115,7 @@ Spherecast找墙面
     protected void DestroySelf()
     {
         rb.velocity = Vector3.zero;
-        Debug.Log("销毁红球");
+        //Debug.Log("销毁红球");
         gm.SetBallNum("red", false);
 
         friendPool.Push(gameObject);
@@ -126,7 +126,7 @@ Spherecast找墙面
 
     public static void GenerateSelf(Vector3 pos)
     {
-        Debug.Log("生成红球");
+        //Debug.Log("生成红球");
         GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("red", true);
 
         GameObject go;

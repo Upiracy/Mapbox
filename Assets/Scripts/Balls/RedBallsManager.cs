@@ -106,7 +106,7 @@ public class RedBallsManager : MonoBehaviour
         for (int i = 0; i < reds.Count; i++)
         {
             reds[i].factor1 /= reds.Count;
-            reds[i].factor2 = factors2;
+            reds[i].factor2 = factors2-reds[i].transform.position;
             reds[i].factor3 = factors3;
 
             //因素6 
