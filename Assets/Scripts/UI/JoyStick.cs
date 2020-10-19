@@ -25,12 +25,19 @@ public class JoyStick : MonoBehaviour
             if ((GetComponent<RectTransform>().anchoredPosition - startPos).magnitude < cutDis)
                 GetComponent<RectTransform>().anchoredPosition = startPos;
             else
-            GetComponent<RectTransform>().anchoredPosition -= (GetComponent<RectTransform>().anchoredPosition - startPos).normalized * cutDis;
+            GetComponent<RectTransform>().anchoredPosition -= (GetComponent<RectTransform>().anchoredPosition - startPos).normalized * cutDis * Time.deltaTime * 50;
 
         }
 
         deltaPos = (GetComponent<RectTransform>().anchoredPosition - startPos) / r;
     }
+
+    public void ResetPos()
+    {
+        GetComponent<RectTransform>().anchoredPosition = startPos;
+    }
+
+    
     public void OnMouseDrag()
     {
         isMove = true;
@@ -42,10 +49,12 @@ public class JoyStick : MonoBehaviour
         }
         GetComponent<RectTransform>().anchoredPosition = startPos+ delta;
     }
+    
 
     private void OnMouseDown()
     {
         isMove = true;
+        //GetComponent<RectTransform>().anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
     }
 
     public void OnMouseUp()

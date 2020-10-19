@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public float friction,f, maxSpeed;
     public float speed=1;
     public List<Vector3> vecs;
+    [SerializeField] float reboundForce = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +32,15 @@ public class Ball : MonoBehaviour
     public void Roll(Vector3 direction)
     {
         rb.freezeRotation = false;
-        rb.velocity += direction * speed;
+        if((rb.velocity + direction * speed).magnitude < maxSpeed) rb.velocity += direction * speed;
         if (rb.velocity.sqrMagnitude > 0)
         {
+            /*
             if (rb.velocity.magnitude > maxSpeed)
             {
-                rb.velocity = rb.velocity.normalized * maxSpeed;
+                rb.velocity -= rb.velocity.normalized * friction;
             }
+            */
             rb.velocity -= rb.velocity.normalized * friction;
             rb.velocity -= rb.velocity.sqrMagnitude * rb.velocity.normalized * f;
 
@@ -57,6 +60,21 @@ public class Ball : MonoBehaviour
             }
 
         }
+    }
+
+    protected void Rebound(Collision co)
+    {
+        //Debug.Log(co.collider.gameObject.name + ";;;;;;;" + (co.collider.GetComponent<Rigidbody>() == null).ToString());
+        Vector3 vself = rb.velocity, vother = co.collider.GetComponent<Rigidbody>().velocity, normal = co.contacts[0].normal;
+        rb.velocity += normal * reboundForce * Vector3.Project(vother, normal).magnitude;
+    }
+
+    protected void CollideWall(Collision co)
+    {
+        Vector3 vself = co.relativeVelocity, normal = co.contacts[0].normal;
+        rb.velocity += normal * reboundForce * Vector3.Project(vself, -normal).magnitude*1f;
+        if(gameObject.name=="PlayerBall")
+        Debug.LogFormat("{0},{1},最后速度{2}",vself,normal,normal * reboundForce * Vector3.Project(vself, -normal).magnitude * 1f);
     }
 
     /*
