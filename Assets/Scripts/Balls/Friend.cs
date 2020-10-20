@@ -97,7 +97,7 @@ Spherecast找墙面
 
         if (collision.gameObject.layer == 10)
         {
-            //CollideWall(collision.contacts[0].normal);
+            CollideWall(collision);
             //Debug.Log("撞墙");
             hasCollided = true;
         }

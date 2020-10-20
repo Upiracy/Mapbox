@@ -33,7 +33,7 @@ public class Enemy : Ball
         if (Physics.SphereCast(transform.position, 1, rb.velocity, out hit, 5, 1 << 10))
             direction += hit.normal * rb.velocity.magnitude * 0.8f + Vector3.Cross(hit.normal, Vector3.up).normalized;
 
-        direction += (playerBall.transform.position - transform.position).normalized +Vector3.Cross(Vector3.up, rb.velocity).normalized * Random.Range(-1f, 1f);
+        direction += Vector3.Cross(Vector3.up, rb.velocity).normalized * Random.Range(-1f, 1f);
 
         int index = FindRedBall();
         if (index>=0)
@@ -126,7 +126,7 @@ public class Enemy : Ball
 
         if (collision.gameObject.layer == 10)
         {
-            //CollideWall(collision.contacts[0].normal);
+            CollideWall(collision);
             //Debug.Log("撞墙");
             hasCollided = true;
         }
