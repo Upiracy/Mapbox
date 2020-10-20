@@ -85,14 +85,16 @@ public class Hostage : Ball
 
         if (collision.gameObject.tag == "RedBall"||
              collision.gameObject.tag == "Player")
-        {         
-            EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Red"));
-            Destroy(this);
+        {
+            // EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Red"));
+            // Destroy(this);
             //这里延迟销毁自己和延迟生成红球
-
-            //灰球变红
-            //DestroySelf();
+            DestroySelf();
             Friend.GenerateSelf(transform.position);
+            //灰球变红
+
+            //StartCoroutine(Grey2Red());            
+
             hasCollided = true;
 
         }
@@ -122,6 +124,14 @@ public class Hostage : Ball
             //Debug.Log("撞墙");
             hasCollided = true;
         }
+    }
+
+    IEnumerator Grey2Red()
+    {
+        yield return new WaitForSeconds(2);
+        DestroySelf();
+
+        Friend.GenerateSelf(transform.position);
     }
 
     private void OnTriggerExit(Collider other)
