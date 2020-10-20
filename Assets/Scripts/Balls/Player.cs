@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Player : Ball
 {
+    [SerializeField] int HP = 1;
     private bool hasCollided = true;
     public int state = 1; //123对应小中大
+    GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
-        state = 1;
+        state = 1; HP = 1;
         rb = transform.GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0, 0, 0);
+        gm = GameObject.Find("Manager").GetComponent<GameManager>();
     }
 
 
@@ -27,11 +30,12 @@ public class Player : Ball
         if (hasCollided) return;
 
         if ((collision.gameObject.tag == "SmallBlackBall" && state == 1) ||
+            (collision.gameObject.tag == "SmallBlackBall" && collision.transform.GetComponent<Enemy>().fast) ||
              collision.gameObject.tag == "Boss" ||
              collision.gameObject.tag == "Bullet")
         {
             //主角变灰
-            DestroySelf();
+            Hurt();
 
             
         }
@@ -52,15 +56,23 @@ public class Player : Ball
         }
     }
 
-    protected void DestroySelf()
+    protected void Hurt()
     {
-        GetComponent<MeshRenderer>().materials[0].color = Color.grey;
+        Debug.Log("主角hp--");
+        HP--;
+        if(Friend.asHP)
+            gm.SetBallNum("red", false);
+        if (HP <= 0)
+        {
+            GetComponent<MeshRenderer>().materials[0].color = Color.grey;
 
-        //游戏失败，调用GameManger的函数
+            //游戏失败，调用GameManger的函数
+        }
     }
 
-    private void Update()
+    public void SetHP()
     {
-       
+        HP++;
+       // transform.localScale = new
     }
 }

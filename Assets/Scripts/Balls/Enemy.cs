@@ -15,11 +15,13 @@ public class Enemy : Ball
     [SerializeField] float sqrDis;
     [SerializeField] Vector3 direction;
     bool openCorouitine = false;
+    public bool fast = false;
     GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
+        fast = false;
         playerBall = GameObject.Find("PlayerBall");
         rb = transform.GetComponent<Rigidbody>();
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
@@ -35,21 +37,28 @@ public class Enemy : Ball
 
         direction += Vector3.Cross(Vector3.up, rb.velocity).normalized * Random.Range(-1f, 1f);
 
-        int index = FindRedBall();
-        if (index>=0)
+        if (fast)
         {
-            direction = (Friend.redBalls[index].transform.position-transform.position).normalized;
-            StopCoroutine(RandomMove());
-            openCorouitine = false;
+            direction += (playerBall.transform.position - transform.position).normalized;
         }
         else
         {
-            if (!openCorouitine)
+            int index = FindRedBall();
+            if (index >= 0)
             {
-                StartCoroutine(RandomMove());
-                openCorouitine = true;
+                direction = (Friend.redBalls[index].transform.position - transform.position).normalized;
+                StopCoroutine(RandomMove());
+                openCorouitine = false;
             }
+            else
+            {
+                if (!openCorouitine)
+                {
+                    StartCoroutine(RandomMove());
+                    openCorouitine = true;
+                }
 
+            }
         }
 
         Roll(direction.normalized);
@@ -158,6 +167,22 @@ public class Enemy : Ball
                 GenerateSelf(pos + dir);
             }
         }
+        else if (other.gameObject.tag == "Boss")
+        {
+            Debug.Log("黑球减速");
+            fast = false;
+            maxSpeed = 3;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Boss")
+        {
+            Debug.Log("黑球加速");
+            fast = true;
+            maxSpeed = 6;
+        }
     }
 
     protected void DestroySelf()
@@ -168,7 +193,6 @@ public class Enemy : Ball
 
         enemyPool.Push(gameObject);
         gameObject.SetActive(false);
-
         blackBalls.Remove(this);
     }
 
@@ -176,7 +200,6 @@ public class Enemy : Ball
     {
         if (BlackMaxNum <= blackBalls.Count)
             return;
-
         //Debug.Log("生成黑球");
         GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
         GameObject go;
@@ -188,12 +211,9 @@ public class Enemy : Ball
         else
         {
             go = Instantiate<GameObject>((GameObject)Resources.Load("Balls/SmallBlackBall"));
-
         }
         go.transform.parent = GameObject.Find("BlackBalls").transform;
-
         go.transform.position = pos;
-
         blackBalls.Add(go.GetComponent<Enemy>());
     }
 }

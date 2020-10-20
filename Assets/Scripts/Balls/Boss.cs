@@ -19,7 +19,7 @@ public class Boss : Ball
     {
         rb = transform.GetComponent<Rigidbody>();
         playerBall = GameObject.Find("PlayerBall");
-        GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
+        //GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
         StartCoroutine(FindPlayer());
     }
 
@@ -39,6 +39,7 @@ public class Boss : Ball
     {
         while(true)
         {
+            transform.GetChild(0).gameObject.SetActive(false);
             Vector3 dir = new Vector3((playerBall.transform.position - transform.position).x, 0, (playerBall.transform.position - transform.position).z).normalized;
             for(int i=0;i<count;i++)
             {
@@ -50,12 +51,12 @@ public class Boss : Ball
 
             yield return new WaitForSeconds(0.5f);
             rb.velocity += dir*15;
+            yield return new WaitForSeconds(1f);
+            transform.GetChild(0).gameObject.SetActive(true);
 
 
 
-           
-
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(30);
         }
 
 

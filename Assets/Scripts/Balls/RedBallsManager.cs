@@ -9,33 +9,59 @@ public class RedBallsManager : MonoBehaviour
     [SerializeField] float setTimeGap = 1;
     [SerializeField] float factor5555;
     [SerializeField] GameObject boss;
+    [SerializeField] bool set = true;
+
+    #region 权重解释
+    /*
+     1趋向于远离周围红球
+        速度归一化加起来
+
+     2 趋向于靠近所有红球中心
+
+    3 趋向于朝向红球群的平均方向
+        每帧都遍历所有红球
+
+    4 越靠近主角越趋向于接近灰球
+
+    5 越远离主角越趋向于接近主角与主角的距离
+
+    6 越靠近墙越越趋向于远离墙
+        Spherecast找墙面,遇到墙 权重方向为墙法线方向
+
+    7 左右方向随机扰动
+
+    8 避大黑球
+     */
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        for(int i=0;i<5;i++)
-
-        Hostage.GenerateSelf(transform.position + new Vector3(i*3, 0, 10));
-
-        for(int i=0;i<10;i++)
-        {
-            Friend.GenerateSelf(transform.position + new Vector3(i, 0, 0));
-        }
-        */
+        set = true;
         StartCoroutine(Set());
         
     }
 
     IEnumerator Set()
     {
-        while(true)
+        while(set)
         {
-            //Debug.Log("set");
+            Debug.Log("set");
             SetFactor();
             yield return new WaitForSeconds(setTimeGap);
         }
     }
 
+    public void StopSetFactor()
+    {
+        Debug.Log("关红球set");
+        set = false;
+        StopCoroutine(Set());
+        List<Friend> reds = Friend.redBalls;
+        for (int i = 0; i < reds.Count; i++)
+        {
+            reds[i].BecomeHP();
+        }
+    }
 
     /// <summary>
     /// 红球的集群算法
