@@ -74,10 +74,13 @@ public class Hostage : Ball
 
         if (collision.gameObject.tag == "RedBall"||
              collision.gameObject.tag == "Player")
-        {
+        {         
+            EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Red"));
+            Destroy(this);
+            //这里延迟销毁自己和延迟生成红球
 
             //灰球变红
-            DestroySelf();
+            //DestroySelf();
             Friend.GenerateSelf(transform.position);
             hasCollided = true;
 
