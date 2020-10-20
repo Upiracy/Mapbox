@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mapbox.Examples;
+using System.Threading;
 //using System.Diagnostics;
 
 public class Boss : Ball
@@ -10,6 +11,8 @@ public class Boss : Ball
     private bool hasCollided = false;
     [SerializeField] Vector3 direction;
     [SerializeField] float scaleDes;
+    [SerializeField] int count;
+    RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
@@ -17,17 +20,46 @@ public class Boss : Ball
         rb = transform.GetComponent<Rigidbody>();
         playerBall = GameObject.Find("PlayerBall");
         GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
-        StartCoroutine(RandomMove());
+        StartCoroutine(FindPlayer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        Roll(direction);
+        if (Physics.SphereCast(transform.position, 1, rb.velocity, out hit, 5, 1 << 10))
+            direction = (playerBall.transform.position - transform.position).normalized + hit.normal * rb.velocity.magnitude * 0.1f + Vector3.Cross(hit.normal, Vector3.up).normalized;
+        else
+            direction = (playerBall.transform.position - transform.position).normalized;
+        direction += Vector3.Cross(Vector3.up, rb.velocity).normalized * Random.Range(-1f, 1f);
+        Roll(direction.normalized );
+        //rb.AddForce(Vector3.up * -50);
     }
 
-    IEnumerator RandomMove()
+    IEnumerator FindPlayer()
     {
+        while(true)
+        {
+            Vector3 dir = new Vector3((playerBall.transform.position - transform.position).x, 0, (playerBall.transform.position - transform.position).z).normalized;
+            for(int i=0;i<count;i++)
+            {
+                transform.position += new Vector3(0, Mathf.Max(0, 1f-i*0.01f), 0);
+                yield return 0;
+            }
+
+            transform.position = new Vector3(playerBall.transform.position.x, 30, playerBall.transform.position.z)-dir*3;
+
+            yield return new WaitForSeconds(0.5f);
+            rb.velocity += dir*15;
+
+
+
+           
+
+            yield return new WaitForSeconds(10);
+        }
+
+
+        /*
         while (true)
         {
             RaycastHit hit;
@@ -63,6 +95,8 @@ public class Boss : Ball
 
             yield return 0;
         }
+
+        */
     }
 
     private void LateUpdate()

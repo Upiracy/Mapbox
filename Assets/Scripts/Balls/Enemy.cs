@@ -6,6 +6,8 @@ using UnityEngine.SocialPlatforms;
 
 public class Enemy : Ball
 {
+    GameObject playerBall;
+    RaycastHit hit;
     private bool hasCollided = true;
     private static Stack<GameObject> enemyPool = new Stack<GameObject>();
     public static List<Enemy> blackBalls = new List<Enemy>();
@@ -18,6 +20,7 @@ public class Enemy : Ball
     // Start is called before the first frame update
     void Start()
     {
+        playerBall = GameObject.Find("PlayerBall");
         rb = transform.GetComponent<Rigidbody>();
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
         enemyPool.Clear();
@@ -27,6 +30,11 @@ public class Enemy : Ball
     // Update is called once per frame
     void Update()
     {
+        if (Physics.SphereCast(transform.position, 1, rb.velocity, out hit, 5, 1 << 10))
+            direction += hit.normal * rb.velocity.magnitude * 0.8f + Vector3.Cross(hit.normal, Vector3.up).normalized;
+
+        direction += (playerBall.transform.position - transform.position).normalized +Vector3.Cross(Vector3.up, rb.velocity).normalized * Random.Range(-1f, 1f);
+
         int index = FindRedBall();
         if (index>=0)
         {
@@ -44,7 +52,7 @@ public class Enemy : Ball
 
         }
 
-        Roll(direction);
+        Roll(direction.normalized);
 ;    }
 
     int FindRedBall()
@@ -70,9 +78,10 @@ public class Enemy : Ball
             yield return new WaitForSeconds(4);
             foreach (Vector3 v in vecs)
             {
-                direction = (v - transform.position).normalized;
+                
                 while (true)
                 {
+                    direction += (v - transform.position).normalized;
                     if ((v - transform.position).sqrMagnitude <= 1)
                         break;
                     yield return 0;

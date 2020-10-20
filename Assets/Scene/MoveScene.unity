@@ -490,7 +490,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &632427696
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -498,7 +498,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632427694}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d41db873ea970ab458de82c753ca5fcf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -580,12 +580,13 @@ MonoBehaviour:
   rb: {fileID: 0}
   friction: 0.2
   f: 0
-  maxSpeed: 2
+  maxSpeed: 3
   speed: 1
   vecs: []
   reboundForce: 0.5
   direction: {x: 0, y: 0, z: 0}
   scaleDes: 0.5
+  count: 50
 --- !u!1 &669688312
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,6 +759,7 @@ MonoBehaviour:
   sphereCastMaxDis: 1
   setTimeGap: 0.1
   factor5555: 5
+  boss: {fileID: 632427694}
 --- !u!1 &1073611224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,7 +1371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deltaPos: {x: 0, y: 0}
   r: 250
-  cutDis: 2
+  cutDis: 4
 --- !u!114 &1852433160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,8 +1551,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedObject: {fileID: 28867055}
-  delay: 2
-  CamSpeed: 4
+  delay: 1
+  CamSpeed: 3
 --- !u!54 &2040415296
 Rigidbody:
   m_ObjectHideFlags: 0

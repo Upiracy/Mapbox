@@ -8,6 +8,7 @@ public class RedBallsManager : MonoBehaviour
     [SerializeField] float sphereCastMaxDis=1;
     [SerializeField] float setTimeGap = 1;
     [SerializeField] float factor5555;
+    [SerializeField] GameObject boss;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +52,7 @@ public class RedBallsManager : MonoBehaviour
             reds[i].factor1 = Vector3.zero;
             reds[i].factor2 = Vector3.zero;
             reds[i].factor3 = Vector3.zero;
+            //reds[i].factor8 = Vector3.zero;
         }
 
         //因素1计算，遍历n(n-1)/2
@@ -119,7 +121,23 @@ public class RedBallsManager : MonoBehaviour
                 reds[i].factor6 *= 0.5f;
             }
 
-            reds[i].factor7 = Vector3.Cross(Vector3.up, reds[i].GetComponent<Rigidbody>().velocity).normalized * Random.Range(-1, 1);
+            //随机扰动
+            reds[i].factor7 = Vector3.Cross(Vector3.up, reds[i].GetComponent<Rigidbody>().velocity).normalized * Random.Range(-1f, 1f);
+
+
+           // Debug.Log("距离" + (transform.position - boss.transform.position).magnitude + ",,," + boss.activeSelf);
+
+            Vector3 dir = transform.position - boss.transform.position;
+            dir = new Vector3(dir.x, 0, dir.z);
+            if (boss.activeSelf && dir.sqrMagnitude <100)
+            {
+                reds[i].factor8 = dir.normalized * 1 / dir.sqrMagnitude + Vector3.Cross(Vector3.up, dir).normalized * Random.Range(-1f, 1f);
+                //Debug.Log("红球"+ reds[i].factor8);
+            }
+            else
+            {
+                reds[i].factor8 = Vector3.zero;
+            }
         }
 
       //  Debug.LogFormat("{0},{1}",reds[0].factor1, Friend.redBalls[0].factor1);

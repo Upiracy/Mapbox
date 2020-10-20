@@ -110,7 +110,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   friction: 0
   f: 0
-  maxSpeed: 12
+  maxSpeed: 10
   speed: 1
   vecs: []
   reboundForce: 1
@@ -121,6 +121,8 @@ MonoBehaviour:
   factor5: {x: 0, y: 0, z: 0}
   factor6: {x: 0, y: 0, z: 0}
   factor7: {x: 0, y: 0, z: 0}
+  factor8: {x: 0, y: 0, z: 0}
+  total: {x: 0, y: 0, z: 0}
   weight1: 8
   weight2: 0.01
   weight3: 0.1
@@ -128,6 +130,7 @@ MonoBehaviour:
   weight5: 0.1
   weight6: 2
   weight7: 0.001
+  weight8: 1000
 --- !u!54 &1781652999384368751
 Rigidbody:
   m_ObjectHideFlags: 0

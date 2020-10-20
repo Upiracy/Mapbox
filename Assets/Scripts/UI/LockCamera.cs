@@ -36,7 +36,7 @@ public class LockCamera : MonoBehaviour
 
     private void Update()
     {
-         Debug.Log("相机" + rgb.velocity);
+        // Debug.Log("相机" + rgb.velocity);
         //Debug.Log(transform.position - linkedObject.position);
     }
 
@@ -65,10 +65,13 @@ public class LockCamera : MonoBehaviour
     {
         Vector3 pos = linkedObject.position;
 
-        for(int i = 0; i < delay; i++) yield return 0;
+        for (int i = 0; i < delay; i++) yield return 0;
 
-       // if((velocity + (pos + deltaPosition - transform.position).normalized * rgb.velocity.magnitude - rgb.velocity).magnitude>1)
-        rgb.velocity = CamSpeed *  (pos + deltaPosition-transform.position);
+        // if((velocity + (pos + deltaPosition - transform.position).normalized * rgb.velocity.magnitude - rgb.velocity).magnitude>1)
+        rgb.velocity = CamSpeed * (pos + deltaPosition - transform.position) * Mathf.Min(2f, (float)(pos + deltaPosition - transform.position).magnitude) / 2f;
+        if (linkedObject.velocity.magnitude < 0.3f)
+            rgb.velocity *= linkedObject.velocity.magnitude * 0.2f;
+       // Debug.Log(rgb.velocity);
     }
 
 }

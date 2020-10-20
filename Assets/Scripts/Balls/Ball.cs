@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour
     public float friction,f, maxSpeed;
     public float speed=1;
     public List<Vector3> vecs;
-    [SerializeField] float reboundForce = 0.5f;
+    [SerializeField] float reboundForce = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -72,9 +72,9 @@ public class Ball : MonoBehaviour
     protected void CollideWall(Collision co)
     {
         Vector3 vself = co.relativeVelocity, normal = co.contacts[0].normal;
-        rb.velocity += normal * reboundForce * Vector3.Project(vself, -normal).magnitude*1f;
-        if(gameObject.name=="PlayerBall")
-        Debug.LogFormat("{0},{1},最后速度{2}",vself,normal,normal * reboundForce * Vector3.Project(vself, -normal).magnitude * 1f);
+        rb.velocity += normal * reboundForce * Vector3.Project(vself, -normal).magnitude*0.6f;
+     //   if(gameObject.name=="PlayerBall")
+       // Debug.LogFormat("{0},{1},最后速度{2}",vself,normal,normal * reboundForce * Vector3.Project(vself, -normal).magnitude * 1f);
     }
 
     /*

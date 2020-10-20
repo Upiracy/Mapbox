@@ -10,6 +10,8 @@ using UnityEngine;
 /// </summary>
 public class Hostage : Ball
 {
+   // GameObject playerBall;
+    RaycastHit hit;
     private bool hasCollided = true;
     private static Stack<GameObject> hostagePool = new Stack<GameObject>();
     public static List<Hostage> greyBalls = new List<Hostage>();
@@ -20,12 +22,14 @@ public class Hostage : Ball
     // Start is called before the first frame update
     void Start()
     {
+        //playerBall = GameObject.Find("PlayerBall");
         rb = transform.GetComponent<Rigidbody>();
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
         hostagePool.Clear();
       //  rb.velocity = maxSpeed * transform.position.normalized;
         StartCoroutine(RandomMove());
-        
+     
+
     }
 
     IEnumerator RandomMove()
@@ -41,9 +45,10 @@ public class Hostage : Ball
 
             foreach (Vector3 v in vecs)
             {
-                direction = (v - transform.position).normalized;
+                
                 while (true)
                 {
+                    direction += (v - transform.position).normalized;
                     if ((v-transform.position).sqrMagnitude<=1)
                         break;
                     yield return 0;
@@ -60,7 +65,13 @@ public class Hostage : Ball
     // Update is called once per frame
     void Update()
     {
-        Roll(direction);
+        if (Physics.SphereCast(transform.position, 1, rb.velocity, out hit, 5, 1 << 10))
+            direction += hit.normal * rb.velocity.magnitude + Vector3.Cross(hit.normal, Vector3.up).normalized;
+       // else
+           // direction = (playerBall.transform.position - transform.position).normalized * 0.5f;
+        direction += Vector3.Cross(Vector3.up, rb.velocity).normalized * Random.Range(-1f, 1f);
+
+        Roll(direction.normalized);
     }
 
     private void LateUpdate()
@@ -82,6 +93,7 @@ public class Hostage : Ball
             hasCollided = true;
 
         }
+        /*
         else if (collision.gameObject.tag == "Boss")
         {
             //灰球变黑
@@ -89,6 +101,7 @@ public class Hostage : Ball
             Enemy.GenerateSelf(transform.position);
             hasCollided = true;
         }
+        */
         else if (collision.gameObject.tag == "Wall")
         {
             StopCoroutine(RandomMove());
