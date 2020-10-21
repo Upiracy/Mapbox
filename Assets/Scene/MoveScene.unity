@@ -389,7 +389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372046798}
   m_LocalRotation: {x: -0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: -7.2591677, z: 15.173246}
+  m_LocalPosition: {x: 0, y: -7.8791676, z: 16.247116}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 2040415294}
@@ -1627,7 +1627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040415291}
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 16.76, z: 0}
+  m_LocalPosition: {x: 0, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 372046803}
@@ -1791,9 +1791,9 @@ MonoBehaviour:
   boss: {fileID: 632427694}
   newGreyNum: 20
   newBlackNum: 0
-  angle1: 100
-  angle2: 80
-  angle3: 50
+  angle1: 30
+  angle2: 30
+  angle3: 30
   greyBallR: 0.5
   blackBallR: 0.5
   dropGap: 1
@@ -2127,8 +2127,8 @@ MonoBehaviour:
           extrusionGeometryType: 0
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
-          minimumHeight: 3
-          maximumHeight: 50
+          minimumHeight: 5
+          maximumHeight: 15
           extrusionScaleFactor: 5
         colliderOptions:
           colliderType: 2

@@ -2819,8 +2819,8 @@ MonoBehaviour:
           extrusionGeometryType: 0
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
-          minimumHeight: 3
-          maximumHeight: 50
+          minimumHeight: 5
+          maximumHeight: 15
           extrusionScaleFactor: 2.8
         colliderOptions:
           colliderType: 2
