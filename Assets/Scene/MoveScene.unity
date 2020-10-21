@@ -1759,8 +1759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBall: {fileID: 28867057}
   joyStick: {fileID: 1852433159}
-  maxAngle: 50
-  maxSpeed: 0
+  maxAngle: 100
 --- !u!4 &2106018771
 Transform:
   m_ObjectHideFlags: 0
@@ -1789,17 +1788,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b46811dc2a5a54cab480a59b5bd253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greyBallR: 0.5
-  blackBallR: 0.5
   boss: {fileID: 632427694}
   newGreyNum: 20
   newBlackNum: 0
+  angle1: 100
+  angle2: 80
+  angle3: 50
+  greyBallR: 0.5
+  blackBallR: 0.5
   dropGap: 1
   preTime: 1
   dropRange: 0.5
-  speed1: 100
-  speed2: 80
-  speed3: 50
 --- !u!114 &2106018773
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,6 +33,6 @@ public class InputManager : MonoBehaviour
     Vector3 Step(Vector3 from, Vector3 to)
     {
         float angle = Vector3.Angle(from, to);
-        return Vector3.Slerp(from, to, maxAngle / angle);
+        return Vector3.Slerp(from, to, (float)maxAngle / angle);
     }
 }
