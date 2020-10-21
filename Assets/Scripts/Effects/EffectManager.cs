@@ -16,7 +16,7 @@ public static class EffectManager
 
     public static void GenerateTrail(Transform origin, Transform target, float height, float time)
     {
-        Trails trail = GameObject.Instantiate(Resources.Load<GameObject>("Effects/Trails "), origin.position, Quaternion.identity).GetComponent<Trails>();
+        Trails trail = GameObject.Instantiate(Resources.Load<GameObject>("Effects/Trails"), origin.position, Quaternion.identity).GetComponent<Trails>();
         trail.start = origin;
         trail.end = target;
         trail.height = height;
