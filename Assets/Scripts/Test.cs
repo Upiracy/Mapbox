@@ -10,6 +10,7 @@ public class Test : MonoBehaviour
     void Start()
     {
         StartCoroutine(Trail());
+        EffectManager.AttachPower(transform, 10);
     }
 
     IEnumerator Trail()

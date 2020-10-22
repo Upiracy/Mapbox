@@ -22,4 +22,11 @@ public static class EffectManager
         trail.height = height;
         trail.time = time;
     }
+
+    public static void AttachPower(Transform target, float time)
+    {
+        Power power = GameObject.Instantiate(Resources.Load<GameObject>("Effects/Power"), target.position, Quaternion.identity).GetComponent<Power>();
+        power.target = target;
+        power.Destroy(time);
+    }
 }

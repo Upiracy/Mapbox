@@ -1002,7 +1002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475140869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.19, y: 0.5, z: 9.68}
+  m_LocalPosition: {x: 22.22, y: 0.5, z: 19.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2808204622380920561}
@@ -2697,23 +2697,7 @@ MonoBehaviour:
     _layerProperty:
       tileJsonData:
         tileJSONLoaded: 0
-        LayerDisplayNames:
-        - admin
-        - aeroway
-        - airport_label
-        - building
-        - housenum_label
-        - landuse
-        - landuse_overlay
-        - motorway_junction
-        - natural_label
-        - place_label
-        - poi_label
-        - road
-        - structure
-        - transit_stop_label
-        - water
-        - waterway
+        LayerDisplayNames: []
       _sourceType: -2
       sourceOptions:
         isActive: 1
@@ -2819,8 +2803,8 @@ MonoBehaviour:
           extrusionGeometryType: 0
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
-          minimumHeight: 3
-          maximumHeight: 50
+          minimumHeight: 5
+          maximumHeight: 15
           extrusionScaleFactor: 2.8
         colliderOptions:
           colliderType: 2
