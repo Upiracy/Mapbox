@@ -169,7 +169,7 @@ public class Enemy : Ball
         }
         else if (other.gameObject.tag == "Boss")
         {
-            Debug.Log("黑球减速");
+            //Debug.Log("黑球减速");
             fast = false;
             maxSpeed = 3;
         }
@@ -179,7 +179,7 @@ public class Enemy : Ball
     {
         if (other.gameObject.tag == "Boss")
         {
-            Debug.Log("黑球加速");
+            //Debug.Log("黑球加速");
             fast = true;
             maxSpeed = 6;
         }

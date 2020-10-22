@@ -14,13 +14,13 @@ public class Friend : Ball
     [SerializeField] Vector3 total;
     [SerializeField] float weight1=1, weight2=1, weight3=1, weight4=1, weight5=1, weight6=1,weight7=1,weight8 =1;
 
-    public static bool asHP = false;
+   // public static bool asHP = false;
 
     // Start is called before the first frame update
     void Start()
     {
         playerBall = GameObject.Find("PlayerBall");
-        Debug.Log(playerBall);
+       // Debug.Log(playerBall);
         rb = transform.GetComponent<Rigidbody>();
         friendPool.Clear();
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
@@ -139,10 +139,11 @@ public class Friend : Ball
         go.transform.position = pos;
 
         redBalls.Add(go.GetComponent<Friend>());
-        if(asHP)
-            go.GetComponent<Friend>().BecomeHP();
+       // if(asHP)
+           // go.GetComponent<Friend>().BecomeHP();
     }
 
+    /*
     //融入的特效，主角hp++
     public void BecomeHP()
     {
@@ -151,4 +152,5 @@ public class Friend : Ball
         playerBall.GetComponent<Player>().SetHP();
 
     }
+    */
 }

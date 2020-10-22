@@ -9,7 +9,7 @@ public class RedBallsManager : MonoBehaviour
     [SerializeField] float setTimeGap = 1;
     [SerializeField] float factor5555;
     [SerializeField] GameObject boss;
-    [SerializeField] bool set = true;
+    //[SerializeField] bool set = true;
 
     #region 权重解释
     /*
@@ -36,14 +36,14 @@ public class RedBallsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        set = true;
+        //set = true;
         StartCoroutine(Set());
         
     }
 
     IEnumerator Set()
     {
-        while(set)
+        while(true)
         {
             //Debug.Log("set");
             SetFactor();
@@ -51,6 +51,9 @@ public class RedBallsManager : MonoBehaviour
         }
     }
 
+
+
+    /*
     public void StopSetFactor()
     {
         Debug.Log("关红球set");
@@ -59,9 +62,10 @@ public class RedBallsManager : MonoBehaviour
         List<Friend> reds = Friend.redBalls;
         for (int i = 0; i < reds.Count; i++)
         {
-            reds[i].BecomeHP();
+            //reds[i].BecomeHP();
         }
     }
+    */
 
     /// <summary>
     /// 红球的集群算法

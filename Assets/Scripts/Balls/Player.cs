@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Player : Ball
 {
-    [SerializeField] int HP = 1;
+    //[SerializeField] int HP = 1;
     private bool hasCollided = true;
     public int state = 1; //123对应小中大
     GameManager gm;
+    public bool union = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        state = 1; HP = 1;
+        state = 1; 
         rb = transform.GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0, 0, 0);
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
@@ -58,21 +59,19 @@ public class Player : Ball
 
     protected void Hurt()
     {
-        Debug.Log("主角hp--");
-        HP--;
-        if(Friend.asHP)
-            gm.SetBallNum("red", false);
-        if (HP <= 0)
+        if(union)
+        {
+            //散开,红球中一个变灰
+            gm.DivideRedBalls();
+            
+        }
+        else
         {
             GetComponent<MeshRenderer>().materials[0].color = Color.grey;
 
             //游戏失败，调用GameManger的函数
         }
+
     }
 
-    public void SetHP()
-    {
-        HP++;
-       // transform.localScale = new
-    }
 }

@@ -13,6 +13,12 @@ public class UIManager : MonoBehaviour
     float upBarSize, ratioSize;
     private string status = "Small";
 
+    [SerializeField] GameObject unionButton;
+    [SerializeField] int unionNum;
+    [SerializeField] float unionFreezeTime;
+
+    bool firstUnion = true;
+
     void Start()
     {
         upBarSize = upgradeBar.rectTransform.rect.width;
@@ -71,5 +77,39 @@ public class UIManager : MonoBehaviour
         blackBar.rectTransform.SetSizeWithCurrentAnchors
             (RectTransform.Axis.Horizontal, ratioSize * value3);
         blackBar.rectTransform.anchoredPosition=new Vector2(ratioSize*(value1+value2),0);
+    }
+
+    public void ChangeUI(int r, int g, int b)
+    {
+        if (firstUnion)
+        {
+            if (r >= unionNum)
+            {
+                unionButton.GetComponent<Button>().enabled = true;
+                unionButton.transform.GetChild(0).GetComponent<Image>().fillAmount = 1;
+                firstUnion = false;
+            }
+            else
+            {
+                unionButton.GetComponent<Button>().enabled = false;
+                unionButton.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)(r - 1) / unionNum;
+            }
+        }
+    }
+
+    public void ClickUnionButton()
+    {
+        GameObject.Find("Manager").GetComponent<GameManager>().UnionRedBalls();
+
+        StartCoroutine(UnionButtonFreeze());
+    }
+
+    IEnumerator UnionButtonFreeze()
+    {
+        unionButton.GetComponent<Button>().enabled = false;
+        unionButton.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+        yield return new WaitForSeconds(unionFreezeTime);
+        unionButton.GetComponent<Button>().enabled = true;
+        unionButton.transform.GetChild(0).GetComponent<Image>().color = Color.cyan;
     }
 }

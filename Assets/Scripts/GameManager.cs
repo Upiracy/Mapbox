@@ -7,7 +7,7 @@ using UnityEngine.SocialPlatforms;
 
 public class GameManager : MonoBehaviour
 {
-    private static int redNum=1, blackNum, greyNum,sumNum;
+    private static int redNum = 1, blackNum, greyNum;   
     private static bool second = false,third = false;
 
     [SerializeField] GameObject boss;
@@ -18,11 +18,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] float dropGap;
     [SerializeField] float preTime;
     [SerializeField] float dropRange;
+    [SerializeField] float unionTime =10 ;
 
     public static bool gameOver = false;
+    public static int sumNum;
 
     InputManager inputManager;  
     Player player = null;
+    UIManager ui;
 
     void Start()
     {
@@ -36,7 +39,8 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("PlayerBall").GetComponent<Player>();
 
         inputManager = gameObject.GetComponent<InputManager>();
-        Friend.asHP = false;
+       // Friend.asHP = false;
+        ui = GameObject.Find("Canvas").GetComponent<UIManager>(); 
 
         InitializeBalls();
         //StartCoroutine(DropBullet());
@@ -126,51 +130,29 @@ public class GameManager : MonoBehaviour
         }
         sumNum = redNum + blackNum + greyNum;
         // UnityEngine.Debug.Log((float)redNum / sumNum);
-       // UnityEngine.Debug.LogFormat("总数{0}，红{1}，灰{2}，黑{3}",sumNum,redNum,greyNum,blackNum);
-        if (sumNum > newGreyNum + newBlackNum || third)
+        //UnityEngine.Debug.LogFormat("总数{0}，红{1}，灰{2}，黑{3}",sumNum,redNum,greyNum,blackNum);
+        if (sumNum > newGreyNum + newBlackNum)
         {
             if ((float)redNum / sumNum < 0.3)
             {
                 player.state = 1;
                 inputManager.maxAngle = angle1;
             }
-            else if ((float)redNum / sumNum >= 0.3 && (float)redNum / sumNum <= 0.6)
+            else if ( second && (float)redNum / sumNum >= 0.3 && (float)redNum / sumNum <= 0.6)
             {
                 player.state = 2;
                 inputManager.maxAngle = angle2;
-                if (!second)
-                {
-                    UnityEngine.Debug.LogFormat("第二阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
-                    
-                    //player.transform.localScale = new Vector3(1, 1, 1) * 2;
-                    second = true;
-
-                    blackNum++;
-                    GenerateBoss();
-
-                }
             }
-            else if ((float)redNum / sumNum > 0.6)
+            else if ( third && (float)redNum / sumNum > 0.6)
             {
                 player.state = 3;
                 inputManager.maxAngle = angle3;
-                if (!third)
-                {
-                    UnityEngine.Debug.LogFormat("第三阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
-                   
-                    //player.transform.localScale = new Vector3(1, 1, 1) * 3;
-                    third = true;
-                    Friend.asHP = true;
-                    StartCoroutine(DropBullet());
-
-                    GameObject.Find("RedBalls").GetComponent<RedBallsManager>().StopSetFactor();
-                }
             }
-            //if(!third)
-           // UnityEngine.Debug.LogFormat("修改体积{0}", Mathf.Lerp(1f, 2.5f, (float)redNum / sumNum));
-                player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.5f, (float)redNum / sumNum);
+
         }
         //调用uimanager函数改变比例条
+        ui.ChangeUI(redNum, greyNum, blackNum);
+        
     }
 
     /// <summary>
@@ -182,12 +164,12 @@ public class GameManager : MonoBehaviour
         float rangeMin = 10;
         float rangeMax = 20;
         RaycastHit hit;
-        Vector3 pos = new Vector3(player.transform.position.x, 5, player.transform.position.z);
+        Vector3 pos = new Vector3(player.transform.position.x, 0.5f, player.transform.position.z);
         Vector3 dir = new Vector3((Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax), 0, (Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax));
         if (Physics.Raycast(pos, dir, out hit, 60, 1 << 10))
         {
             boss.SetActive(true);
-            boss.transform.position = hit.point - dir.normalized * 3;
+            boss.transform.position = hit.point - dir.normalized * 1.5f;
         }
         else
         {
@@ -215,5 +197,88 @@ public class GameManager : MonoBehaviour
 
             yield return new WaitForSeconds(dropGap);
         }
+    }
+
+
+    private void checkState()
+    {
+        if ((float)redNum / sumNum >= 0.3 && (float)redNum / sumNum <= 0.6)
+        {          
+            if (!second)
+            {
+                UnityEngine.Debug.LogFormat("第二阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
+                second = true;
+                blackNum++;
+                GenerateBoss();
+                player.state = 2;
+                inputManager.maxAngle = angle2;
+            }
+        }
+        else if ((float)redNum / sumNum > 0.6)
+        {           
+            if (!third)
+            {
+                UnityEngine.Debug.LogFormat("第三阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
+                third = true;
+                StartCoroutine(DropBullet());
+                player.state = 3;
+                inputManager.maxAngle = angle3;
+            }
+        }
+    }
+
+    //红球融入主角
+    public void UnionRedBalls()
+    {
+        checkState();
+        List <Friend> reds = Friend.redBalls;
+        for (int i = 0; i < reds.Count; i++)
+        {
+            reds[i].gameObject.SetActive(false);
+        }
+        
+        player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.7f, (float)reds.Count / GameManager.sumNum);
+        player.GetComponent<Player>().union = true;
+        UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
+        StartCoroutine(BeingUnion());
+    }
+
+    IEnumerator BeingUnion()
+    {
+        yield return new WaitForSeconds(unionTime);
+        DivideRedBalls();
+    }
+
+
+    public void DivideRedBalls()
+    {
+        List<Friend> reds = Friend.redBalls;
+        RaycastHit hit;
+        for (int i = 0; i < reds.Count; i++)
+        {
+            if (!reds[i].gameObject.activeSelf)
+            {
+                //Vector3 pos = new Vector3(Random.Range(rangeMin, rangeMax), 0.5f, Random.Range(rangeMin, rangeMax));
+                Vector3 dir = new Vector3(Random.Range(-1f,1f), 0, Random.Range(-1f, 1f));
+                if (Physics.Raycast(player.transform.position, dir, out hit, 10, 1 << 10))
+                {
+                    reds[i].transform.position = hit.point - dir.normalized * 0.5f;
+                }
+                else
+                {
+                    reds[i].transform.position = player.transform.position + dir * 10;
+                }
+                reds[i].gameObject.SetActive(true);
+            }
+
+
+            
+        }
+    
+
+        player.transform.localScale = new Vector3(1, 1, 1);
+        player.GetComponent<Player>().union = false;
+
+        UnityEngine.Debug.Log("解除合体,主角" + player.transform.localScale);
     }
 }
