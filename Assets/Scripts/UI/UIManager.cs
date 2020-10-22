@@ -61,13 +61,15 @@ public class UIManager : MonoBehaviour
     public void ChangeRatio(int r, int g, int b)
     {
         float value1 = r / (float)(r + g + b);
-        float value2 = (r + g) / (float)(r + g + b);
-        float value3 = (r + g + b) / (float)(r + g + b);
+        float value2 = g / (float)(r + g + b);
+        float value3 = b / (float)(r + g + b);
         redBar.rectTransform.SetSizeWithCurrentAnchors
             (RectTransform.Axis.Horizontal, ratioSize * value1);
         greyBar.rectTransform.SetSizeWithCurrentAnchors
             (RectTransform.Axis.Horizontal, ratioSize * value2);
+        greyBar.rectTransform.anchoredPosition = new Vector2(ratioSize*value1,0);
         blackBar.rectTransform.SetSizeWithCurrentAnchors
             (RectTransform.Axis.Horizontal, ratioSize * value3);
+        blackBar.rectTransform.anchoredPosition=new Vector2(ratioSize*(value1+value2),0);
     }
 }
