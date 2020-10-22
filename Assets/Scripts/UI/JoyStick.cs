@@ -6,15 +6,21 @@ using UnityEngine.UI;
 
 public class JoyStick : MonoBehaviour
 {
+    RectTransform parent = null;
+    Vector2 basePosition = Vector2.zero;
     public Vector2 deltaPos;
-    Vector2 startPos;
+    //Vector2 startPos;
+    //[SerializeField] float amplify = 0.65f;
     [SerializeField] float r;
     [SerializeField] float cutDis= 1;
     bool isMove = false;
     // Start is called before the first frame update
     void Start()
     {
-        startPos = GetComponent<RectTransform>().anchoredPosition;
+        parent = transform.parent.GetComponent<RectTransform>();
+        basePosition = new Vector2(parent.anchoredPosition.x + parent.rect.width * 0.5f, parent.anchoredPosition.y + parent.rect.height * 0.5f);
+        //Debug.Log(basePosition);
+        //startPos = GetComponent<RectTransform>().anchoredPosition;
     }
 
     // Update is called once per frame
@@ -22,32 +28,36 @@ public class JoyStick : MonoBehaviour
     {
         if(!isMove)
         {
-            if ((GetComponent<RectTransform>().anchoredPosition - startPos).magnitude < cutDis)
-                GetComponent<RectTransform>().anchoredPosition = startPos;
+            if ((GetComponent<RectTransform>().anchoredPosition).magnitude < cutDis)
+                GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             else
-            GetComponent<RectTransform>().anchoredPosition -= (GetComponent<RectTransform>().anchoredPosition - startPos).normalized * cutDis * Time.deltaTime * 50;
+            GetComponent<RectTransform>().anchoredPosition -= (GetComponent<RectTransform>().anchoredPosition).normalized * cutDis * Time.deltaTime * 50;
 
         }
 
-        deltaPos = (GetComponent<RectTransform>().anchoredPosition - startPos) / r;
+        deltaPos = (GetComponent<RectTransform>().anchoredPosition) / r;
     }
 
+    /*
     public void ResetPos()
     {
-        GetComponent<RectTransform>().anchoredPosition = startPos;
+        GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
     }
-
+    */
     
     public void OnMouseDrag()
     {
         isMove = true;
-        Vector2 delta = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - startPos;
+
+        Vector2 delta = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - basePosition;
+        
         if(delta.sqrMagnitude>r*r)
         {
             delta.Normalize();
             delta *= r;
         }
-        GetComponent<RectTransform>().anchoredPosition = startPos+ delta;
+        
+        GetComponent<RectTransform>().anchoredPosition = delta  * 0.5f;
     }
     
 

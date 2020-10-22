@@ -16,7 +16,7 @@ namespace Effect
         }
         Material changeColorMaterial;
 
-        Light light;
+       new Light light;
 
         new Renderer renderer = null;
 

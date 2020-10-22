@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         float rangeMin = -50;
         float rangeMax = 50;
         RaycastHit hit;
-        UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
+       // UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
         for (int i = 0; i < newGreyNum; i++)
         {
             Vector3 pos = new Vector3(Random.Range(rangeMin, rangeMax), 0.5f, Random.Range(rangeMin, rangeMax));
@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
         }
         sumNum = redNum + blackNum + greyNum;
         // UnityEngine.Debug.Log((float)redNum / sumNum);
-        UnityEngine.Debug.LogFormat("总数{0}，红{1}，灰{2}，黑{3}",sumNum,redNum,greyNum,blackNum);
+       // UnityEngine.Debug.LogFormat("总数{0}，红{1}，灰{2}，黑{3}",sumNum,redNum,greyNum,blackNum);
         if (sumNum > newGreyNum + newBlackNum || third)
         {
             if ((float)redNum / sumNum < 0.3)
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
                 }
             }
             //if(!third)
-            UnityEngine.Debug.LogFormat("修改体积{0}", Mathf.Lerp(1f, 2.5f, (float)redNum / sumNum));
+           // UnityEngine.Debug.LogFormat("修改体积{0}", Mathf.Lerp(1f, 2.5f, (float)redNum / sumNum));
                 player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.5f, (float)redNum / sumNum);
         }
         //调用uimanager函数改变比例条

@@ -7,8 +7,8 @@ public class PlayerSkill : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] int CDTime = 5;
-    [SerializeField] Image buttonMask;
-    [SerializeField] Button button;
+    [SerializeField] Image buttonMask = null;
+    [SerializeField] Button button = null;
     private bool skillAvailable = true;
 
     void Start()

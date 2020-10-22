@@ -34,7 +34,7 @@ public class Hostage : Ball
 
     IEnumerator RandomMove()
     {
-        Debug.Log("灰球寻路");
+       // Debug.Log("灰球寻路");
         while (true)
         {
 

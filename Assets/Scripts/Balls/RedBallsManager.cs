@@ -45,7 +45,7 @@ public class RedBallsManager : MonoBehaviour
     {
         while(set)
         {
-            Debug.Log("set");
+            //Debug.Log("set");
             SetFactor();
             yield return new WaitForSeconds(setTimeGap);
         }
