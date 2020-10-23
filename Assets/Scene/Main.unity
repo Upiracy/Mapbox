@@ -758,7 +758,7 @@ MonoBehaviour:
   count: 50
   dropGap: 2
   preTime: 2
-  dropRange: 2
+  dropRange: 1
   sqrShadowRange: 0
 --- !u!135 &291702640
 SphereCollider:

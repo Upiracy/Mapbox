@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
 
         }
         //调用uimanager函数改变比例条
-        ui.ChangeUI(redNum, greyNum, blackNum);
+        ui.ChangeUI(redNum, greyNum, blackNum, player.state);
         
     }
 

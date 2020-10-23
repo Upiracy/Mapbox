@@ -79,8 +79,20 @@ public class UIManager : MonoBehaviour
         blackBar.rectTransform.anchoredPosition=new Vector2(ratioSize*(value1+value2),0);
     }
 
-    public void ChangeUI(int r, int g, int b)
+    /// <summary>
+    /// 由GameManager调用，改变ui
+    /// </summary>
+    /// <param name="r">红球数</param>
+    /// <param name="g">灰球数</param>
+    /// <param name="b">黑球数</param>
+    /// <param name="state">当前游戏阶段</param>
+    public void ChangeUI(int r, int g, int b,int state)
     {
+        if(state <1||state >3)
+        {
+            Debug.LogErrorFormat("游戏阶段参数错误，当前参数阶段为{0}", state);
+        }
+
         if (!isFreeze)
         {
             //够合体数量且未冷却
@@ -98,6 +110,8 @@ public class UIManager : MonoBehaviour
                 unionButton.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
             }
         }
+
+
     }
 
     public void ClickUnionButton()

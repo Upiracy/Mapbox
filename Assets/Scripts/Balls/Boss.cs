@@ -28,8 +28,10 @@ public class Boss : Ball
         //GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
         StartCoroutine(FindPlayer());
 
-        sqrShadowRange = transform.GetChild(0).transform.localScale.sqrMagnitude;
-        Debug.Log(" sqrShadowRange=" + sqrShadowRange);
+        sqrShadowRange = transform.GetChild(0).transform.localScale.x * transform.GetChild(0).transform.localScale.x;
+        //Debug.LogFormat("{0},{1}, sqrShadowRange = {2}", transform.GetChild(0).transform.localScale.x,transform.GetChild(0).transform.localScale.sqrMagnitude,sqrShadowRange);
+
+        //StartCoroutine(StartDropBullet());
     }
 
     // Update is called once per frame
@@ -87,6 +89,7 @@ public class Boss : Ball
             transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.5f, (float)bossHP / sumHP);
             transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 5f, (float)bossHP / sumHP);
             transform.GetComponent<SphereCollider>().radius = transform.localScale.x;
+            sqrShadowRange = transform.GetChild(0).transform.localScale.x * transform.GetChild(0).transform.localScale.x;
 
             //炸出黑球在范围边缘？
             int a = 2;
@@ -137,9 +140,10 @@ public class Boss : Ball
     {
         while (true)
         {
+            //Debug.LogFormat("主角距离{0}，boss范围{1}", (playerBall.transform.position - transform.position).sqrMagnitude,sqrShadowRange);
             if ((playerBall.transform.position - transform.position).sqrMagnitude <= sqrShadowRange)
             { 
-                Vector3 pos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * dropRange + transform.position;
+                Vector3 pos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * dropRange + playerBall.transform.position;
                 pos += new Vector3(0, 10, 0);
                 GameObject shadow = BulletShadow.GenerateShadow(new Vector3(pos.x, 0.05f, pos.z));
                 yield return new WaitForSeconds(preTime);
