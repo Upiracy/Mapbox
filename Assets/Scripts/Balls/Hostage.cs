@@ -82,27 +82,12 @@ public class Hostage : Ball
         if (collision.gameObject.tag == "RedBall"||
              collision.gameObject.tag == "Player")
         {
-            // EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Red"));
-            // Destroy(this);
-            //这里延迟销毁自己和延迟生成红球
-            DestroySelf();
-            Friend.GenerateSelf(transform.position);
             //灰球变红
-
-            //StartCoroutine(Grey2Red());            
-
-            hasCollided = true;
-
-        }
-        /*
-        else if (collision.gameObject.tag == "Boss")
-        {
-            //灰球变黑
-            DestroySelf();
-            Enemy.GenerateSelf(transform.position);
+            EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Red"));
+            this.enabled = false;
+            Invoke("Grey2Red", 1);            
             hasCollided = true;
         }
-        */
         else if (collision.gameObject.tag == "Wall")
         {
             StopCoroutine(RandomMove());
@@ -122,11 +107,9 @@ public class Hostage : Ball
         }
     }
 
-    IEnumerator Grey2Red()
+    void Grey2Red()
     {
-        yield return new WaitForSeconds(2);
         DestroySelf();
-
         Friend.GenerateSelf(transform.position);
     }
 
@@ -191,8 +174,16 @@ public class Hostage : Ball
 
         go.transform.parent = GameObject.Find("GreyBalls").transform;
         go.transform.position = pos;
+        go.GetComponent<Hostage>().enabled = true;
+        go.GetComponent<Renderer>().material = Resources.Load<Material>("C_Grey");
 
         greyBalls.Add(go.GetComponent<Hostage>());
     }
 
+
+    private void OnEnable()
+    {
+        GetComponent<Hostage>().enabled = true;
+        GetComponent<Renderer>().material = Resources.Load<Material>("C_Grey");
+    }
 }

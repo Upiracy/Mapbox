@@ -34,12 +34,17 @@ public class Player : Ball
         if (state == 1)
         {
             if (collision.gameObject.tag == "SmallBlackBall" ||
-              collision.gameObject.tag == "Boss" ||
-              collision.gameObject.tag == "Bullet")
+              collision.gameObject.tag == "Bullet"||
+              collision.gameObject.tag == "Boss")
             {
                 //主角变灰
                 DestroySelf();
             }
+        }
+        else if (!union && collision.gameObject.tag == "Boss")
+        {
+            //主角变灰
+            DestroySelf();
         }
         //合体时
         else if (union)

@@ -29,6 +29,9 @@ public class Friend : Ball
     private void OnEnable()
     {
         playerBall = GameObject.Find("PlayerBall");
+
+        GetComponent<Friend>().enabled = true;
+        GetComponent<Renderer>().material = Resources.Load<Material>("C_Red");
     }
 
     // Update is called once per frame
@@ -51,15 +54,21 @@ public class Friend : Ball
         if (collision.gameObject.tag == "SmallBlackBall")
         {
             //红球变灰
-            DestroySelf();
-            Hostage.GenerateSelf(transform.position);
+            EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Grey"));
+            this.enabled = false;
+            Invoke("Red2Grey", 1);
+
+            
             hasCollided = true;
         }
         else if (collision.gameObject.tag == "Boss")
         {
             //红球变黑
-            DestroySelf();
-            Enemy.GenerateSelf(transform.position);
+            EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Black"));
+            this.enabled = false;
+            Invoke("Red2Black", 1);
+
+           
             hasCollided = true;
         }
 
@@ -77,6 +86,18 @@ public class Friend : Ball
             //Debug.Log("撞墙");
             hasCollided = true;
         }
+    }
+
+    void Red2Grey()
+    {
+        DestroySelf();
+        Hostage.GenerateSelf(transform.position);
+    }
+
+    void Red2Black()
+    {
+        DestroySelf();
+        Enemy.GenerateSelf(transform.position);
     }
 
     private void OnTriggerExit(Collider other)
@@ -147,20 +168,13 @@ public class Friend : Ball
         }
         go.transform.parent = GameObject.Find("RedBalls").transform;
         go.transform.position = pos;
+        go.GetComponent<Friend>().enabled = true;
+        go.GetComponent<Renderer>().material = Resources.Load<Material>("C_Red");
+
 
         redBalls.Add(go.GetComponent<Friend>());
-       // if(asHP)
-           // go.GetComponent<Friend>().BecomeHP();
+      
     }
 
-    /*
-    //融入的特效，主角hp++
-    public void BecomeHP()
-    {
-        gameObject.SetActive(false);
-        Debug.Log(playerBall);
-        playerBall.GetComponent<Player>().SetHP();
-
-    }
-    */
+    
 }

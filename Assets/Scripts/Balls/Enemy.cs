@@ -126,15 +126,21 @@ public class Enemy : Ball
         if (collision.gameObject.tag == "Player"&&collision.gameObject.GetComponent<Player>().state==2)
         {
             //小黑球与中主角：小黑球变灰，速度加快
-            DestroySelf();
-            Hostage.GenerateSelf(transform.position);
+            EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Grey"));
+            this.enabled = false;
+            Invoke("Black2Grey", 1);
+
+            
             hasCollided = true;
         }
         else if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<Player>().state == 3)
         {
             //小黑球与大主角：小黑球变红，速度加快
-            DestroySelf();
-            Friend.GenerateSelf(transform.position);
+            EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Red"));
+            this.enabled = false;
+            Invoke("Black2Red", 1);
+
+            
             hasCollided = true;
         }
 
@@ -150,6 +156,18 @@ public class Enemy : Ball
             //Debug.Log("撞墙");
             hasCollided = true;
         }
+    }
+
+    void Black2Grey()
+    {
+        DestroySelf();
+        Hostage.GenerateSelf(transform.position);
+    }
+
+    void Black2Red()
+    {
+        DestroySelf();
+        Friend.GenerateSelf(transform.position);
     }
 
     private void OnTriggerExit(Collider other)
@@ -225,9 +243,16 @@ public class Enemy : Ball
         }
         go.transform.parent = GameObject.Find("BlackBalls").transform;
         go.transform.position = pos;
+        go.GetComponent<Enemy>().enabled = true;
+        go.GetComponent<Renderer>().material = Resources.Load<Material>("C_Black");
         blackBalls.Add(go.GetComponent<Enemy>());
     }
 
+    private void OnEnable()
+    {
+        GetComponent<Enemy>().enabled = true;
+        GetComponent<Renderer>().material = Resources.Load<Material>("C_Black");
+    }
 
     public static void Bullet2Enemy(Vector3 pos)
     {
