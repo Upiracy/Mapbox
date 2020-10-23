@@ -51,10 +51,10 @@ MonoBehaviour:
   friction: 0.2
   f: 0
   maxSpeed: 3
-  speed: 1
+  speed: 2
   vecs: []
   reboundForce: 1
-  sqrDis: 100
+  sqrDis: 36
   direction: {x: 0, y: 0, z: 0}
   fast: 0
 --- !u!33 &5611679312303674442

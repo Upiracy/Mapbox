@@ -12,11 +12,12 @@ public class Enemy : Ball
     private static Stack<GameObject> enemyPool = new Stack<GameObject>();
     public static List<Enemy> blackBalls = new List<Enemy>();
     private static int BlackMaxNum=20;
-    [SerializeField] float sqrDis;
+    [SerializeField] int sqrDis = 36;
     [SerializeField] Vector3 direction;
     bool openCorouitine = false;
     public bool fast = false;
     GameManager gm;
+    GameObject boss;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,8 @@ public class Enemy : Ball
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
         enemyPool.Clear();
         StartCoroutine(RandomMove());
+
+        boss = GameObject.Find("RedBalls").GetComponent<RedBallsManager>().boss;
     }
 
     // Update is called once per frame
@@ -37,16 +40,24 @@ public class Enemy : Ball
 
         direction += Vector3.Cross(Vector3.up, rb.velocity).normalized * Random.Range(-1f, 1f);
 
+        if(boss != null && boss.activeSelf && (boss.transform.position - transform.position).sqrMagnitude<25)
+        {
+            direction += (boss.transform.position - transform.position).normalized *2 ;
+        }
+
         if (fast)
         {
-            direction += (playerBall.transform.position - transform.position).normalized;
+            direction += (playerBall.transform.position - transform.position).normalized *2 ;
         }
         else
         {
             int index = FindRedBall();
             if (index >= 0)
             {
-                direction = (Friend.redBalls[index].transform.position - transform.position).normalized;
+                if((Friend.redBalls[index].transform.position - transform.position).sqrMagnitude< (playerBall.transform.position - transform.position).sqrMagnitude)
+                    direction = (Friend.redBalls[index].transform.position - transform.position).normalized;
+                else
+                    direction = (playerBall.transform.position - transform.position).normalized ;
                 StopCoroutine(RandomMove());
                 openCorouitine = false;
             }

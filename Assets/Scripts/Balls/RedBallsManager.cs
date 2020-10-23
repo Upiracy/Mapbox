@@ -8,7 +8,7 @@ public class RedBallsManager : MonoBehaviour
     [SerializeField] float sphereCastMaxDis=1;
     [SerializeField] float setTimeGap = 1;
     [SerializeField] float factor5555;
-    [SerializeField] GameObject boss;
+    public GameObject boss;
     //[SerializeField] bool set = true;
 
     #region 权重解释

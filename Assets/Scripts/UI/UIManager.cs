@@ -108,7 +108,10 @@ public class UIManager : MonoBehaviour
     {
         unionButton.GetComponent<Button>().enabled = false;
         unionButton.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
-        yield return new WaitForSeconds(unionFreezeTime);
+
+
+        float t1 = 0.01f; //冷却时间受红球数量影响
+        yield return new WaitForSeconds(unionFreezeTime + Friend.redBalls.Count *t1);
         unionButton.GetComponent<Button>().enabled = true;
         unionButton.transform.GetChild(0).GetComponent<Image>().color = Color.cyan;
     }

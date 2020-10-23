@@ -204,7 +204,7 @@ MonoBehaviour:
   friction: 0
   f: 0
   maxSpeed: 10
-  speed: 1
+  speed: 2
   vecs: []
   reboundForce: 1
   factor1: {x: 0, y: 0, z: 0}

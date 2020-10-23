@@ -72,7 +72,7 @@ public class Ball : MonoBehaviour
     protected void CollideWall(Collision co)
     {
         Vector3 vself = co.relativeVelocity, normal = co.contacts[0].normal;
-        rb.velocity += normal * reboundForce * Vector3.Project(vself, -normal).magnitude*0.6f;
+        rb.velocity += normal * reboundForce * Vector3.Project(vself, -normal).magnitude*0.3f;
      //   if(gameObject.name=="PlayerBall")
        // Debug.LogFormat("{0},{1},最后速度{2}",vself,normal,normal * reboundForce * Vector3.Project(vself, -normal).magnitude * 1f);
     }

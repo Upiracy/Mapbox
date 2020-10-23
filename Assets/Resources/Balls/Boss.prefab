@@ -112,11 +112,12 @@ MonoBehaviour:
   friction: 0.2
   f: 0
   maxSpeed: 2
-  speed: 1
+  speed: 2
   vecs: []
   reboundForce: 0.5
   direction: {x: 0, y: 0, z: 0}
   scaleDes: 0.5
+  count: 0
 --- !u!54 &2499872849945837551
 Rigidbody:
   m_ObjectHideFlags: 0

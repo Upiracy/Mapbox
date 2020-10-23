@@ -245,13 +245,16 @@ public class GameManager : MonoBehaviour
 
     IEnumerator BeingUnion()
     {
-        yield return new WaitForSeconds(unionTime);
-        DivideRedBalls();
+        float t0 = 0.5f;//技能使用时间与红球数量有关
+        yield return new WaitForSeconds(unionTime + Friend.redBalls.Count * t0);
+        DivideRedBalls(0);
     }
 
 
-    public void DivideRedBalls()
+    public void DivideRedBalls(int changeNum)
     {
+        player.GetComponent<Player>().union = false;
+
         List<Friend> reds = Friend.redBalls;
         RaycastHit hit;
         for (int i = 0; i < reds.Count; i++)
@@ -268,16 +271,23 @@ public class GameManager : MonoBehaviour
                 {
                     reds[i].transform.position = player.transform.position + dir * 10;
                 }
+
+                if(changeNum>0)
+                {
+                    reds[i].ChangeSelf();
+                    Enemy.GenerateSelf(reds[i].transform.position);
+
+                    changeNum--;
+                    UnityEngine.Debug.Log("changeNum--;");
+                }
+                else
                 reds[i].gameObject.SetActive(true);
-            }
-
-
-            
+            }           
         }
     
 
         player.transform.localScale = new Vector3(1, 1, 1);
-        player.GetComponent<Player>().union = false;
+        
 
         UnityEngine.Debug.Log("解除合体,主角" + player.transform.localScale);
     }

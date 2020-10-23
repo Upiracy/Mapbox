@@ -119,6 +119,16 @@ public class Friend : Ball
         redBalls.Remove(this);
     }
 
+    public void ChangeSelf()
+    {
+        rb.velocity = Vector3.zero;
+        gm.SetBallNum("red", false);
+        friendPool.Push(gameObject);
+        gameObject.SetActive(false);
+
+        redBalls.Remove(this);
+    }
+
     public static void GenerateSelf(Vector3 pos)
     {
         //Debug.Log("生成红球");
