@@ -11,12 +11,18 @@ public class JoyStick : MonoBehaviour
     public Vector2 deltaPos;
     //Vector2 startPos;
     //[SerializeField] float amplify = 0.65f;
-    [SerializeField] float r;
+    [SerializeField] float diameter = 150;
     [SerializeField] float cutDis= 1;
     bool isMove = false;
+
+    RectTransform rt;
+    [SerializeField] RectTransform arrow;
+    [SerializeField] Image arrowImage;
+
     // Start is called before the first frame update
     void Start()
     {
+        rt = GetComponent<RectTransform>();
         parent = transform.parent.GetComponent<RectTransform>();
         basePosition = new Vector2(parent.anchoredPosition.x + parent.rect.width * 0.5f, parent.anchoredPosition.y + parent.rect.height * 0.5f);
         //Debug.Log(basePosition);
@@ -28,14 +34,23 @@ public class JoyStick : MonoBehaviour
     {
         if(!isMove)
         {
-            if ((GetComponent<RectTransform>().anchoredPosition).magnitude < cutDis)
-                GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            if (rt.anchoredPosition.magnitude < cutDis)
+                rt.anchoredPosition = Vector2.zero;
             else
-            GetComponent<RectTransform>().anchoredPosition -= (GetComponent<RectTransform>().anchoredPosition).normalized * cutDis * Time.deltaTime * 50;
+            rt.anchoredPosition -= (rt.anchoredPosition).normalized * cutDis * Time.deltaTime * 50;
 
         }
 
-        deltaPos = (GetComponent<RectTransform>().anchoredPosition) / r;
+        deltaPos = (rt.anchoredPosition) / diameter;
+
+        if (rt.anchoredPosition.sqrMagnitude >= 1)
+        {
+            arrow.anchoredPosition = rt.anchoredPosition.normalized * (diameter + rt.rect.width) * 0.5f;
+            float angle = Mathf.Atan2(rt.anchoredPosition.y, rt.anchoredPosition.x) * 180 / Mathf.PI - 40;
+            //if (rt.anchoredPosition.y < 0) angle += 180; 
+            arrow.localRotation = Quaternion.Euler(0, 0, angle);
+            arrowImage.color = new Color(1, 1, 1, rt.anchoredPosition.sqrMagnitude / (diameter * diameter * 0.25f));
+        }
     }
 
     /*
@@ -51,13 +66,15 @@ public class JoyStick : MonoBehaviour
 
         Vector2 delta = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - basePosition;
         
-        if(delta.sqrMagnitude>r*r)
+        if(delta.sqrMagnitude>diameter*diameter)
         {
             delta.Normalize();
-            delta *= r;
+            delta *= diameter;
         }
         
-        GetComponent<RectTransform>().anchoredPosition = delta  * 0.5f;
+        rt.anchoredPosition = delta * 0.5f;
+
+
     }
     
 
@@ -70,22 +87,7 @@ public class JoyStick : MonoBehaviour
     public void OnMouseUp()
     {
         isMove = false;
-        //GetComponent<RectTransform>().anchoredPosition = startPos;
 
-       // StartCoroutine(SpeedCut());
-    }
-    /*
-    IEnumerator SpeedCut()
-    {
-        for(float t=Time.time;Time.time-t<=cutTime;)
-        {
-            GetComponent<RectTransform>().anchoredPosition = startPos+(GetComponent<RectTransform>().anchoredPosition - startPos) * (cutTime - (Time.time - t)) / cutTime;
-
-            yield return 0;
-        }
-
-        GetComponent<RectTransform>().anchoredPosition = startPos;
     }
 
-    */
 }
