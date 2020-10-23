@@ -219,7 +219,9 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < reds.Count; i++)
             {
                 reds[i].gameObject.SetActive(false);
+                EffectManager.GenerateTrail(reds[i].transform, player.transform, 5, 1);
             }
+            
 
             player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.7f, (float)reds.Count / GameManager.sumNum);
             player.GetComponent<Player>().union = true;
@@ -231,6 +233,7 @@ public class GameManager : MonoBehaviour
     IEnumerator BeingUnion()
     {
         float t0 = 0.5f;//技能使用时间与红球数量有关
+        EffectManager.AttachPower(player.transform, unionTime + Friend.redBalls.Count * t0);
         yield return new WaitForSeconds(unionTime + Friend.redBalls.Count * t0);
         DivideRedBalls(0);
     }
@@ -238,14 +241,18 @@ public class GameManager : MonoBehaviour
 
     public void DivideRedBalls(int changeNum)
     {
-        player.GetComponent<Player>().union = false;
+        
 
         List<Friend> reds = Friend.redBalls;
         RaycastHit hit;
-        for (int i = 0; i < reds.Count; i++)
+        int redsCount = reds.Count;
+        List<GameObject> changeBalls = new List<GameObject>();
+        for (int i = 0; i < redsCount; i++)
         {
+            
             if (!reds[i].gameObject.activeSelf)
             {
+               // UnityEngine.Debug.LogFormat("i={0},是隐藏的,循环总数{1}", i,redsCount);
                 //Vector3 pos = new Vector3(Random.Range(rangeMin, rangeMax), 0.5f, Random.Range(rangeMin, rangeMax));
                 Vector3 dir = new Vector3(Random.Range(-1f,1f), 0, Random.Range(-1f, 1f));
                 if (Physics.Raycast(player.transform.position, dir, out hit, 10, 1 << 10))
@@ -254,27 +261,44 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    reds[i].transform.position = player.transform.position + dir * 10;
+                    reds[i].transform.position = player.transform.position + dir * 8;
                 }
 
-                if(changeNum>0)
+                if (changeNum > 0)
                 {
-                    reds[i].ChangeSelf();
-                    Enemy.GenerateSelf(reds[i].transform.position);
-
+                    changeBalls.Add(reds[i].gameObject);
                     changeNum--;
                     UnityEngine.Debug.Log("changeNum--;");
                 }
                 else
-                reds[i].gameObject.SetActive(true);
+                {
+                    
+                    EffectManager.GenerateTrail(player.transform, reds[i].transform, 5, 1);
+                    StartCoroutine(waitRedAppear(reds[i].gameObject, 1));
+                }
             }           
         }
-    
+        
+        for(int i=0;i<changeBalls.Count;i++)
+        {
+            changeBalls[i].GetComponent<Friend>().ChangeSelf();
+            Enemy.GenerateSelf(changeBalls[i].transform.position);
+
+            
+        }
 
         player.transform.localScale = new Vector3(1, 1, 1);
         
 
         UnityEngine.Debug.Log("解除合体,主角" + player.transform.localScale);
+        player.GetComponent<Player>().union = false;
+    }
+
+    IEnumerator waitRedAppear(GameObject redBall, float t)
+    {
+        yield return new WaitForSeconds(t);
+        redBall.SetActive(true);
+       // UnityEngine.Debug.Log("生成红球");
     }
 
     public void PlayerWin()

@@ -67,6 +67,11 @@ public class Ball : MonoBehaviour
         //Debug.Log(co.collider.gameObject.name + ";;;;;;;" + (co.collider.GetComponent<Rigidbody>() == null).ToString());
         Vector3 vself = rb.velocity, vother = co.collider.GetComponent<Rigidbody>().velocity, normal = co.contacts[0].normal;
         rb.velocity += normal * reboundForce * Vector3.Project(vother, normal).magnitude;
+
+        if(co.gameObject.tag == "Boss" && gameObject.name == "PlayerBall")
+        {
+            rb.velocity += normal * reboundForce * Vector3.Project(vother, normal).magnitude * 10;
+        }
     }
 
     protected void CollideWall(Collision co)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Ball
 {
     //[SerializeField] int HP = 1;
-    private bool hasCollided = true;
+    private bool hasCollided = false;
     public int state = 1; //123对应小中大
     GameManager gm;
     public bool union = false;
@@ -22,14 +22,21 @@ public class Player : Ball
 
     private void LateUpdate()
     {
-        hasCollided = false;
+        //hasCollided = false;
       //  Debug.Log("主角" + rb.velocity);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log("主角碰撞");
         if (hasCollided) return;
-
+        //Debug.Log("主角碰撞,没return");
+        if (collision.gameObject.tag == "Boss" || collision.gameObject.tag == "SmallBlackBall" || collision.gameObject.tag == "RedBall" || collision.gameObject.tag == "GreyBall")
+        {
+            Rebound(collision);
+            //hasCollided = true;
+        }
+       // Debug.Log(union);
         //小主角（一阶段）碰到大黑，小黑，小黑子弹均死亡
         if (state == 1)
         {
@@ -41,6 +48,7 @@ public class Player : Ball
                 DestroySelf();
             }
         }
+        
         else if (!union && collision.gameObject.tag == "Boss")
         {
             //主角变灰
@@ -49,12 +57,19 @@ public class Player : Ball
         //合体时
         else if (union)
         {
+            hasCollided = true;
+          //  Debug.Log("000主角遇boss");
+            StartCoroutine(AllowPlayerCollide(2));
+          //  Debug.Log("111主角遇boss");
             if (collision.gameObject.tag == "Boss")
             {
+              //  Debug.Log("222主角遇boss");
+                Rebound(collision);
                 //体积小于boss
-                if(transform.localScale.x<collision.transform.localScale.x)
+                if (transform.localScale.x<collision.transform.localScale.x)
                 {
                     int n = 2;
+                   
                     gm.DivideRedBalls(n);
                 }
                 //体积大于boss
@@ -73,20 +88,26 @@ public class Player : Ball
             {
                 int x = 2;
                 gm.DivideRedBalls(x);
+                
             }
+
+            StartCoroutine(AllowPlayerCollide(2));
         }
 
-        if(collision.gameObject.tag == "Boss" || collision.gameObject.tag == "SmallBlackBall" || collision.gameObject.tag == "RedBall" || collision.gameObject.tag == "GreyBall")
-        {
-            Rebound(collision);
-            hasCollided = true;
-        }
+        
 
         if (collision.gameObject.layer == 10)
         {
             CollideWall(collision);
             hasCollided = true;
+            StartCoroutine(AllowPlayerCollide(1));
         }
+    }
+
+    IEnumerator AllowPlayerCollide(float t)
+    {
+        yield return new WaitForSeconds(t);
+        hasCollided = false;
     }
 
     protected void Hurt()

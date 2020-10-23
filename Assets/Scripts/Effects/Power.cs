@@ -22,7 +22,7 @@ public class Power : MonoBehaviour
         transform.GetChild(0).localScale = scale;
         for(int i = 1; i < 4; i++)
         {
-            transform.GetChild(i).localScale = scale;
+            transform.GetChild(i).localScale = scale * 0.5f;
         }
     }
 
