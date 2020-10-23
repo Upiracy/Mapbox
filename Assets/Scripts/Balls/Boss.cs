@@ -101,8 +101,8 @@ public class Boss : Ball
 
             if (bossHP<=0)
             {
-                Debug.Log("玩家胜利");
-                //打开gm的函数进行场上有无小黑球的检测，协程？
+                Debug.Log("BOSS死亡");
+                GameObject.Find("Manager").GetComponent<GameManager>().PlayerWin();
 
                 Destroy(gameObject);              
             }
@@ -110,16 +110,6 @@ public class Boss : Ball
             StartCoroutine(AllowCollide());
         }
     }
-
-    /*
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<Player>().state == 3)
-        {
-           // hasCollided = false;
-        }
-    }
-    */
 
     IEnumerator AllowCollide()
     {

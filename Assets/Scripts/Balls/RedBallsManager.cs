@@ -155,23 +155,19 @@ public class RedBallsManager : MonoBehaviour
             reds[i].factor7 = Vector3.Cross(Vector3.up, reds[i].GetComponent<Rigidbody>().velocity).normalized * Random.Range(-1f, 1f);
 
 
-           // Debug.Log("距离" + (transform.position - boss.transform.position).magnitude + ",,," + boss.activeSelf);
 
-            Vector3 dir = transform.position - boss.transform.position;
+            Vector3 dir = transform.position;
+            if (boss != null)
+                dir -= boss.transform.position;
             dir = new Vector3(dir.x, 0, dir.z);
-            if (boss.activeSelf && dir.sqrMagnitude <100)
+            if (boss!=null && boss.activeSelf && dir.sqrMagnitude <100)
             {
                 reds[i].factor8 = dir.normalized * 1 / dir.sqrMagnitude + Vector3.Cross(Vector3.up, dir).normalized * Random.Range(-1f, 1f);
-                //Debug.Log("红球"+ reds[i].factor8);
             }
             else
             {
                 reds[i].factor8 = Vector3.zero;
             }
         }
-
-      //  Debug.LogFormat("{0},{1}",reds[0].factor1, Friend.redBalls[0].factor1);
-       // Debug.Log(Friend.redBalls[0].factor1);
-
     }
 }

@@ -103,5 +103,6 @@ public class Player : Ball
         GetComponent<MeshRenderer>().materials[0].color = Color.grey;
 
         //游戏失败，调用GameManger的函数
+        gm.PlayerLost();
     }
 }

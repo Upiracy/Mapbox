@@ -52,13 +52,6 @@ public class JoyStick : MonoBehaviour
             arrowImage.color = new Color(1, 1, 1, rt.anchoredPosition.sqrMagnitude / (diameter * diameter * 0.25f));
         }
     }
-
-    /*
-    public void ResetPos()
-    {
-        GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-    }
-    */
     
     public void OnMouseDrag()
     {
@@ -81,13 +74,11 @@ public class JoyStick : MonoBehaviour
     private void OnMouseDown()
     {
         isMove = true;
-        //GetComponent<RectTransform>().anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
     }
 
     public void OnMouseUp()
     {
         isMove = false;
-
     }
 
 }

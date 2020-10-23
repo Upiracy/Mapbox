@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float greyBallR, blackBallR;
     [SerializeField] float unionTime =10 ;
 
-    public static bool gameOver = false;
+   // public static bool gameOver = false;
     public static int sumNum;
 
     InputManager inputManager;  
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         sumNum = redNum + blackNum + greyNum;
         second = false;
         third = false;
-        gameOver = false;
+        //gameOver = false;
         player = GameObject.Find("PlayerBall").GetComponent<Player>();
 
         inputManager = gameObject.GetComponent<InputManager>();
@@ -164,21 +164,21 @@ public class GameManager : MonoBehaviour
         Vector3 dir = new Vector3((Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax), 0, (Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax));
         if (Physics.Raycast(pos, dir, out hit, 60, 1 << 10))
         {
-            boss.SetActive(true);
-            boss.transform.position = hit.point - dir.normalized * 1.5f;
+            if (boss != null)
+            {
+                boss.SetActive(true);
+                boss.transform.position = hit.point - dir.normalized * 1.5f;
+            }
         }
         else
         {
-            boss.SetActive(true);
-            boss.transform.position = pos + dir;
-            // Debug.LogFormat("未射中,{0}", pos + dir);
-        }
-
-        
+            if (boss != null)
+            {
+                boss.SetActive(true);
+                boss.transform.position = pos + dir;
+            }
+        }        
     }
-
-
-
 
     private void checkState()
     {
@@ -276,4 +276,23 @@ public class GameManager : MonoBehaviour
 
         UnityEngine.Debug.Log("解除合体,主角" + player.transform.localScale);
     }
+
+    public void PlayerWin()
+    {
+        UnityEngine.Debug.Log("玩家胜利！！！！");
+        Time.timeScale = 0;
+       // gameOver = true;
+        //弹一个ui框
+
+    }
+
+    public void PlayerLost()
+    {
+        UnityEngine.Debug.Log("玩家失败……");
+        Time.timeScale = 0;
+       // gameOver = true;
+        //弹一个ui框
+
+    }
+
 }

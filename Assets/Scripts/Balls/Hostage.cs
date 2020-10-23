@@ -19,7 +19,6 @@ public class Hostage : Ball
     [SerializeField] Vector3 direction;
     GameManager gm;
 
-    // Start is called before the first frame update
     void Start()
     {
         //playerBall = GameObject.Find("PlayerBall");
@@ -34,7 +33,6 @@ public class Hostage : Ball
 
     IEnumerator RandomMove()
     {
-       // Debug.Log("灰球寻路");
         while (true)
         {
 
@@ -61,8 +59,6 @@ public class Hostage : Ball
         }
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         if (Physics.SphereCast(transform.position, 1, rb.velocity, out hit, 5, 1 << 10))

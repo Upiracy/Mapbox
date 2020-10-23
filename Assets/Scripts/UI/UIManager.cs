@@ -6,7 +6,6 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] TMP_Text s, num;
     [SerializeField] Image upgradeBar, redBar, greyBar, blackBar, upBarPoint1, upBarPoint2;
     [SerializeField] float upMidPer = 0.3f, upBigPer = 0.6f;
