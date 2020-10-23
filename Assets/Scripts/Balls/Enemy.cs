@@ -227,4 +227,29 @@ public class Enemy : Ball
         go.transform.position = pos;
         blackBalls.Add(go.GetComponent<Enemy>());
     }
+
+
+    public static void Bullet2Enemy(Vector3 pos)
+    {
+        if (BlackMaxNum <= blackBalls.Count)
+            return;
+
+        GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
+        GameObject go;
+        if (enemyPool.Count > 0)
+        {
+            go = enemyPool.Pop();
+            go.SetActive(true);
+        }
+        else
+        {
+            go = Instantiate<GameObject>((GameObject)Resources.Load("Balls/SmallBlackBall"));
+        }
+        go.transform.parent = GameObject.Find("BlackBalls").transform;
+        go.transform.position = pos;
+        blackBalls.Add(go.GetComponent<Enemy>());
+
+        go.GetComponent<Enemy>().fast = true;
+        go.GetComponent<Enemy>().maxSpeed = 6;
+    }
 }

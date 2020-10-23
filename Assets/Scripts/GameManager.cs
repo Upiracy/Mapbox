@@ -15,9 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] int newBlackNum = 2;
     [SerializeField] int angle1, angle2, angle3;
     [SerializeField] float greyBallR, blackBallR;
-    [SerializeField] float dropGap;
-    [SerializeField] float preTime;
-    [SerializeField] float dropRange;
     [SerializeField] float unionTime =10 ;
 
     public static bool gameOver = false;
@@ -43,7 +40,6 @@ public class GameManager : MonoBehaviour
         ui = GameObject.Find("Canvas").GetComponent<UIManager>(); 
 
         InitializeBalls();
-        //StartCoroutine(DropBullet());
     }
 
     /// <summary>
@@ -181,23 +177,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// 第三阶段：每隔一段时间掉落子弹
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator DropBullet()
-    {
-        while(!gameOver)
-        {
-            Vector3 pos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * dropRange + player.transform.position;
-            pos += new Vector3(0, 10, 0); 
-            GameObject shadow = BulletShadow.GenerateShadow(new Vector3(pos.x, 0.05f, pos.z));
-            yield return new WaitForSeconds(preTime);
-            Bullet.GenerateBullet(pos, shadow);
 
-            yield return new WaitForSeconds(dropGap);
-        }
-    }
 
 
     private void checkState()
@@ -220,7 +200,9 @@ public class GameManager : MonoBehaviour
             {
                 UnityEngine.Debug.LogFormat("第三阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
                 third = true;
-                StartCoroutine(DropBullet());
+                GameObject.Find("RedBalls").GetComponent<RedBallsManager>().boss.GetComponent<Boss>().DropBullet();
+
+                //StartCoroutine(DropBullet());
                 player.state = 3;
                 inputManager.maxAngle = angle3;
             }
@@ -230,17 +212,20 @@ public class GameManager : MonoBehaviour
     //红球融入主角
     public void UnionRedBalls()
     {
-        checkState();
-        List <Friend> reds = Friend.redBalls;
-        for (int i = 0; i < reds.Count; i++)
+        if (!player.GetComponent<Player>().union)
         {
-            reds[i].gameObject.SetActive(false);
+            checkState();
+            List<Friend> reds = Friend.redBalls;
+            for (int i = 0; i < reds.Count; i++)
+            {
+                reds[i].gameObject.SetActive(false);
+            }
+
+            player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.7f, (float)reds.Count / GameManager.sumNum);
+            player.GetComponent<Player>().union = true;
+            UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
+            StartCoroutine(BeingUnion());
         }
-        
-        player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.7f, (float)reds.Count / GameManager.sumNum);
-        player.GetComponent<Player>().union = true;
-        UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
-        StartCoroutine(BeingUnion());
     }
 
     IEnumerator BeingUnion()

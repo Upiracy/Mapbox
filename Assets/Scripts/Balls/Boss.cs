@@ -10,17 +10,26 @@ public class Boss : Ball
     GameObject playerBall;
     private bool hasCollided = false;
     [SerializeField] Vector3 direction;
-    [SerializeField] float scaleDes;
+    [SerializeField] int bossHP = 3;
     [SerializeField] int count;
+    [SerializeField] float dropGap;
+    [SerializeField] float preTime;
+    [SerializeField] float dropRange;
+    [SerializeField] float sqrShadowRange;
     RaycastHit hit;
+    int sumHP;
 
     // Start is called before the first frame update
     void Start()
     {
+        sumHP = bossHP;
         rb = transform.GetComponent<Rigidbody>();
         playerBall = GameObject.Find("PlayerBall");
         //GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
         StartCoroutine(FindPlayer());
+
+        sqrShadowRange = transform.GetChild(0).transform.localScale.sqrMagnitude;
+        Debug.Log(" sqrShadowRange=" + sqrShadowRange);
     }
 
     // Update is called once per frame
@@ -59,45 +68,6 @@ public class Boss : Ball
             yield return new WaitForSeconds(30);
         }
 
-
-        /*
-        while (true)
-        {
-            RaycastHit hit;
-            Vector3 pos = transform.position;
-            Vector3 dir = (playerBall.transform.position - transform.position).normalized;
-            if (!Physics.SphereCast(pos,2, dir, out hit, 20))
-            {
-                direction = dir;
-            }
-            else
-            {
-
-                GameObject.Find("Manager").GetComponent<FindPath>().FindTarget(transform.position, playerBall.transform.position, SetPath);
-                //Debug.LogFormat("{0},{1}", transform.position, playerBall.transform.position);
-                yield return new WaitForSeconds(1);
-
-                foreach (Vector3 v in vecs)
-                {
-                    while (true)
-                    {
-                        //Debug.LogFormat("Boss当前位置{0},目标位置{1},主角位置{2}", transform.position, v, playerBall.transform.position);
-                        //Debug.LogFormat("Boss,{0}", (v - transform.position).normalized);
-                        Vector3 nowSpeed = new Vector3((v - transform.position).x, 0, (v - transform.position).z);
-                        Roll(nowSpeed.normalized);
-                        if (nowSpeed.sqrMagnitude <= 0.01)
-                            break;
-                        yield return 0;
-                    }
-
-                    yield return 0;
-                }
-            }
-
-            yield return 0;
-        }
-
-        */
     }
 
     private void LateUpdate()
@@ -109,22 +79,36 @@ public class Boss : Ball
     {
         if (hasCollided) return;
 
-        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<Player>().state == 3)
+        //遇见第三阶段合体主角且体积大于自己
+        if (collision.gameObject.tag == "Player" && collision.transform.localScale.x >= transform.localScale.x && collision.gameObject.GetComponent<Player>().union )
         {
-            //体积减小
+            //体积减小，范围减小，炸出黑球
+            bossHP--;
+            transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.5f, (float)bossHP / sumHP);
+            transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 5f, (float)bossHP / sumHP);
+            transform.GetComponent<SphereCollider>().radius = transform.localScale.x;
 
-            transform.localScale -= new Vector3(1, 1, 1) * scaleDes;
-            if(transform.localScale.sqrMagnitude<1)
+            //炸出黑球在范围边缘？
+            int a = 2;
+            for(int i=0;i<a;i++)
+            {
+                Vector3 dir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+                Enemy.Bullet2Enemy(transform.position + dir * transform.GetChild(0).transform.localScale.x);
+            }
+
+            if (bossHP<=0)
             {
                 Debug.Log("玩家胜利");
-                Destroy(gameObject);
-                
+                //打开gm的函数进行场上有无小黑球的检测，协程？
+
+                Destroy(gameObject);              
             }
             hasCollided = true;
             StartCoroutine(AllowCollide());
         }
     }
 
+    /*
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<Player>().state == 3)
@@ -132,10 +116,38 @@ public class Boss : Ball
            // hasCollided = false;
         }
     }
+    */
 
     IEnumerator AllowCollide()
     {
         yield return new WaitForSeconds(1);
         hasCollided = false;
+    }
+
+    public void DropBullet()
+    {
+        StartCoroutine(StartDropBullet());
+    }
+
+    /// <summary>
+    /// 第三阶段：每隔一段时间掉落子弹
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator StartDropBullet()
+    {
+        while (true)
+        {
+            if ((playerBall.transform.position - transform.position).sqrMagnitude <= sqrShadowRange)
+            { 
+                Vector3 pos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * dropRange + transform.position;
+                pos += new Vector3(0, 10, 0);
+                GameObject shadow = BulletShadow.GenerateShadow(new Vector3(pos.x, 0.05f, pos.z));
+                yield return new WaitForSeconds(preTime);
+                Bullet.GenerateBullet(pos, shadow);
+
+                yield return new WaitForSeconds(dropGap);
+            }
+            yield return 0;
+        }
     }
 }

@@ -46,6 +46,9 @@ public class Bullet : MonoBehaviour
 
     void DestroySelf()
     {
+        Enemy.Bullet2Enemy(transform.position);
+
+
         gameObject.SetActive(false);
         bulletPool.Push(gameObject);
         BulletShadow.DestroyShadow(shadow);

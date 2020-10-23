@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] int unionNum;
     [SerializeField] float unionFreezeTime;
 
-    bool firstUnion = true;
+    bool isFreeze = false;
 
     void Start()
     {
@@ -81,18 +81,21 @@ public class UIManager : MonoBehaviour
 
     public void ChangeUI(int r, int g, int b)
     {
-        if (firstUnion)
+        if (!isFreeze)
         {
+            //够合体数量且未冷却
             if (r >= unionNum)
             {
-                unionButton.GetComponent<Button>().enabled = true;
                 unionButton.transform.GetChild(0).GetComponent<Image>().fillAmount = 1;
-                firstUnion = false;
+                unionButton.transform.GetChild(0).GetComponent<Image>().color = Color.cyan;
+                unionButton.GetComponent<Button>().enabled = true;
             }
+            //任何时候个数不够，斗是灰色不可选
             else
             {
                 unionButton.GetComponent<Button>().enabled = false;
                 unionButton.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)(r - 1) / unionNum;
+                unionButton.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
             }
         }
     }
@@ -104,15 +107,23 @@ public class UIManager : MonoBehaviour
         StartCoroutine(UnionButtonFreeze());
     }
 
+    //合体按钮冷却中
     IEnumerator UnionButtonFreeze()
     {
+        isFreeze = true;
         unionButton.GetComponent<Button>().enabled = false;
         unionButton.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
 
-
         float t1 = 0.01f; //冷却时间受红球数量影响
-        yield return new WaitForSeconds(unionFreezeTime + Friend.redBalls.Count *t1);
-        unionButton.GetComponent<Button>().enabled = true;
+        float freezeTime = unionFreezeTime + Friend.redBalls.Count * t1;
+        for(float t= Time.time; Time.time - t<=freezeTime;)
+        {
+            unionButton.transform.GetChild(0).GetComponent<Image>().fillAmount = (Time.time - t) / freezeTime;
+            yield return 0;
+        }
+       
         unionButton.transform.GetChild(0).GetComponent<Image>().color = Color.cyan;
+        unionButton.GetComponent<Button>().enabled = true;
+        isFreeze = false;
     }
 }

@@ -716,7 +716,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &291702638
 Rigidbody:
@@ -754,8 +754,12 @@ MonoBehaviour:
   vecs: []
   reboundForce: 0.5
   direction: {x: 0, y: 0, z: 0}
-  scaleDes: 0.5
+  bossHP: 3
   count: 50
+  dropGap: 2
+  preTime: 2
+  dropRange: 2
+  sqrShadowRange: 0
 --- !u!135 &291702640
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -825,7 +829,7 @@ Transform:
   m_GameObject: {fileID: 291702636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.6, y: 4.14, z: 13.84}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 466644112}
   m_Father: {fileID: 0}
@@ -1132,7 +1136,7 @@ Transform:
   m_GameObject: {fileID: 466644111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 291702643}
   m_RootOrder: 0
@@ -1948,14 +1952,11 @@ MonoBehaviour:
   boss: {fileID: 291702636}
   newGreyNum: 20
   newBlackNum: 0
-  angle1: 30
-  angle2: 30
-  angle3: 30
+  angle1: 100
+  angle2: 80
+  angle3: 50
   greyBallR: 0.5
   blackBallR: 0.5
-  dropGap: 1
-  preTime: 1
-  dropRange: 0.5
   unionTime: 10
 --- !u!114 &1106239678
 MonoBehaviour:
