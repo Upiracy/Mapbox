@@ -286,7 +286,7 @@ public class GameManager : MonoBehaviour
             }
             
 
-            player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.7f, (float)reds.Count / GameManager.sumNum);
+            player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 3, (float)reds.Count / GameManager.sumNum);
             player.GetComponent<Player>().union = true;
             UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
             StartCoroutine(BeingUnion());

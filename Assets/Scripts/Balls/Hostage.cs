@@ -164,7 +164,7 @@ public class Hostage : Ball
         if (hostagePool.Count>0)
         {
             go = hostagePool.Pop();
-            go.SetActive(true);
+           // go.SetActive(true);
         }
         else
         {
@@ -178,6 +178,7 @@ public class Hostage : Ball
         go.GetComponent<MeshRenderer>().materials[0] = Resources.Load<Material>("C_Grey");
 
         greyBalls.Add(go.GetComponent<Hostage>());
+        go.SetActive(true);
     }
 
 

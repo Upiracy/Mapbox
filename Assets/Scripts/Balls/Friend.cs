@@ -45,6 +45,8 @@ public class Friend : Ball
         total = weight1 * factor1 + weight2 * factor2 + weight3 * factor3 + weight4 * factor4 + weight5 * factor5 + weight6 * factor6 + weight7 * factor7 + weight8 * factor8;
         total = new Vector3(total.x, 0, total.z);
         Roll(total.normalized);
+
+
     }
 
     private void LateUpdate()
@@ -164,7 +166,7 @@ public class Friend : Ball
         if (friendPool.Count > 0)
         {
             go = friendPool.Pop();
-            go.SetActive(true);
+           // go.SetActive(true);
         }
         else
         {
@@ -181,7 +183,7 @@ public class Friend : Ball
 
 
         redBalls.Add(go.GetComponent<Friend>());
-      
+        go.SetActive(true);
     }
 
     

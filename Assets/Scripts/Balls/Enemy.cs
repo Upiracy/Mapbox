@@ -235,7 +235,6 @@ public class Enemy : Ball
         if (enemyPool.Count > 0)
         {
             go = enemyPool.Pop();
-            go.SetActive(true);
         }
         else
         {
@@ -246,6 +245,7 @@ public class Enemy : Ball
         go.GetComponent<Enemy>().enabled = true;
         go.GetComponent<MeshRenderer>().materials[0] = Resources.Load<Material>("C_Black");
         blackBalls.Add(go.GetComponent<Enemy>());
+        go.SetActive(true);
     }
 
     private void OnEnable()
