@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] int angle1, angle2, angle3;
     [SerializeField] float greyBallR, blackBallR;
     [SerializeField] float unionTime =10 ;
+    [SerializeField] float fadedMusicTime = 3;
+    [SerializeField] AudioClip music2, music3;
     public float rangeMin = -25;
     public float rangeMax = 25;
     public static int sumNum;
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
     InputManager inputManager;  
     Player player = null;
     UIManager ui;
+    AudioSource audioSource;
 
     void Start()
     {
@@ -37,7 +40,8 @@ public class GameManager : MonoBehaviour
 
         inputManager = gameObject.GetComponent<InputManager>();
        // Friend.asHP = false;
-        ui = GameObject.Find("Canvas").GetComponent<UIManager>(); 
+        ui = GameObject.Find("Canvas").GetComponent<UIManager>();
+        audioSource = GetComponent<AudioSource>();
 
         InitializeBalls();
     }
@@ -197,6 +201,8 @@ public class GameManager : MonoBehaviour
                 GenerateBoss();
                 player.state = 2;
                 inputManager.maxAngle = angle2;
+                //切bgm
+                StartCoroutine(Music1TO2());
             }
         }
         else if ((float)redNum / sumNum > 0.6)
@@ -209,6 +215,8 @@ public class GameManager : MonoBehaviour
                 GenerateBoss();
                 player.state = 2;
                 inputManager.maxAngle = angle2;
+
+                
             }
             if (!third)
             {
@@ -219,7 +227,47 @@ public class GameManager : MonoBehaviour
                 //StartCoroutine(DropBullet());
                 player.state = 3;
                 inputManager.maxAngle = angle3;
+                //切bgm
+                StartCoroutine(Music2TO3());
             }
+        }
+    }
+
+    IEnumerator Music1TO2()
+    {
+        
+        for(float t =Time.time;Time.time-t<fadedMusicTime;)
+        {
+            audioSource.volume = 1 - (float)(Time.time - t) / fadedMusicTime;
+            yield return 0;
+        }
+
+        audioSource.clip = music2;
+        audioSource.Play();
+
+        for (float t = Time.time; Time.time - t < fadedMusicTime;)
+        {
+            audioSource.volume = (float)(Time.time - t) / fadedMusicTime;
+            yield return 0;
+        }
+    }
+
+    IEnumerator Music2TO3()
+    {
+
+        for (float t = Time.time; Time.time - t < fadedMusicTime;)
+        {
+            audioSource.volume = 1 - (float)(Time.time - t) / fadedMusicTime;
+            yield return 0;
+        }
+
+        audioSource.clip = music3;
+        audioSource.Play();
+
+        for (float t = Time.time; Time.time - t < fadedMusicTime;)
+        {
+            audioSource.volume = (float)(Time.time - t) / fadedMusicTime;
+            yield return 0;
         }
     }
 
@@ -248,7 +296,18 @@ public class GameManager : MonoBehaviour
     {
         float t0 = 0.5f;//技能使用时间与红球数量有关
         EffectManager.AttachPower(player.transform, unionTime + Friend.redBalls.Count * t0);
-        yield return new WaitForSeconds(unionTime + Friend.redBalls.Count * t0);
+        UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * t0);
+        // yield return new WaitForSeconds(unionTime + Friend.redBalls.Count * t0);    
+
+        float sumTime = unionTime + Friend.redBalls.Count * t0;
+        for (float t =Time.time;Time.time - t< sumTime;)
+        {
+            UnityEngine.Debug.LogFormat("合体中...此时sumTime={0},Time.time={1}, t = {2}",sumTime,Time.time,t);
+            yield return 0;
+        }
+        UnityEngine.Debug.Log("准备执行解除合体函数");
+
+
         DivideRedBalls(0);
     }
 

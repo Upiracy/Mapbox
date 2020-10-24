@@ -133,7 +133,7 @@ public class Boss : Ball
         Debug.Log(playerBall);
         while (true)
         {
-            Debug.LogFormat("主角距离{0}，boss范围{1}", (playerBall.transform.position - transform.position).sqrMagnitude,sqrShadowRange);
+            //Debug.LogFormat("主角距离{0}，boss范围{1}", (playerBall.transform.position - transform.position).sqrMagnitude,sqrShadowRange);
             if ((playerBall.transform.position - transform.position).sqrMagnitude <= sqrShadowRange)
             {
                 Debug.Log("掉子弹");
