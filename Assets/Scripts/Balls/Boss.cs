@@ -87,6 +87,7 @@ public class Boss : Ball
             //体积减小，范围减小，炸出黑球
             bossHP--;
             transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.5f, (float)bossHP / sumHP);
+            Debug.LogFormat("boss体积减小到{0}",Mathf.Lerp(1f, 2.5f, (float)bossHP / sumHP));
             transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 5f, (float)bossHP / sumHP);
             transform.GetComponent<SphereCollider>().radius = transform.localScale.x;
             sqrShadowRange = transform.GetChild(0).transform.localScale.x * transform.GetChild(0).transform.localScale.x;
