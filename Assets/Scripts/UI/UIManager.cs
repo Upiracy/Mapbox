@@ -6,10 +6,11 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text s, num;
+    [SerializeField] TMP_Text s, num,ratioRed,ratioGrey,ratioBlack;
     [SerializeField] Image upgradeBar, redBar, greyBar, blackBar, upBarPoint1, upBarPoint2;
+    [SerializeField] Image redPoint, blackPoint;
     [SerializeField] float upMidPer = 0.3f, upBigPer = 0.6f;
-    float upBarSize, ratioSize;
+    float upBarSize, ratioSize,length,ratioPointWidth;
     private int status = 1;
 
     [SerializeField] GameObject unionButton;
@@ -22,6 +23,8 @@ public class UIManager : MonoBehaviour
     {
         upBarSize = upgradeBar.rectTransform.rect.width;
         ratioSize = redBar.rectTransform.rect.width;
+        length = (redBar.rectTransform.rect.height + redPoint.rectTransform.rect.height) / 2;
+        ratioPointWidth = redPoint.rectTransform.rect.width / 2;
     }
 
     //status（Small/Mid/Big）为主角状态
@@ -73,6 +76,9 @@ public class UIManager : MonoBehaviour
         blackBar.rectTransform.SetSizeWithCurrentAnchors
             (RectTransform.Axis.Horizontal, ratioSize * value3);
         blackBar.rectTransform.anchoredPosition=new Vector2(ratioSize*(value1+value2),0);
+        redPoint.rectTransform.anchoredPosition = new Vector2(ratioSize * value1-ratioPointWidth, length);
+        blackPoint.rectTransform.anchoredPosition = new Vector2(ratioSize * (value1 + value2)-ratioPointWidth, length);
+        ratioRed.text = r.ToString();ratioGrey.text = g.ToString();ratioBlack.text = b.ToString();
     }
 
     /// <summary>
