@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     public float speed=1;
     public List<Vector3> vecs;
     [SerializeField] float reboundForce = 0.3f;
+  //  public GameManager gm;
 
     // Start is called before the first frame update
     void Start()

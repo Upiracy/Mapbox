@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
 
     void DestroySelf()
     {
-        Enemy.Bullet2Enemy(transform.position);
+        Enemy.GenerateSelf(transform.position);
 
 
         gameObject.SetActive(false);

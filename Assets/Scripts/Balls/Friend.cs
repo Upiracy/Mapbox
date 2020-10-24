@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Friend : Ball
 {
+    GameManager gm;
     GameObject playerBall;
     private bool hasCollided = false;
     private static Stack<GameObject> friendPool = new Stack<GameObject>();
     public static List<Friend> redBalls = new List<Friend>();
-    GameManager gm;
 
     public Vector3 factor1, factor2, factor3, factor4, factor5, factor6,factor7,factor8;
     [SerializeField] Vector3 total;
@@ -31,7 +31,12 @@ public class Friend : Ball
         playerBall = GameObject.Find("PlayerBall");
 
         GetComponent<Friend>().enabled = true;
-        GetComponent<Renderer>().material = Resources.Load<Material>("C_Red");
+        GetComponent<MeshRenderer>().materials[0] = Resources.Load<Material>("C_Red");
+
+        if (GetComponent<MeshRenderer>().materials[0].name != "C_Red (Instance)")
+        {
+            Debug.LogErrorFormat("红球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+        }
     }
 
     // Update is called once per frame
@@ -167,8 +172,9 @@ public class Friend : Ball
 
         }
         
-        go.GetComponent<Renderer>().material = Resources.Load<Material>("C_Red");
+       // go.GetComponent<Renderer>().material = GameObject.Find("Manager").GetComponent<GameManager>().
         go.GetComponent<Friend>().enabled = true;
+        go.GetComponent<MeshRenderer>().materials[0] = Resources.Load<Material>("C_Red");
         go.transform.parent = GameObject.Find("RedBalls").transform;
         go.transform.position = pos;
         

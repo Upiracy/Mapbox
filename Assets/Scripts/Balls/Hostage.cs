@@ -1,4 +1,5 @@
 ﻿using Mapbox.Examples;
+using Microsoft.Win32;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,14 +11,13 @@ using UnityEngine;
 /// </summary>
 public class Hostage : Ball
 {
-   // GameObject playerBall;
+    GameManager gm;
     RaycastHit hit;
     private bool hasCollided = true;
     private static Stack<GameObject> hostagePool = new Stack<GameObject>();
     public static List<Hostage> greyBalls = new List<Hostage>();
     static int GreyMaxNum=20;
     [SerializeField] Vector3 direction;
-    GameManager gm;
 
     void Start()
     {
@@ -175,7 +175,7 @@ public class Hostage : Ball
         go.transform.parent = GameObject.Find("GreyBalls").transform;
         go.transform.position = pos;
         go.GetComponent<Hostage>().enabled = true;
-        go.GetComponent<Renderer>().material = Resources.Load<Material>("C_Grey");
+        go.GetComponent<MeshRenderer>().materials[0] = Resources.Load<Material>("C_Grey");
 
         greyBalls.Add(go.GetComponent<Hostage>());
     }
@@ -183,7 +183,19 @@ public class Hostage : Ball
 
     private void OnEnable()
     {
+        //Debug.Log(GetComponent<MeshRenderer>());
+       // Debug.Log(GetComponent<MeshRenderer>().material);
+        //Debug.Log(gm);
+        //Debug.Log(gm.greyMat);
+       // Debug.LogFormat("{0},{1}", ,);
         GetComponent<Hostage>().enabled = true;
-        GetComponent<Renderer>().material = Resources.Load<Material>("C_Grey");
+        GetComponent<MeshRenderer>().materials[0] = Resources.Load<Material>("C_Grey");
+
+
+        if (GetComponent<MeshRenderer>().materials[0].name != "C_Grey (Instance)")
+        {
+            Debug.LogErrorFormat("灰球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+        }
+
     }
 }

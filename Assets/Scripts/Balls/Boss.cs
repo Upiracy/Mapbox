@@ -96,7 +96,7 @@ public class Boss : Ball
             for(int i=0;i<a;i++)
             {
                 Vector3 dir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-                Enemy.Bullet2Enemy(transform.position + dir * transform.GetChild(0).transform.localScale.x);
+                Enemy.GenerateSelf(transform.position + dir * transform.GetChild(0).transform.localScale.x * 1.5f );
             }
 
             if (bossHP<=0)

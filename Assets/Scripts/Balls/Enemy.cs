@@ -6,6 +6,7 @@ using UnityEngine.SocialPlatforms;
 
 public class Enemy : Ball
 {
+    GameManager gm;
     GameObject playerBall;
     RaycastHit hit;
     private bool hasCollided = true;
@@ -16,7 +17,6 @@ public class Enemy : Ball
     [SerializeField] Vector3 direction;
     bool openCorouitine = false;
     public bool fast = false;
-    GameManager gm;
     GameObject boss;
 
     // Start is called before the first frame update
@@ -196,6 +196,7 @@ public class Enemy : Ball
                 GenerateSelf(pos + dir);
             }
         }
+
         else if (other.gameObject.tag == "Boss")
         {
             //Debug.Log("黑球减速");
@@ -204,11 +205,10 @@ public class Enemy : Ball
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Boss")
         {
-            //Debug.Log("黑球加速");
             fast = true;
             maxSpeed = 6;
         }
@@ -244,16 +244,23 @@ public class Enemy : Ball
         go.transform.parent = GameObject.Find("BlackBalls").transform;
         go.transform.position = pos;
         go.GetComponent<Enemy>().enabled = true;
-        go.GetComponent<Renderer>().material = Resources.Load<Material>("C_Black");
+        go.GetComponent<MeshRenderer>().materials[0] = Resources.Load<Material>("C_Black");
         blackBalls.Add(go.GetComponent<Enemy>());
     }
 
     private void OnEnable()
     {
+       // rb.velocity = Vector3.zero;
         GetComponent<Enemy>().enabled = true;
-        GetComponent<Renderer>().material = Resources.Load<Material>("C_Black");
+        GetComponent<MeshRenderer>().materials[0] = Resources.Load<Material>("C_Black");
+
+        if (GetComponent<MeshRenderer>().materials[0].name != "C_Black (Instance)")
+        {
+            Debug.LogErrorFormat("黑球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+        }
     }
 
+    /*
     public static void Bullet2Enemy(Vector3 pos)
     {
         if (BlackMaxNum <= blackBalls.Count)
@@ -272,9 +279,11 @@ public class Enemy : Ball
         }
         go.transform.parent = GameObject.Find("BlackBalls").transform;
         go.transform.position = pos;
+        go.GetComponent<Enemy>().enabled = true;
         blackBalls.Add(go.GetComponent<Enemy>());
 
         go.GetComponent<Enemy>().fast = true;
         go.GetComponent<Enemy>().maxSpeed = 6;
     }
+    */
 }

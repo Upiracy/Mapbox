@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public float rangeMin = -25;
     public float rangeMax = 25;
     public static int sumNum;
+    public Material redMat, greyMat, BlackMat;
 
     InputManager inputManager;  
     Player player = null;
@@ -302,7 +303,7 @@ public class GameManager : MonoBehaviour
         float sumTime = unionTime + Friend.redBalls.Count * t0;
         for (float t =Time.time;Time.time - t< sumTime;)
         {
-            UnityEngine.Debug.LogFormat("合体中...此时sumTime={0},Time.time={1}, t = {2}",sumTime,Time.time,t);
+            //UnityEngine.Debug.LogFormat("合体中...此时sumTime={0},Time.time={1}, t = {2}",sumTime,Time.time,t);
             yield return 0;
         }
         UnityEngine.Debug.Log("准备执行解除合体函数");
