@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] int angle1, angle2, angle3;
     [SerializeField] float greyBallR, blackBallR;
     [SerializeField] float unionTime =10 ;
-
-   // public static bool gameOver = false;
+    public float rangeMin = -25;
+    public float rangeMax = 25;
     public static int sumNum;
 
     InputManager inputManager;  
@@ -49,14 +49,13 @@ public class GameManager : MonoBehaviour
     private void InitializeBalls()
     {
         //生成一堆灰球黑球
-        float rangeMin = -50;
-        float rangeMax = 50;
+       
         RaycastHit hit;
        // UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
         for (int i = 0; i < newGreyNum; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(rangeMin, rangeMax), 0.5f, Random.Range(rangeMin, rangeMax));
-            Vector3 dir = new Vector3(Random.Range(rangeMin, rangeMax), 0, Random.Range(rangeMin, rangeMax));
+            Vector3 pos = player.transform.position;
+            Vector3 dir = new Vector3(Random.Range(-1f,1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(rangeMin, rangeMax);
             if(Physics.Raycast(pos,dir,out hit,40,1<<10))
             {
                // Debug.Log("射中");
@@ -195,12 +194,21 @@ public class GameManager : MonoBehaviour
             }
         }
         else if ((float)redNum / sumNum > 0.6)
-        {           
+        {
+            if (!second)
+            {
+                UnityEngine.Debug.LogFormat("第二阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
+                second = true;
+                blackNum++;
+                GenerateBoss();
+                player.state = 2;
+                inputManager.maxAngle = angle2;
+            }
             if (!third)
             {
                 UnityEngine.Debug.LogFormat("第三阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
                 third = true;
-                GameObject.Find("RedBalls").GetComponent<RedBallsManager>().boss.GetComponent<Boss>().DropBullet();
+                boss.GetComponent<Boss>().DropBullet();
 
                 //StartCoroutine(DropBullet());
                 player.state = 3;

@@ -118,15 +118,15 @@ public class Hostage : Ball
         if (other.gameObject.tag == "AirWall")
         {
             DestroySelf();
-            float rangeMin = 40;
-            float rangeMax = 60;
+            float rangeMin = 20f;
+            float rangeMax = gm.rangeMax;
             RaycastHit hit;
             Vector3 pos = other.transform.position;
             if(other.transform.position!= GameObject.Find("PlayerBall").transform.position)
             {
                 Debug.LogErrorFormat("空气墙的位置和主角位置不一样{0},{1}", other.transform.position, GameObject.Find("PlayerBall").transform.position);
             }
-            Vector3 dir = new Vector3((Random.Range(-1,1)+0.5f) * 2 * Random.Range(rangeMin, rangeMax), 0, (Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax));
+            Vector3 dir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(rangeMin, rangeMax);
             pos += dir.normalized * 20;
             if (Physics.Raycast(pos, dir, out hit, 50, 1 << 10))
             {

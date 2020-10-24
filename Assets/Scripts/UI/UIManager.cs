@@ -94,7 +94,7 @@ public class UIManager : MonoBehaviour
             unionButton.transform.GetChild(0).gameObject.SetActive(false);
             unionButton.transform.GetChild(1).gameObject.SetActive(true);
             //够合体数量且未冷却
-            if (r >= unionNum)
+            if (r > unionNum) // 是大于不是大于等于，因为热衷包括主角自己
             {
                 unionButton.GetComponent<Button>().enabled = true;
                 unionButton.transform.GetChild(1).GetChild(0).GetComponent<Image>().fillAmount = 1;

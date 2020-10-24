@@ -20,10 +20,12 @@ public class Player : Ball
     }
 
 
-    private void LateUpdate()
+    void Update()
     {
-        //hasCollided = false;
-      //  Debug.Log("主角" + rb.velocity);
+        if(rb.velocity.sqrMagnitude>maxSpeed * maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,19 +39,9 @@ public class Player : Ball
             //hasCollided = true;
         }
        // Debug.Log(union);
-        //小主角（一阶段）碰到大黑，小黑，小黑子弹均死亡
-        if (state == 1)
-        {
-            if (collision.gameObject.tag == "SmallBlackBall" ||
-              collision.gameObject.tag == "Bullet"||
-              collision.gameObject.tag == "Boss")
-            {
-                //主角变灰
-                DestroySelf();
-            }
-        }
         
-        else if (!union && collision.gameObject.tag == "Boss")
+        
+        if (!union && collision.gameObject.tag == "Boss")
         {
             //主角变灰
             DestroySelf();
@@ -93,8 +85,18 @@ public class Player : Ball
 
             StartCoroutine(AllowPlayerCollide(2));
         }
+        //小主角（一阶段）碰到大黑，小黑，小黑子弹均死亡
+        else if (state == 1)
+        {
+            if (collision.gameObject.tag == "SmallBlackBall" ||
+              collision.gameObject.tag == "Bullet" ||
+              collision.gameObject.tag == "Boss")
+            {
+                //主角变灰
+                DestroySelf();
+            }
+        }
 
-        
 
         if (collision.gameObject.layer == 10)
         {
