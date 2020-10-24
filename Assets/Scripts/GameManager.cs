@@ -144,10 +144,21 @@ public class GameManager : MonoBehaviour
                 player.state = 1;
                 inputManager.maxAngle = angle1;
             }
-            else if ( second && (float)redNum / sumNum >= 0.3 && (float)redNum / sumNum <= 0.6)
+            else if ((float)redNum / sumNum >= 0.3 && (float)redNum / sumNum <= 0.6)
             {
                 player.state = 2;
                 inputManager.maxAngle = angle2;
+                if (!second)
+                {
+                    UnityEngine.Debug.LogFormat("第二阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
+                    second = true;
+                    blackNum++;
+                    GenerateBoss();
+                    player.state = 2;
+                    inputManager.maxAngle = angle2;
+                    //切bgm
+                    StartCoroutine(Music1TO2());
+                }
             }
             else if ( third && (float)redNum / sumNum > 0.6)
             {
@@ -192,23 +203,9 @@ public class GameManager : MonoBehaviour
 
     private void checkState()
     {
-        if ((float)redNum / sumNum >= 0.3 && (float)redNum / sumNum <= 0.6)
-        {          
-            if (!second)
-            {
-                UnityEngine.Debug.LogFormat("第二阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
-                second = true;
-                blackNum++;
-                GenerateBoss();
-                player.state = 2;
-                inputManager.maxAngle = angle2;
-                //切bgm
-                StartCoroutine(Music1TO2());
-            }
-        }
-        else if ((float)redNum / sumNum > 0.6)
+        if ((float)redNum / sumNum > 0.6)
         {
-            if (!second)
+           /* if (!second)
             {
                 UnityEngine.Debug.LogFormat("第二阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
                 second = true;
@@ -219,6 +216,7 @@ public class GameManager : MonoBehaviour
 
                 
             }
+           */
             if (!third)
             {
                 UnityEngine.Debug.LogFormat("第三阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);

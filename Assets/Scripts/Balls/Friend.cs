@@ -35,7 +35,7 @@ public class Friend : Ball
 
         if (GetComponent<MeshRenderer>().materials[0].name != "C_Red (Instance)")
         {
-            Debug.LogErrorFormat("红球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+           // Debug.LogErrorFormat("红球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
         }
     }
 

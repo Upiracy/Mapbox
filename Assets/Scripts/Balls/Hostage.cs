@@ -195,7 +195,7 @@ public class Hostage : Ball
 
         if (GetComponent<MeshRenderer>().materials[0].name != "C_Grey (Instance)")
         {
-            Debug.LogErrorFormat("灰球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+          //  Debug.LogErrorFormat("灰球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
         }
 
     }

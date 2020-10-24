@@ -256,7 +256,7 @@ public class Enemy : Ball
 
         if (GetComponent<MeshRenderer>().materials[0].name != "C_Black (Instance)")
         {
-            Debug.LogErrorFormat("黑球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+            //Debug.LogErrorFormat("黑球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
         }
     }
 
