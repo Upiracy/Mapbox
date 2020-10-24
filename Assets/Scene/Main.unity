@@ -477,7 +477,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &105185848
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -819,6 +819,7 @@ MonoBehaviour:
   speed: 1
   vecs: []
   reboundForce: 0.5
+  playerBall: {fileID: 105185846}
   direction: {x: 0, y: 0, z: 0}
   bossHP: 3
   count: 50
@@ -2174,7 +2175,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
+  m_Radius: 60
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1106239675
 GameObject:
@@ -2231,6 +2232,8 @@ MonoBehaviour:
   greyBallR: 0.5
   blackBallR: 0.5
   unionTime: 10
+  rangeMin: -25
+  rangeMax: 25
 --- !u!114 &1106239678
 MonoBehaviour:
   m_ObjectHideFlags: 0
