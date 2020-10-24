@@ -51,27 +51,33 @@ public class GameManager : MonoBehaviour
         //生成一堆灰球黑球
        
         RaycastHit hit;
-       // UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
+        int range = 5;
+        // UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
         for (int i = 0; i < newGreyNum; i++)
         {
-            Vector3 pos = player.transform.position;
-            Vector3 dir = new Vector3(Random.Range(-1f,1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(rangeMin, rangeMax);
-            if(Physics.Raycast(pos,dir,out hit,40,1<<10))
+            
+            Vector3 pos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(rangeMin + range, rangeMax - range);
+            pos = new Vector3(pos.x, 0.5f, pos.z);
+            // Vector3 dir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * (Random.Range(rangeMin+ range, rangeMax- range) + range);
+            Vector3 dir = new Vector3(pos.x,0,pos.z).normalized * Random.Range(rangeMax - range, rangeMax);
+            if (Physics.Raycast(pos,dir,out hit,40,1<<10))
             {
-               // Debug.Log("射中");
+                UnityEngine.Debug.Log("射中");
                 Hostage.GenerateSelf(hit.point - dir.normalized*greyBallR);
             }
             else
             {
                 Hostage.GenerateSelf(pos + dir);
-               // Debug.LogFormat("未射中,{0}", pos + dir);
+              // UnityEngine. Debug.LogFormat("未射中,{0},{1},{2}", pos , dir,pos+dir);
             }
             
         }
         for (int i = 0; i < newBlackNum; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(rangeMin, rangeMax), 0.5f, Random.Range(rangeMin, rangeMax));
-            Vector3 dir = new Vector3(Random.Range(rangeMin, rangeMax), 0, Random.Range(rangeMin, rangeMax));
+            Vector3 pos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(rangeMin + range, rangeMax - range);
+            pos = new Vector3(pos.x, 0.5f, pos.z);
+            // Vector3 dir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * (Random.Range(rangeMin+ range, rangeMax- range) + range);
+            Vector3 dir = new Vector3(pos.x, 0, pos.z).normalized * Random.Range(rangeMax - range, rangeMax);
             if (Physics.Raycast(pos, dir, out hit, 40, 1 << 10))
             {
                // Debug.Log("射中");
