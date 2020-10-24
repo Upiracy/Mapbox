@@ -133,6 +133,8 @@ public class UIManager : MonoBehaviour
     //合体按钮冷却中
     IEnumerator UnionButtonFreeze()
     {
+        unionButton.transform.GetChild(2).gameObject.SetActive(false);
+
         unionButton.transform.GetChild(0).gameObject.SetActive(true);
         unionButton.transform.GetChild(1).gameObject.SetActive(false);
         isFreeze = true;

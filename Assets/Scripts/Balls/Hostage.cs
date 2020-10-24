@@ -61,13 +61,20 @@ public class Hostage : Ball
 
     void Update()
     {
+        if (GetComponent<Renderer>().materials[0].name != "C_Grey (Instance)")
+        {
+            Debug.LogErrorFormat("灰球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+            GetComponent<Renderer>().material = transform.parent.GetComponent<ChangeBallsMat>().mat;
+            GetComponent<MeshRenderer>().material = transform.parent.GetComponent<ChangeBallsMat>().mat;
+        }
+
         if (Physics.SphereCast(transform.position, 1, rb.velocity, out hit, 5, 1 << 10))
             direction += hit.normal * rb.velocity.magnitude + Vector3.Cross(hit.normal, Vector3.up).normalized;
        // else
            // direction = (playerBall.transform.position - transform.position).normalized * 0.5f;
         direction += Vector3.Cross(Vector3.up, rb.velocity).normalized * Random.Range(-1f, 1f);
 
-        Roll(direction.normalized);
+        Roll(direction.normalized);    
     }
 
     private void LateUpdate()

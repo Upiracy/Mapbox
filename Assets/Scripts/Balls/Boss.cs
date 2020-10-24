@@ -89,7 +89,7 @@ public class Boss : Ball
             transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.2f, (float)bossHP / sumHP);
             Debug.LogFormat("boss体积减小到{0}",Mathf.Lerp(1f, 2.2f, (float)bossHP / sumHP));
             transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 5f, (float)bossHP / sumHP);
-            transform.GetComponent<SphereCollider>().radius = transform.localScale.x;
+            transform.GetComponent<SphereCollider>().radius = transform.localScale.x/2.2f * 0.5f;
             sqrShadowRange = transform.GetChild(0).transform.localScale.x * transform.GetChild(0).transform.localScale.x;
 
             //炸出黑球在范围边缘？

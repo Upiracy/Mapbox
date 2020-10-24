@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private static bool second = false,third = false;
 
     [SerializeField] GameObject boss;
+    [SerializeField] GameObject unionButtonArrow;
     [SerializeField] int newGreyNum = 10;
     [SerializeField] int newBlackNum = 2;
     [SerializeField] int angle1, angle2, angle3;
@@ -21,7 +22,6 @@ public class GameManager : MonoBehaviour
     public float rangeMin = -25;
     public float rangeMax = 25;
     public static int sumNum;
-    public Material redMat, greyMat, BlackMat;
 
     InputManager inputManager;  
     Player player = null;
@@ -158,6 +158,9 @@ public class GameManager : MonoBehaviour
                     inputManager.maxAngle = angle2;
                     //切bgm
                     StartCoroutine(Music1TO2());
+
+                    //合体按钮的箭头
+                    unionButtonArrow.SetActive(true);
                 }
             }
             else if ( third && (float)redNum / sumNum > 0.6)
@@ -313,7 +316,7 @@ public class GameManager : MonoBehaviour
 
     public void DivideRedBalls(int changeNum)
     {
-        
+        player.transform.localScale = new Vector3(1, 1, 1);
 
         List<Friend> reds = Friend.redBalls;
         RaycastHit hit;
@@ -359,7 +362,7 @@ public class GameManager : MonoBehaviour
             
         }
 
-        player.transform.localScale = new Vector3(1, 1, 1);
+        
         
 
         UnityEngine.Debug.Log("解除合体,主角" + player.transform.localScale);

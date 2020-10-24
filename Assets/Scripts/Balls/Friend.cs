@@ -42,11 +42,15 @@ public class Friend : Ball
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<Renderer>().materials[0].name != "C_Red (Instance)")
+        {
+            Debug.LogErrorFormat("红球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+            GetComponent<Renderer>().material = transform.parent.GetComponent<RedBallsManager>().redMat;
+            GetComponent<MeshRenderer>().material = transform.parent.GetComponent<RedBallsManager>().redMat;
+        }
         total = weight1 * factor1 + weight2 * factor2 + weight3 * factor3 + weight4 * factor4 + weight5 * factor5 + weight6 * factor6 + weight7 * factor7 + weight8 * factor8;
         total = new Vector3(total.x, 0, total.z);
-        Roll(total.normalized);
-
-
+        Roll(total.normalized);      
     }
 
     private void LateUpdate()

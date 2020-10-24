@@ -35,6 +35,13 @@ public class Enemy : Ball
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<Renderer>().materials[0].name != "C_Black (Instance)")
+        {
+            Debug.LogErrorFormat("黑球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+            GetComponent<Renderer>().material = transform.parent.GetComponent<ChangeBallsMat>().mat;
+            GetComponent<MeshRenderer>().material = transform.parent.GetComponent<ChangeBallsMat>().mat;
+        }
+
         if (Physics.SphereCast(transform.position, 1, rb.velocity, out hit, 5, 1 << 10))
             direction += hit.normal * rb.velocity.magnitude * 0.8f + Vector3.Cross(hit.normal, Vector3.up).normalized;
 

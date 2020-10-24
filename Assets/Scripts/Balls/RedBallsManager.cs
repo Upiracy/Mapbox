@@ -9,6 +9,7 @@ public class RedBallsManager : MonoBehaviour
     [SerializeField] float setTimeGap = 1;
     [SerializeField] float factor5555;
     public GameObject boss;
+    public Material redMat;
     //[SerializeField] bool set = true;
 
     #region 权重解释
