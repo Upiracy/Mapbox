@@ -19,8 +19,8 @@ public class Power : MonoBehaviour
 
         Vector3 scale = target.localScale;
         transform.localScale = scale;
-        transform.GetChild(0).localScale = scale;
-        for(int i = 1; i < 4; i++)
+        //transform.GetChild(0).localScale = scale;
+        for(int i = 0; i < 3; i++)
         {
             transform.GetChild(i).localScale = scale * 0.5f;
         }
@@ -29,7 +29,7 @@ public class Power : MonoBehaviour
     IEnumerator DestroyEffect(float time)
     {
         yield return new WaitForSeconds(time);
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 3; i++)
         {
             ParticleSystem particle = transform.GetChild(i).GetComponent<ParticleSystem>();
             Type main = particle.main.GetType();
