@@ -787,6 +787,7 @@ GameObject:
   - component: {fileID: 291702639}
   - component: {fileID: 291702638}
   - component: {fileID: 291702637}
+  - component: {fileID: 291702644}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -926,6 +927,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &291702644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291702636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fddd2bba1e1a9b49aaaae1222052d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 6660e8404ed8c034c96f93781a007126, type: 2}
+  - {fileID: 2100000, guid: 9bd5b5e3d2fa26f4b81260f6af728905, type: 2}
+  - {fileID: 2100000, guid: b09813feaa9c60f4294ea7486e4a47ea, type: 2}
+  - {fileID: 2100000, guid: 564327c03d6983d479c3021eab7c70d1, type: 2}
+  - {fileID: 2100000, guid: 8893d3c546235dd409ce50c07de86aea, type: 2}
+  size: 5
 --- !u!1 &327967455
 GameObject:
   m_ObjectHideFlags: 0
