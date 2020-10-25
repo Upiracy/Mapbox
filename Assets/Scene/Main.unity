@@ -359,7 +359,7 @@ MonoBehaviour:
   upMidPer: 0.3
   upBigPer: 0.6
   unionButton: {fileID: 1209290471}
-  unionNum: 7
+  unionNum: 6
   unionFreezeTime: 15
 --- !u!114 &89510659
 MonoBehaviour:
@@ -577,6 +577,7 @@ Transform:
   - {fileID: 1064938648}
   - {fileID: 426374959}
   - {fileID: 2051233621}
+  - {fileID: 634309119}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2051,6 +2052,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621629979}
   m_CullTransparentMesh: 0
+--- !u!1 &634309118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 634309119}
+  - component: {fileID: 634309120}
+  m_Layer: 0
+  m_Name: "\u7ED3\u675F\u65F6\u6269\u6563\u7EA2\u8272"
+  m_TagString: RedColorRange
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &634309119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634309118}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 105185852}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &634309120
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634309118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &640809790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2667,15 +2712,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 291702636}
   unionButtonArrow: {fileID: 612128561}
+  redColorRange: {fileID: 0}
   newGreyNum: 20
   newBlackNum: 0
-  angle1: 100
-  angle2: 80
-  angle3: 50
+  angle1: 80
+  angle2: 50
+  angle3: 30
   greyBallR: 0.5
   blackBallR: 0.5
   unionTime: 10
-  fadedMusicTime: 3
+  fadedMusicTime: 4
   music2: {fileID: 8300000, guid: ecc27b88128fad145b12e8106a7ea1dc, type: 3}
   music3: {fileID: 8300000, guid: 924631ddd191be741aed60614e1f10a2, type: 3}
   rangeMin: -25
@@ -2723,7 +2769,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1e7eb95c013b93d4aa5e3ff991d63020, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0

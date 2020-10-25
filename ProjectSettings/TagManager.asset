@@ -11,6 +11,7 @@ TagManager:
   - AirWall
   - Bullet
   - Shadow
+  - RedColorRange
   layers:
   - Default
   - TransparentFX

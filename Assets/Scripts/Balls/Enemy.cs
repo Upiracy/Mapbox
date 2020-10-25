@@ -37,7 +37,7 @@ public class Enemy : Ball
     {
         if (GetComponent<Renderer>().materials[0].name != "C_Black (Instance)")
         {
-            Debug.LogErrorFormat("黑球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+           // Debug.LogErrorFormat("黑球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
             GetComponent<Renderer>().material = transform.parent.GetComponent<ChangeBallsMat>().mat;
             GetComponent<MeshRenderer>().material = transform.parent.GetComponent<ChangeBallsMat>().mat;
         }
@@ -128,6 +128,7 @@ public class Enemy : Ball
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (hasCollided) return;
 
         if (collision.gameObject.tag == "Player"&&collision.gameObject.GetComponent<Player>().state==2)
@@ -220,7 +221,15 @@ public class Enemy : Ball
             maxSpeed = 6;
         }
     }
-
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "RedColorRange")
+        {
+            Debug.Log("结束时小球全变红");
+        }
+    }
+    
     protected void DestroySelf()
     {
         rb.velocity = Vector3.zero;
