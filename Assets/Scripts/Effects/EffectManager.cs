@@ -23,10 +23,28 @@ public static class EffectManager
         trail.time = time;
     }
 
+    public static void GenerateTrailBlack(Transform origin, Transform target, float height, float time)
+    {
+        Trails trail = GameObject.Instantiate(Resources.Load<GameObject>("Effects/BlackTrails"), origin.position, Quaternion.identity).GetComponent<Trails>();
+        trail.start = origin;
+        trail.end = target;
+        trail.height = height;
+        trail.time = time;
+    }
+
     public static void AttachPower(Transform target, float time)
     {
         Power power = GameObject.Instantiate(Resources.Load<GameObject>("Effects/Power"), target.position, Quaternion.identity).GetComponent<Power>();
         power.target = target;
         power.Destroy(time);
+    }
+
+    public static void BreakPower(Transform target, float time)
+    {
+        Power power = target.GetComponent<Power>();
+        if(power)
+        {
+            power.Destroy(0);
+        }
     }
 }
