@@ -19,11 +19,9 @@ public class Power : MonoBehaviour
 
         Vector3 scale = target.localScale;
         transform.localScale = scale;
-        //transform.GetChild(0).localScale = scale;
-        for(int i = 0; i < 3; i++)
-        {
-            transform.GetChild(i).localScale = scale * 0.5f;
-        }
+        transform.GetChild(0).localScale = scale * 0.8f;
+        transform.GetChild(1).localScale = scale * 0.4f;
+        transform.GetChild(2).localScale = scale * 0.4f;
     }
 
     IEnumerator DestroyEffect(float time)
