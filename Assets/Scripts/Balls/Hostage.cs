@@ -63,7 +63,7 @@ public class Hostage : Ball
     {
         if (GetComponent<Renderer>().materials[0].name != "C_Grey (Instance)")
         {
-            Debug.LogErrorFormat("灰球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
+           // Debug.LogErrorFormat("灰球材质错误！，当前材质是{0}", GetComponent<MeshRenderer>().materials[0].name);
             GetComponent<Renderer>().material = transform.parent.GetComponent<ChangeBallsMat>().mat;
             GetComponent<MeshRenderer>().material = transform.parent.GetComponent<ChangeBallsMat>().mat;
         }
@@ -84,7 +84,7 @@ public class Hostage : Ball
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (hasCollided) return;
+            if (hasCollided) return;
 
         if (collision.gameObject.tag == "RedBall"||
              collision.gameObject.tag == "Player")
@@ -148,6 +148,18 @@ public class Hostage : Ball
         }
     }
 
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="RedColorRange")
+        {
+            Debug.Log("结束时小球全变红");
+           // EffectManager.ChangeColorWhenOver(gameObject, other, Resources.Load<Material>("C_Red"));
+            this.enabled = false;
+            Invoke("Grey2Red", 1.5f);
+        }
+    }
+    
     protected void DestroySelf()
     {
         rb.velocity = Vector3.zero;
