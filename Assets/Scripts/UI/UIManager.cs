@@ -6,8 +6,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text s, num,ratioRed,ratioGrey,ratioBlack;
-    [SerializeField] Image upgradeBar, redBar, greyBar, blackBar, upBarPoint1, upBarPoint2;
+    [SerializeField] TMP_Text ratioRed,ratioGrey,ratioBlack;
+    [SerializeField] Image redBar, greyBar, blackBar;
     [SerializeField] Image redPoint, blackPoint;
     [SerializeField] float upMidPer = 0.3f, upBigPer = 0.6f;
     float upBarSize, ratioSize,length,ratioPointWidth;
@@ -18,14 +18,23 @@ public class UIManager : MonoBehaviour
     [SerializeField] float unionFreezeTime;
     [SerializeField] float freezeTimet1 = 0.1f; //冷却时间受红球数量影响
 
+    //
+    [SerializeField] Image mask, barAfter, barBefore,roundEmpty;
+    [SerializeField] Image mainLogo1, mainLogo2, mainLogo3;
+    float barSize,roundSize;
+    //
+
     bool isFreeze = false;
 
     void Start()
     {
-        upBarSize = upgradeBar.rectTransform.rect.width;
         ratioSize = redBar.rectTransform.rect.width;
         length = (redBar.rectTransform.rect.height + redPoint.rectTransform.rect.height) / 2;
         ratioPointWidth = redPoint.rectTransform.rect.width / 2;
+
+        //
+        barSize = barAfter.rectTransform.rect.width;
+        roundSize = roundEmpty.rectTransform.rect.width;
     }
 
     //status（Small/Mid/Big）为主角状态
@@ -33,32 +42,22 @@ public class UIManager : MonoBehaviour
     //改变进度条。r,g,b分别为红、灰、黑球数量
     public void SetUpBar(int r,int g,int b) 
     {
-        if (status==1)
+        
+
+        barAfter.transform.SetParent(barBefore.transform);
+        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r / (float)(r + g + b) * (barSize - roundSize) + roundSize);
+        barAfter.transform.SetParent(mask.transform);
+        if (status == 1)
         {
-            upgradeBar.rectTransform.SetSizeWithCurrentAnchors
-                (RectTransform.Axis.Horizontal, r / (float)(r + g + b)/upMidPer * upBarSize);
-            s.text = "Small";
-            num.text = (upMidPer*100).ToString() + "%";
-            upBarPoint1.enabled = false; upBarPoint2.enabled = false;
+            mainLogo1.enabled = true;mainLogo2.enabled = false;mainLogo3.enabled = false;
         }
-        else if (status==2)
+        else if (status == 2)
         {
-            upgradeBar.rectTransform.SetSizeWithCurrentAnchors
-                (RectTransform.Axis.Horizontal, r / (float)(r + g + b) / upBigPer * upBarSize);
-            s.text = "Mid";
-            num.text = (upBigPer * 100).ToString() + "%";
-            upBarPoint1.enabled = true; upBarPoint2.enabled = false;
-            upBarPoint1.rectTransform.anchoredPosition = new Vector2(upBarSize * upMidPer / upBigPer, 0);
+            mainLogo1.enabled = false; mainLogo2.enabled = true; mainLogo3.enabled = false;
         }
-        else if (status==3)
+        else if (status == 3)
         {
-            upgradeBar.rectTransform.SetSizeWithCurrentAnchors
-            (RectTransform.Axis.Horizontal, r / (float)(r + g + b) * upBarSize);
-            s.text = "Big";
-            num.text = "100%";
-            upBarPoint1.enabled = true; upBarPoint2.enabled = true;
-            upBarPoint1.rectTransform.anchoredPosition = new Vector2(upBarSize*upMidPer , 0);
-            upBarPoint2.rectTransform.anchoredPosition = new Vector2(upBarSize*upBigPer, 0);
+            mainLogo1.enabled = false; mainLogo2.enabled = false; mainLogo3.enabled = true;
         }
 
     }
