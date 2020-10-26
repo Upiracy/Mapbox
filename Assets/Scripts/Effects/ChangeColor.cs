@@ -36,8 +36,8 @@ namespace Effect
             renderer.material = ChangeColorMaterial;
             renderer.material.SetVector("_Contact", contact);
             renderer.material.SetFloat("_Range", 0);
-            renderer.material.SetColor("_BaseS", former.GetColor("_BaseColor"));
-            renderer.material.SetColor("_EmissionS", former.GetColor("_EmissionColor"));
+            renderer.material.SetColor("_BaseColor", former.GetColor("_BaseColor"));
+            renderer.material.SetColor("_EmissionColor", former.GetColor("_EmissionColor"));
             renderer.material.SetColor("_BaseE", target.GetColor("_BaseColor"));
             renderer.material.SetColor("_EmissionE", target.GetColor("_EmissionColor"));
             startTime = Time.time;

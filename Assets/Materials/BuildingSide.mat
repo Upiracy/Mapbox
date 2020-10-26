@@ -94,7 +94,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
-    - _Center: {r: 0, g: 0, b: 100, a: 0}
+    - _Center: {r: 0, g: 100, b: 0, a: 0}
     - _Color: {r: 0.93333334, g: 0.93333334, b: 0.93333334, a: 1}
     - _Effect: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

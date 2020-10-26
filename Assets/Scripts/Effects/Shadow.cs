@@ -26,7 +26,7 @@ public class Shadow : MonoBehaviour
     {
         foreach (Material mat in materials)
         {
-            mat.SetVector("_Center", new Vector3(0,0,100));
+            mat.SetVector("_Center", new Vector3(0,100,0));
             mat.SetFloat("_Range", 0);
         }
     }
