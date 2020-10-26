@@ -19,7 +19,7 @@ public class BossBornEffect : MonoBehaviour
 
     IEnumerator GenerateBoss()
     {
-        boss.transform.position = transform.position + new Vector3(0,1,0);
+        boss.transform.position = transform.position;
         boss.transform.localScale = new Vector3(1, 1, 1) * 0.001f;
         boss.GetComponent<Boss>().enabled = false;
         

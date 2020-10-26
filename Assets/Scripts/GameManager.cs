@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject bossBornEffect;
     [SerializeField] GameObject unionButtonArrow;
-    [SerializeField] GameObject holo;
+    [SerializeField] GameObject redColorRange;
     [SerializeField] int newGreyNum = 10;
     [SerializeField] int newBlackNum = 2;
     [SerializeField] int angle1, angle2, angle3;
@@ -405,11 +405,25 @@ public class GameManager : MonoBehaviour
         UnityEngine.Debug.Log("玩家胜利！！！！");
 
         //Time.timeScale = 0;
-        holo.transform.position = player.transform.position;
-        holo.SetActive(true);
+        //StartCoroutine(ChangeColor());
+       // gameOver = true;
+        //弹一个ui框
 
     }
 
+    IEnumerator ChangeColor()
+    {
+        float range = redColorRange.transform.parent.GetChild(0).GetComponent<SphereCollider>().radius;
+        float changeColorTime = 5f;
+        for (float t = Time.time; Time.time - t < changeColorTime;)
+        {
+            redColorRange.GetComponent<SphereCollider>().radius = (float)(Time.time - t) / changeColorTime * range;
+            yield return 0;
+        }
+
+        yield return new WaitForSeconds(2);
+        //Time.timeScale = 0;
+    }
 
     public void PlayerLost()
     {
