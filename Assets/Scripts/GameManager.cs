@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject bossBornEffect;
     [SerializeField] GameObject unionButtonArrow;
     [SerializeField] GameObject holo;
+    [SerializeField] GameObject winWindow;
+    [SerializeField] GameObject lostWindow;
     [SerializeField] int newGreyNum = 10;
     [SerializeField] int newBlackNum = 2;
     [SerializeField] int angle1, angle2, angle3;
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         redNum = 1;
         blackNum = 0;
         greyNum = 0;
@@ -420,17 +423,22 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 0;
         holo.transform.position = player.transform.position;
         holo.SetActive(true);
+        Invoke("winWindowAppear", 5);
+    }
 
+    void winWindowAppear()
+    {
+        winWindow.SetActive(true);
     }
 
 
     public void PlayerLost()
     {
         UnityEngine.Debug.Log("玩家失败……");
-        //Time.timeScale = 0;
-       // gameOver = true;
+        Time.timeScale = 0;
+        // gameOver = true;
         //弹一个ui框
-
+        lostWindow.SetActive(true);
     }
 
 }
