@@ -950,7 +950,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: b09813feaa9c60f4294ea7486e4a47ea, type: 2}
   - {fileID: 2100000, guid: 564327c03d6983d479c3021eab7c70d1, type: 2}
   - {fileID: 2100000, guid: 8893d3c546235dd409ce50c07de86aea, type: 2}
-  size: 5
+  size: 4
 --- !u!1 &327967455
 GameObject:
   m_ObjectHideFlags: 0
