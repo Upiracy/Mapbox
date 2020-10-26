@@ -31,7 +31,7 @@ public class LockCamera : MonoBehaviour
         }
 
         deltaPosition = transform.position - linkedPosition;
-        linkedObject.transform.position = linkedPosition;
+        linkedObject.transform.position = linkedPosition + Vector3.up * 0.6f;
     }
 
     private void Update()
