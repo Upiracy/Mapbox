@@ -33,8 +33,8 @@ public class UIManager : MonoBehaviour
         ratioPointWidth = redPoint.rectTransform.rect.width / 2;
 
         //
-        barSize = barAfter.rectTransform.rect.width;
-        roundSize = roundEmpty.rectTransform.rect.width;
+       // barSize = barAfter.rectTransform.rect.width;
+       // roundSize = roundEmpty.rectTransform.rect.width;
     }
 
     //status（Small/Mid/Big）为主角状态
@@ -42,7 +42,8 @@ public class UIManager : MonoBehaviour
     //改变进度条。r,g,b分别为红、灰、黑球数量
     public void SetUpBar(int r,int g,int b) 
     {
-       
+        
+
         barAfter.transform.SetParent(barBefore.transform);
         mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r / (float)(r + g + b) * (barSize - roundSize) + roundSize);
         barAfter.transform.SetParent(mask.transform);
@@ -116,8 +117,8 @@ public class UIManager : MonoBehaviour
             }
         }
         status = state;
-        //SetUpBar(r, g, b);
-        //ChangeRatio(r, g, b);
+      //  SetUpBar(r, g, b);
+       // ChangeRatio(r, g, b);
 
 
     }
