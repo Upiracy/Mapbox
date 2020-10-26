@@ -171,7 +171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71647496}
   m_LocalRotation: {x: -0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: -9, z: 15.588457}
+  m_LocalPosition: {x: 0, y: -8.95, z: 15.501854}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 726406385}
@@ -180,7 +180,7 @@ Transform:
   - {fileID: 1404502720}
   - {fileID: 1774306773}
   m_Father: {fileID: 4295410963089129357}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &71647500
 MeshRenderer:
@@ -1345,7 +1345,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4295410963089129357}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &425250089
 GameObject:
@@ -25458,7 +25458,7 @@ MonoBehaviour:
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
           minimumHeight: 3
-          maximumHeight: 0.1
+          maximumHeight: 0.15
           extrusionScaleFactor: 1
         colliderOptions:
           colliderType: 0
@@ -25524,7 +25524,7 @@ MonoBehaviour:
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
           minimumHeight: 3
-          maximumHeight: 0.32
+          maximumHeight: 0.3
           extrusionScaleFactor: 1
         colliderOptions:
           colliderType: 0
@@ -26059,8 +26059,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 405776214}
   - {fileID: 71647499}
+  - {fileID: 405776214}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
