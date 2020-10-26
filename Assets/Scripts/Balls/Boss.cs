@@ -86,7 +86,7 @@ public class Boss : Ball
             //体积减小，范围减小，炸出黑球
             bossHP--;
             transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.2f, (float)bossHP / sumHP);
-            transform.GetChild(2).transform.localScale = transform.localScale;
+            //transform.GetChild(2).transform.localScale = transform.localScale;
             Debug.LogFormat("boss体积减小到{0}",Mathf.Lerp(1f, 2.2f, (float)bossHP / sumHP));
 
             transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 5f, (float)bossHP / sumHP);
