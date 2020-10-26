@@ -36,10 +36,10 @@ MonoBehaviour:
   m_Active: 1
   settings:
     Event: 500
-    Intensity: 3
+    Intensity: 1
     BlurAmount: 3
-    Radius: 0.61
-    Area: 1.13
+    Radius: 0.49
+    Area: 1.01
     FastMode: 1
     BlitMaterial: {fileID: 2100000, guid: 590f4c2590b114244819c30772127b89, type: 2}
 --- !u!114 &11400000
