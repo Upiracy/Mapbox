@@ -181,8 +181,21 @@ public class GameManager : MonoBehaviour
         }
         //调用uimanager函数改变比例条
         ui.ChangeUI(redNum, greyNum, blackNum, player.state);
-        
+        /*
+        if(!second)
+        {
+            PostProcessing.SetAmbientLight()
+            PostProcessing.SetContrast
+            PostProcessing.SetGlobalLight
+            PostProcessing.SetSaturation
+            PostProcessing.SetTemperature
+            PostProcessing.SetTint
+            PostProcessing.SetVignette
+        }
+        */
     }
+
+
 
     /// <summary>
     /// 主角附近生成BOSS

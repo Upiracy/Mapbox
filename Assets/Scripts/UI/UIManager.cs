@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -153,5 +154,15 @@ public class UIManager : MonoBehaviour
         isFreeze = false;
         unionButton.transform.GetChild(0).gameObject.SetActive(false);
         unionButton.transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+    public void ClickTryAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ClickBack()
+    {
+        SceneManager.LoadScene(0);
     }
 }
