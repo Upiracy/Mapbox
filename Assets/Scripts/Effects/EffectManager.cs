@@ -70,7 +70,7 @@ public static class EffectManager
         power.Destroy(time);
     }
 
-    public static void BreakPower(Transform target, float time)
+    public static void BreakPower(Transform target)
     {
         Power power = target.GetComponent<Power>();
         if(power)

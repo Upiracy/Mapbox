@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     Player player = null;
     UIManager ui;
     AudioSource audioSource;
+    Coroutine coroutine;
 
     void Start()
     {
@@ -293,7 +294,7 @@ public class GameManager : MonoBehaviour
             player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 3, (float)reds.Count / GameManager.sumNum);
             player.GetComponent<Player>().union = true;
             UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
-            StartCoroutine(BeingUnion());
+            coroutine = StartCoroutine(BeingUnion());
         }
     }
 
@@ -319,7 +320,9 @@ public class GameManager : MonoBehaviour
 
     public void DivideRedBalls(int changeNum)
     {
-        StopCoroutine(BeingUnion());
+        EffectManager.BreakPower(player.transform);
+
+        StopCoroutine(coroutine);
         player.transform.localScale = new Vector3(1, 1, 1);
 
         List<Friend> reds = Friend.redBalls;
@@ -361,6 +364,9 @@ public class GameManager : MonoBehaviour
         for(int i=0;i<changeBalls.Count;i++)
         {
             changeBalls[i].GetComponent<Friend>().ChangeSelf();
+
+            //EffectManager.GenerateTrailBlack(player.transform,)
+
             Enemy.GenerateSelf(changeBalls[i].transform.position);
 
             
