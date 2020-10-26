@@ -401,8 +401,9 @@ public class GameManager : MonoBehaviour
     public void PlayerWin()
     {
         UnityEngine.Debug.Log("玩家胜利！！！！");
-        
-        StartCoroutine(ChangeColor());
+
+        Time.timeScale = 0;
+        //StartCoroutine(ChangeColor());
        // gameOver = true;
         //弹一个ui框
 
