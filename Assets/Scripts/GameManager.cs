@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float greyBallR, blackBallR;
     [SerializeField] float unionTime =10 ;
     [SerializeField] float fadedMusicTime = 3;
+    [SerializeField] float unionTimet0 = 0.5f;//技能使用时间与红球数量有关
     [SerializeField] AudioClip music2, music3;
     public float rangeMin = -25;
     public float rangeMax = 25;
@@ -230,6 +231,7 @@ public class GameManager : MonoBehaviour
                 //StartCoroutine(DropBullet());
                 player.state = 3;
                 inputManager.maxAngle = angle3;
+                ui.ChangeUI(redNum, greyNum, blackNum, player.state);
                 //切bgm
                 StartCoroutine(Music2TO3());
             }
@@ -297,12 +299,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator BeingUnion()
     {
-        float t0 = 0.5f;//技能使用时间与红球数量有关
-        EffectManager.AttachPower(player.transform, unionTime + Friend.redBalls.Count * t0);
-        UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * t0);
+
+        EffectManager.AttachPower(player.transform, unionTime + Friend.redBalls.Count * unionTimet0);
+        UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * unionTimet0);
         // yield return new WaitForSeconds(unionTime + Friend.redBalls.Count * t0);    
 
-        float sumTime = unionTime + Friend.redBalls.Count * t0;
+        float sumTime = unionTime + Friend.redBalls.Count * unionTimet0;
         for (float t =Time.time;Time.time - t< sumTime;)
         {
             //UnityEngine.Debug.LogFormat("合体中...此时sumTime={0},Time.time={1}, t = {2}",sumTime,Time.time,t);

@@ -10,6 +10,9 @@ public class Player : Ball
     GameManager gm;
     public bool union = false;
 
+    [SerializeField] int n = 2;
+    [SerializeField] int x = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +63,7 @@ public class Player : Ball
                 //体积小于boss
                 if (transform.localScale.x<collision.transform.localScale.x)
                 {
-                    int n = 2;
+                    
                    
                     gm.DivideRedBalls(n);
                 }
@@ -78,7 +81,7 @@ public class Player : Ball
             //遇到小黑球子弹
             else if(collision.gameObject.tag == "Bullet")
             {
-                int x = 2;
+                
                 gm.DivideRedBalls(x);
                 
             }

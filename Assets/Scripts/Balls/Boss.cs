@@ -16,6 +16,7 @@ public class Boss : Ball
     [SerializeField] float preTime;
     [SerializeField] float dropRange;
     [SerializeField] float sqrShadowRange;
+    [SerializeField] float jumpTimeGap = 30;
     RaycastHit hit;
     int sumHP;
 
@@ -29,9 +30,7 @@ public class Boss : Ball
         StartCoroutine(FindPlayer());
 
         sqrShadowRange = transform.GetChild(0).transform.localScale.x * transform.GetChild(0).transform.localScale.x;
-        //Debug.LogFormat("{0},{1}, sqrShadowRange = {2}", transform.GetChild(0).transform.localScale.x,transform.GetChild(0).transform.localScale.sqrMagnitude,sqrShadowRange);
-
-        //StartCoroutine(StartDropBullet());
+        transform.GetComponent<SphereCollider>().radius = transform.GetChild(0).transform.localScale.x * 0.5f;
     }
 
     // Update is called once per frame
@@ -67,7 +66,7 @@ public class Boss : Ball
 
 
 
-            yield return new WaitForSeconds(30);
+            yield return new WaitForSeconds(jumpTimeGap);
         }
 
     }
@@ -87,9 +86,11 @@ public class Boss : Ball
             //体积减小，范围减小，炸出黑球
             bossHP--;
             transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 2.2f, (float)bossHP / sumHP);
+            transform.GetChild(2).transform.localScale = transform.localScale;
             Debug.LogFormat("boss体积减小到{0}",Mathf.Lerp(1f, 2.2f, (float)bossHP / sumHP));
+
             transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 5f, (float)bossHP / sumHP);
-            transform.GetComponent<SphereCollider>().radius = transform.localScale.x/2.2f * 0.5f;
+            transform.GetComponent<SphereCollider>().radius = transform.GetChild(0).transform.localScale.x * 0.5f;
             sqrShadowRange = transform.GetChild(0).transform.localScale.x * transform.GetChild(0).transform.localScale.x;
 
             //炸出黑球在范围边缘？
@@ -103,6 +104,7 @@ public class Boss : Ball
             if (bossHP<=0)
             {
                 Debug.Log("BOSS死亡");
+                GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("Black", false);
                 GameObject.Find("Manager").GetComponent<GameManager>().PlayerWin();
 
                 Destroy(gameObject);              
