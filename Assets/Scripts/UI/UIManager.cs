@@ -169,7 +169,7 @@ public class UIManager : MonoBehaviour
 
     public void ClickTryAgain()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
     }
 
     public void ClickBack()
