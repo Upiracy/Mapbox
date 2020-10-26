@@ -72,26 +72,28 @@ public class Explosion : MonoBehaviour
             for(int i = 0; i < greys.Count; i++)
             {
                 Renderer r = greys[i];
+                if (!r.gameObject.activeSelf) break;
                 r.material.SetFloat("_Range", range);
                 if (range > (transform.position - r.transform.position).magnitude)
                 {
                     greys.Remove(r);
                     i--;
                     r.GetComponent<Hostage>().DestroySelf();
-                    gm.SetBallNum("grey", false);
+                    //gm.SetBallNum("grey", false);
                     Friend.GenerateSelf(r.transform.position);
                 }
             }
             for(int i = 0; i < blacks.Count; i++)
             {
                 Renderer r = blacks[i];
+                if (!r.gameObject.activeSelf) break;
                 r.material.SetFloat("_Range", range);
                 if (range > (transform.position - r.transform.position).magnitude)
                 {
                     blacks.Remove(r);
                     i--;
                     r.GetComponent<Enemy>().DestroySelf();
-                    gm.SetBallNum("black", false);
+                    //gm.SetBallNum("black", false);
                     Friend.GenerateSelf(r.transform.position);
                 }
             }
