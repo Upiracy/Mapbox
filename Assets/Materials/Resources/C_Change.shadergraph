@@ -10,7 +10,7 @@
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"58dc747e-b51d-41cb-830a-67e94821a927\"\n    },\n    \"m_Name\": \"BaseS\",\n    \"m_DefaultReferenceName\": \"Color_4F51CF01\",\n    \"m_OverrideReferenceName\": \"_BaseS\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 0.9622641801834106,\n        \"g\": 0.9622641801834106,\n        \"b\": 0.9622641801834106,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 0\n}"
+            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"58dc747e-b51d-41cb-830a-67e94821a927\"\n    },\n    \"m_Name\": \"BaseS\",\n    \"m_DefaultReferenceName\": \"Color_4F51CF01\",\n    \"m_OverrideReferenceName\": \"_BaseColor\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 0.9622641801834106,\n        \"g\": 0.9622641801834106,\n        \"b\": 0.9622641801834106,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 0\n}"
         },
         {
             "typeInfo": {
@@ -40,7 +40,7 @@
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"8d6c3c51-e989-411b-92c4-423a7c526f0a\"\n    },\n    \"m_Name\": \"EmissionS\",\n    \"m_DefaultReferenceName\": \"Color_7A98A7A4\",\n    \"m_OverrideReferenceName\": \"_EmissionS\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 0.0,\n        \"g\": 0.0,\n        \"b\": 0.0,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 0\n}"
+            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"8d6c3c51-e989-411b-92c4-423a7c526f0a\"\n    },\n    \"m_Name\": \"EmissionS\",\n    \"m_DefaultReferenceName\": \"Color_7A98A7A4\",\n    \"m_OverrideReferenceName\": \"_EmissionColor\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 0.0,\n        \"g\": 0.0,\n        \"b\": 0.0,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 0\n}"
         },
         {
             "typeInfo": {

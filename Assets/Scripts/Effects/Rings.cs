@@ -6,11 +6,14 @@ public class Rings : MonoBehaviour
 {
     [SerializeField] Transform target;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        transform.parent = null;
+    }
+
     void Update()
     {
-        transform.position = target.position;
-        transform.rotation = new Quaternion(0, 0, 0, 0);
+        transform.position = target.position;        
         Vector3 scale = target.localScale;
         transform.localScale = scale;
     }
