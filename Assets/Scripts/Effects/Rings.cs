@@ -10,7 +10,7 @@ public class Rings : MonoBehaviour
     void Update()
     {
         transform.position = target.position;
-
+        transform.rotation = new Quaternion(0, 0, 0, 0);
         Vector3 scale = target.localScale;
         transform.localScale = scale;
     }

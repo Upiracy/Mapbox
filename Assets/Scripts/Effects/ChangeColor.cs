@@ -52,7 +52,7 @@ namespace Effect
             renderer.material.SetFloat("_Range", (Time.time - startTime) / time);
             if(Time.time - startTime > time)
             {
-                renderer.material = target;
+                //renderer.material = target;
                 Destroy(this);
             }
 

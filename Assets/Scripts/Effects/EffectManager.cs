@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Effect;
+using TMPro.EditorUtilities;
 
 public static class EffectManager
 {
+    static Shadow shadow;
 
     public static void ChangeColor(GameObject go, Collision co, Material target, float time = 1)
     {       
@@ -30,6 +32,35 @@ public static class EffectManager
         trail.end = target;
         trail.height = height;
         trail.time = time;
+    }
+
+    public static void SetShadow(Transform target, float intensity)
+    {
+        Shadow t_shadow = target.GetComponent<Shadow>();
+        if (!t_shadow)
+        {
+            t_shadow = target.gameObject.AddComponent<Shadow>();
+            if (!shadow) shadow = t_shadow;
+            else
+            {
+                shadow.Destroy();
+                shadow = target.GetComponent<Shadow>();
+            }
+        }
+        else
+        {
+            if (!shadow) shadow = t_shadow;
+            else if (shadow != t_shadow)
+            {
+                shadow.Destroy();
+                shadow = target.GetComponent<Shadow>();
+            }
+        }
+
+        foreach(Material mat in shadow.materials)
+        {
+            mat.SetFloat("_Strength", intensity);
+        }
     }
 
     public static void AttachPower(Transform target, float time)

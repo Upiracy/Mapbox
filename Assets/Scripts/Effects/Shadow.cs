@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Shadow : MonoBehaviour
 {
-    [SerializeField] Material[] materials;
-    [SerializeField] float size;
+    [SerializeField] public Material[] materials;
+    [SerializeField] public float size;
 
     // Update is called once per frame
     void Update()
