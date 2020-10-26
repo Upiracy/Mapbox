@@ -361,6 +361,7 @@ MonoBehaviour:
   unionButton: {fileID: 1209290471}
   unionNum: 6
   unionFreezeTime: 15
+  freezeTimet1: 0.1
 --- !u!114 &89510659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,6 +517,8 @@ MonoBehaviour:
   reboundForce: 1
   state: 3
   union: 0
+  n: 2
+  x: 2
 --- !u!23 &105185850
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -783,10 +786,10 @@ GameObject:
   - component: {fileID: 291702643}
   - component: {fileID: 291702642}
   - component: {fileID: 291702641}
+  - component: {fileID: 291702637}
   - component: {fileID: 291702640}
   - component: {fileID: 291702639}
   - component: {fileID: 291702638}
-  - component: {fileID: 291702637}
   - component: {fileID: 291702644}
   m_Layer: 0
   m_Name: Boss
@@ -851,6 +854,7 @@ MonoBehaviour:
   preTime: 2
   dropRange: 1
   sqrShadowRange: 0
+  jumpTimeGap: 30
 --- !u!135 &291702640
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2744,6 +2748,7 @@ MonoBehaviour:
   blackBallR: 0.5
   unionTime: 10
   fadedMusicTime: 4
+  unionTimet0: 0.5
   music2: {fileID: 8300000, guid: ecc27b88128fad145b12e8106a7ea1dc, type: 3}
   music3: {fileID: 8300000, guid: 924631ddd191be741aed60614e1f10a2, type: 3}
   rangeMin: -25
