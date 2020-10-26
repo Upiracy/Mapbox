@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject holo;
     [SerializeField] GameObject winWindow;
     [SerializeField] GameObject lostWindow;
-    [SerializeField] int newGreyNum = 10;
-    [SerializeField] int newBlackNum = 2;
+    [SerializeField] int newGreyNum = 20;
+    [SerializeField] int newBlackNum = 10;
     [SerializeField] int angle1, angle2, angle3;
     [SerializeField] float greyBallR, blackBallR;
     [SerializeField] float unionTime =10 ;
@@ -51,6 +51,14 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         InitializeBalls();
+
+        PostProcessing.SetVignette(0.443f, 0.26f);
+        PostProcessing.SetTemperature(0);
+        PostProcessing.SetTint(25);
+
+        PostProcessing.SetContrast(-4);
+
+        PostProcessing.SetSaturation(20);
     }
 
     /// <summary>
@@ -173,6 +181,14 @@ public class GameManager : MonoBehaviour
 
                     //合体按钮的箭头
                     unionButtonArrow.SetActive(true);
+
+                    PostProcessing.SetVignette(0.5f, 0.4f);
+                    PostProcessing.SetTemperature(50);
+                    PostProcessing.SetTint(50);
+
+                    PostProcessing.SetContrast(-10);
+
+                    PostProcessing.SetSaturation(20);
                 }
             }
             else if ( third && (float)redNum / sumNum > 0.6)
@@ -181,21 +197,36 @@ public class GameManager : MonoBehaviour
                 inputManager.maxAngle = angle3;
             }
 
+            if (!second)
+            {
+                UnityEngine.Debug.LogFormat("sum{0},{1},{2},{3}",sumNum, redNum, greyNum, blackNum);
+                float per = (float)redNum / sumNum / 0.3f;
+                PostProcessing.SetVignette(Mathf.Lerp(0.443f, 0.35f, per), Mathf.Lerp(0.26f, 0.2f, per));
+                PostProcessing.SetTemperature(Mathf.Lerp(0f, 50f, per));
+                PostProcessing.SetTint(Mathf.Lerp(25f, 50f, per));
+
+                PostProcessing.SetContrast(Mathf.Lerp(-4f, 10f, per));
+
+                PostProcessing.SetSaturation(Mathf.Lerp(-20f, -15f, per));
+
+            }
+            else
+            {
+                float per = Mathf.Max(0, ((float)redNum / sumNum - 0.3f) / 0.6f);
+                PostProcessing.SetVignette(Mathf.Lerp(0.5f, 0.2f, per), Mathf.Lerp(0.4f, 0.5f, per));
+                PostProcessing.SetTemperature(Mathf.Lerp(50f, 10f, per));
+                PostProcessing.SetTint(Mathf.Lerp(50f, 20f, per));
+
+                PostProcessing.SetContrast(Mathf.Lerp(-10f, 0f, per));
+
+                // PostProcessing.SetSaturation(Mathf.Lerp(-15f,20f, per));
+            }
         }
         //调用uimanager函数改变比例条
         ui.ChangeUI(redNum, greyNum, blackNum, player.state);
-        /*
-        if(!second)
-        {
-            PostProcessing.SetAmbientLight()
-            PostProcessing.SetContrast
-            PostProcessing.SetGlobalLight
-            PostProcessing.SetSaturation
-            PostProcessing.SetTemperature
-            PostProcessing.SetTint
-            PostProcessing.SetVignette
-        }
-        */
+        
+       
+        
     }
 
 
