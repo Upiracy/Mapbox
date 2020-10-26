@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     //
     [SerializeField] Image mask, barAfter, barBefore,roundEmpty;
     [SerializeField] Image mainLogo1, mainLogo2, mainLogo3;
+    [SerializeField] Image logo1, logo2;
     float barSize,roundSize;
     //
 
@@ -33,9 +34,10 @@ public class UIManager : MonoBehaviour
         length = (redBar.rectTransform.rect.height + redPoint.rectTransform.rect.height) / 2;
         ratioPointWidth = redPoint.rectTransform.rect.width / 2;
 
-        //
+        
         barSize = barAfter.rectTransform.rect.width;
         roundSize = roundEmpty.rectTransform.rect.width;
+        
     }
 
     //status（Small/Mid/Big）为主角状态
@@ -46,21 +48,30 @@ public class UIManager : MonoBehaviour
         
 
         barAfter.transform.SetParent(barBefore.transform);
-        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r / (float)(r + g + b) * (barSize - roundSize) + roundSize);
-        barAfter.transform.SetParent(mask.transform);
+        
+        
         if (status == 1)
         {
             mainLogo1.enabled = true;mainLogo2.enabled = false;mainLogo3.enabled = false;
+            mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r / (float)(r + g + b)/upMidPer * (barSize - roundSize) + roundSize);
+            logo1.enabled = false;logo2.enabled = false;
         }
         else if (status == 2)
         {
             mainLogo1.enabled = false; mainLogo2.enabled = true; mainLogo3.enabled = false;
+            mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r / (float)(r + g + b) / upBigPer * (barSize - roundSize) + roundSize);
+            logo1.enabled = true;logo2.enabled = false;
+            logo1.rectTransform.anchoredPosition = new Vector2(upMidPer / upBigPer * (barSize - roundSize) + roundSize, 0);
         }
         else if (status == 3)
         {
             mainLogo1.enabled = false; mainLogo2.enabled = false; mainLogo3.enabled = true;
+            mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r / (float)(r + g + b)  * (barSize - roundSize) + roundSize);
+            logo1.enabled = true; logo2.enabled = true;
+            logo1.rectTransform.anchoredPosition = new Vector2(upMidPer * (barSize - roundSize) + roundSize, 0);
+            logo1.rectTransform.anchoredPosition = new Vector2(upBigPer * (barSize - roundSize) + roundSize, 0);
         }
-
+        barAfter.transform.SetParent(mask.transform);
     }
     //改变比例条，r,g,b分别为红、灰、黑球数量
     //
