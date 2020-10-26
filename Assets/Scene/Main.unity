@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -22143,6 +22143,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353451547}
   m_CullTransparentMesh: 0
+--- !u!1001 &1390014584
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999064, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999066, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: m_Name
+      value: LocationProvider
+      objectReference: {fileID: 0}
+    - target: {fileID: 298556518302999067, guid: 575a6a5be2fbf184fb6d359e4ca6b69c,
+        type: 3}
+      propertyPath: mapManager
+      value: 
+      objectReference: {fileID: 2064446485500559558}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 575a6a5be2fbf184fb6d359e4ca6b69c, type: 3}
 --- !u!1 &1404502719
 GameObject:
   m_ObjectHideFlags: 0
@@ -22438,6 +22512,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460192171}
   m_CullTransparentMesh: 0
+--- !u!1 &1469401612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1469401614}
+  - component: {fileID: 1469401613}
+  m_Layer: 0
+  m_Name: TileProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1469401613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469401612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756a01a914208439d8d2fc8dcd68b229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cbtpOptions:
+    camera: {fileID: 4295410963089129356}
+    visibleBuffer: 0
+    disposeBuffer: 0
+--- !u!4 &1469401614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469401612}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2064446485500559556}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1543909519
 GameObject:
   m_ObjectHideFlags: 0
@@ -24516,7 +24637,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1469401614}
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24665,7 +24787,7 @@ MonoBehaviour:
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
           minimumHeight: 3
-          maximumHeight: 0.2
+          maximumHeight: 0.9
           extrusionScaleFactor: 1
         colliderOptions:
           colliderType: 0
@@ -24794,7 +24916,7 @@ MonoBehaviour:
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
           minimumHeight: 3
-          maximumHeight: 0.15
+          maximumHeight: 1
           extrusionScaleFactor: 1
         colliderOptions:
           colliderType: 0
@@ -24860,7 +24982,7 @@ MonoBehaviour:
           propertyName: height
           propertyDescription: Number. Height of building or part of building.
           minimumHeight: 3
-          maximumHeight: 0.3
+          maximumHeight: 1.2
           extrusionScaleFactor: 1
         colliderOptions:
           colliderType: 0
@@ -24901,9 +25023,9 @@ MonoBehaviour:
         _maskValue: 0
         selectedTypes: 
       locationPrefabList: []
-  _tileProvider: {fileID: 0}
+  _tileProvider: {fileID: 1469401613}
   _previewOptions:
-    isPreviewEnabled: 0
+    isPreviewEnabled: 1
 --- !u!1 &2064446485500559559
 GameObject:
   m_ObjectHideFlags: 0
