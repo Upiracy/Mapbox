@@ -280,7 +280,7 @@ MonoBehaviour:
   upMidPer: 0.3
   upBigPer: 0.6
   unionButton: {fileID: 1209290471}
-  unionNum: 6
+  unionNum: 9
   unionFreezeTime: 20
   freezeTimet1: 0.1
   mask: {fileID: 1852244626}

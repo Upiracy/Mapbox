@@ -24,8 +24,9 @@ public class PostProcessing : MonoBehaviour
         profile.TryGet<ColorAdjustments>(out adjustment);
     }
 
-    public static void SetVignette(float smoothness)
+    public static void SetVignette(float intensity, float smoothness)
     {
+        post.vignette.intensity = new ClampedFloatParameter(intensity, 0, 1);
         post.vignette.smoothness = new ClampedFloatParameter(smoothness, 0, 1);
     }
 
