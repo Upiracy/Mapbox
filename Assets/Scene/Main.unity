@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -343,17 +343,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1020754619c84dc45be33c1bd282722a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s: {fileID: 1472067710}
-  num: {fileID: 612806901}
   ratioRed: {fileID: 1943369255}
   ratioGrey: {fileID: 621629981}
   ratioBlack: {fileID: 1600302221}
-  upgradeBar: {fileID: 774958614}
   redBar: {fileID: 1813889897}
   greyBar: {fileID: 1275392268}
   blackBar: {fileID: 566835988}
-  upBarPoint1: {fileID: 1210773759}
-  upBarPoint2: {fileID: 1137328623}
   redPoint: {fileID: 1243452769}
   blackPoint: {fileID: 1912129101}
   upMidPer: 0.3
@@ -362,6 +357,13 @@ MonoBehaviour:
   unionNum: 6
   unionFreezeTime: 20
   freezeTimet1: 0.1
+  mask: {fileID: 0}
+  barAfter: {fileID: 0}
+  barBefore: {fileID: 0}
+  roundEmpty: {fileID: 0}
+  mainLogo1: {fileID: 0}
+  mainLogo2: {fileID: 0}
+  mainLogo3: {fileID: 0}
 --- !u!114 &89510659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,6 +931,7 @@ Transform:
   - {fileID: 466644112}
   - {fileID: 1135585217}
   - {fileID: 368791003}
+  - {fileID: 807750059}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7158,12 +7161,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807750055}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 9.64}
-  m_LocalScale: {x: 2.2, y: 2.2000005, z: 2.2000005}
+  m_LocalPosition: {x: 9.040909, y: -13.636364, z: -1.9090909}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1268630836}
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_Father: {fileID: 291702643}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &809140455
 GameObject:
