@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Effect;
-using TMPro.EditorUtilities;
+//using TMPro.EditorUtilities;
 
 public static class EffectManager
 {
