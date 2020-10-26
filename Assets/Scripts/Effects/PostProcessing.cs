@@ -15,7 +15,7 @@ public class PostProcessing : MonoBehaviour
 
     static PostProcessing post;
 
-    private void Start()
+    private void Awake()
     {
         post = this;
         profile.TryGet<Vignette>(out vignette);
