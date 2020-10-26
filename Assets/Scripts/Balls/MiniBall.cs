@@ -19,6 +19,6 @@ public class MiniBall : MonoBehaviour
     {
         transform.rotation = Quaternion.identity;
         transform.GetChild(0).rotation = rotation;
-        transform.localScale = scale / transform.parent.localScale.x;
+        if(transform.parent.localScale.x != 0) transform.localScale = scale / transform.parent.localScale.x;
     }
 }
