@@ -17,6 +17,7 @@ public class Boss : Ball
     [SerializeField] float dropRange;
     [SerializeField] float sqrShadowRange;
     [SerializeField] float jumpTimeGap = 30;
+   // [SerializeField] GameObject bornEffect;
     RaycastHit hit;
     int sumHP;
 
@@ -27,10 +28,15 @@ public class Boss : Ball
         rb = transform.GetComponent<Rigidbody>();
         //playerBall = GameObject.Find("PlayerBall");
         //GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", true);
-        StartCoroutine(FindPlayer());
+        
 
         sqrShadowRange = transform.GetChild(0).transform.localScale.x * transform.GetChild(0).transform.localScale.x;
         transform.GetComponent<SphereCollider>().radius = transform.GetChild(0).transform.localScale.x * 0.5f;
+
+      //  bornEffect.transform.position = transform.position;
+      //  bornEffect.SetActive(true); 
+
+        StartCoroutine(FindPlayer());
     }
 
     // Update is called once per frame
@@ -47,8 +53,11 @@ public class Boss : Ball
 
     IEnumerator FindPlayer()
     {
-        while(true)
+        yield return new WaitForSeconds(5);
+        while (true)
         {
+            yield return new WaitForSeconds(jumpTimeGap);
+
             transform.GetChild(0).gameObject.SetActive(false);
             Vector3 dir = new Vector3((playerBall.transform.position - transform.position).x, 0, (playerBall.transform.position - transform.position).z).normalized;
             for(int i=0;i<count;i++)
@@ -66,7 +75,7 @@ public class Boss : Ball
 
 
 
-            yield return new WaitForSeconds(jumpTimeGap);
+            
         }
 
     }
@@ -105,13 +114,30 @@ public class Boss : Ball
             {
                 Debug.Log("BOSS死亡");
                 GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", false);
+
+                Destroy(GameObject.Find("BossRings"));
+                EffectManager.ChangeColor(gameObject, collision, Resources.Load<Material>("C_Red"));
+                this.enabled = false;
+                Invoke("Boss2Red", 1);
                 GameObject.Find("Manager").GetComponent<GameManager>().PlayerWin();
 
-                Destroy(gameObject);              
+                hasCollided = true;
+
+                
             }
             hasCollided = true;
             StartCoroutine(AllowCollide());
         }
+    }
+
+    void Boss2Red()
+    {
+        
+        gameObject.SetActive(false);
+        Friend.GenerateSelf(transform.position);
+        
+
+        Destroy(gameObject);
     }
 
     IEnumerator AllowCollide()

@@ -33,8 +33,8 @@ public class UIManager : MonoBehaviour
         ratioPointWidth = redPoint.rectTransform.rect.width / 2;
 
         //
-        barSize = barAfter.rectTransform.rect.width;
-        roundSize = roundEmpty.rectTransform.rect.width;
+       // barSize = barAfter.rectTransform.rect.width;
+       // roundSize = roundEmpty.rectTransform.rect.width;
     }
 
     //status（Small/Mid/Big）为主角状态
@@ -117,8 +117,8 @@ public class UIManager : MonoBehaviour
             }
         }
         status = state;
-        SetUpBar(r, g, b);
-        ChangeRatio(r, g, b);
+      //  SetUpBar(r, g, b);
+       // ChangeRatio(r, g, b);
 
 
     }

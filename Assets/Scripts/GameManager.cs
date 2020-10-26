@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private static int redNum = 1, blackNum, greyNum;   
     private static bool second = false,third = false;
 
-    [SerializeField] GameObject boss;
+    [SerializeField] GameObject bossBornEffect;
     [SerializeField] GameObject unionButtonArrow;
     [SerializeField] GameObject redColorRange;
     [SerializeField] int newGreyNum = 10;
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
        
         RaycastHit hit;
         int range = 5;
-        // UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
+         UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
         for (int i = 0; i < newGreyNum; i++)
         {
             
@@ -190,27 +190,29 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void GenerateBoss()
     {
-        float rangeMin = 10;
-        float rangeMax = 20;
+        float rangeMin = 3;
+        float rangeMax = 5;
         RaycastHit hit;
         Vector3 pos = new Vector3(player.transform.position.x, 0.5f, player.transform.position.z);
         Vector3 dir = new Vector3((Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax), 0, (Random.Range(-1, 1) + 0.5f) * 2 * Random.Range(rangeMin, rangeMax));
-        if (Physics.Raycast(pos, dir, out hit, 60, 1 << 10))
+        if (Physics.Raycast(pos, dir, out hit,3, 1 << 10))
         {
-            if (boss != null)
+            if (bossBornEffect != null)
             {
-                boss.SetActive(true);
-                boss.transform.position = hit.point - dir.normalized * 1.5f;
+                bossBornEffect.SetActive(true);
+                bossBornEffect.transform.position = hit.point - dir.normalized * 1.5f;
+                
             }
         }
         else
         {
-            if (boss != null)
+            if (bossBornEffect != null)
             {
-                boss.SetActive(true);
-                boss.transform.position = pos + dir;
+                bossBornEffect.SetActive(true);
+                bossBornEffect.transform.position = pos + dir;
             }
-        }        
+        }
+        UnityEngine.Debug.LogFormat("大黑特效位置{0}", bossBornEffect.transform.position);
     }
 
     private void checkState()
@@ -233,7 +235,7 @@ public class GameManager : MonoBehaviour
             {
                 UnityEngine.Debug.LogFormat("第三阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
                 third = true;
-                boss.GetComponent<Boss>().DropBullet();
+                bossBornEffect.GetComponent<BossBornEffect>().boss.GetComponent<Boss>().DropBullet();
 
                 //StartCoroutine(DropBullet());
                 player.state = 3;
@@ -402,7 +404,7 @@ public class GameManager : MonoBehaviour
     {
         UnityEngine.Debug.Log("玩家胜利！！！！");
 
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         //StartCoroutine(ChangeColor());
        // gameOver = true;
         //弹一个ui框
@@ -426,7 +428,7 @@ public class GameManager : MonoBehaviour
     public void PlayerLost()
     {
         UnityEngine.Debug.Log("玩家失败……");
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
        // gameOver = true;
         //弹一个ui框
 
