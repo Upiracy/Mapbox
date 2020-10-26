@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2491476398915747483}
   - component: {fileID: 2491476398915747481}
   - component: {fileID: 2491476398915747482}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4765,7 +4765,7 @@ GameObject:
   - component: {fileID: 2491476400266527521}
   - component: {fileID: 2491476400266527527}
   - component: {fileID: 2491476400266527520}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FlameCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9528,7 +9528,7 @@ GameObject:
   - component: {fileID: 2491476400329988785}
   - component: {fileID: 2491476400329988791}
   - component: {fileID: 2491476400329988784}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FlameOuter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

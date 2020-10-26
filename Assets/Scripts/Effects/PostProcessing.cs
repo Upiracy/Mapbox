@@ -34,6 +34,11 @@ public class PostProcessing : MonoBehaviour
         post.balance.temperature = new ClampedFloatParameter(temperature, -100, 100);
     }
 
+    public static void SetTint(float tint)
+    {
+        post.balance.tint = new ClampedFloatParameter(tint, -100, 100);
+    }
+
     public static void SetContrast(float contrast)
     {
         post.adjustment.contrast = new ClampedFloatParameter(contrast, -100, 100);
@@ -54,10 +59,6 @@ public class PostProcessing : MonoBehaviour
         RenderSettings.ambientIntensity = intensity;
         RenderSettings.ambientLight = color;
     }
+    
 
-    public static void SetFog(float intensity, Color color)
-    {
-        RenderSettings.fogDensity = intensity;
-        RenderSettings.fogColor = color;
-    }
 }

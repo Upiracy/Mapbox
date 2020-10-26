@@ -886,7 +886,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5e4eadd723808aa46aec67c53e0c6fd2, type: 2}
+  - {fileID: 2100000, guid: 4e61498d3ce89364b8a3fc513c3bd4d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15547,7 +15547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea810d6a6ac92c488a224b5f86fb162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionLight: {fileID: 0}
+  directionLight: {fileID: 1327488939}
   profile: {fileID: 11400000, guid: 75024afa81ba47140985990079597b02, type: 2}
 --- !u!4 &2064446485500559556
 Transform:
@@ -15577,7 +15577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _options:
     locationOptions:
-      latitudeLongitude: 30.5383635, 114.362502
+      latitudeLongitude: 30.528861, 114.35543
       zoom: 16
     extentOptions:
       extentType: 0
@@ -15648,7 +15648,23 @@ MonoBehaviour:
     _layerProperty:
       tileJsonData:
         tileJSONLoaded: 0
-        LayerDisplayNames: []
+        LayerDisplayNames:
+        - admin
+        - aeroway
+        - airport_label
+        - building
+        - housenum_label
+        - landuse
+        - landuse_overlay
+        - motorway_junction
+        - natural_label
+        - place_label
+        - poi_label
+        - road
+        - structure
+        - transit_stop_label
+        - water
+        - waterway
       _sourceType: -2
       sourceOptions:
         isActive: 1
