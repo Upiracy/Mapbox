@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         Vector3 a = new Vector3(joyStick.deltaPos.x, 0, joyStick.deltaPos.y);
-        playerBall.Roll(Step(rb.velocity,a).normalized*a.magnitude);
+        playerBall.Roll(Step(rb.velocity,a).normalized*a.magnitude * Time.deltaTime * 50);
     }
 
     /// <summary>
