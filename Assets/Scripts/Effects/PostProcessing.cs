@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class PostProcessing : MonoBehaviour
 {
+    [SerializeField] Light directionLight;
     [SerializeField] VolumeProfile profile;
     Vignette vignette;
     SplitToning toning;
@@ -41,5 +42,22 @@ public class PostProcessing : MonoBehaviour
     public static void SetSaturation(float saturation)
     {
         post.adjustment.saturation = new ClampedFloatParameter(saturation, -100, 100);
+    }
+
+    public static void SetGlobalLight(float intensity)
+    {
+        post.directionLight.intensity = intensity;
+    }
+
+    public static void SetAmbientLight(float intensity, Color color)
+    {
+        RenderSettings.ambientIntensity = intensity;
+        RenderSettings.ambientLight = color;
+    }
+
+    public static void SetFog(float intensity, Color color)
+    {
+        RenderSettings.fogDensity = intensity;
+        RenderSettings.fogColor = color;
     }
 }
