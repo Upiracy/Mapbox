@@ -107,6 +107,7 @@ public class Boss : Ball
             for(int i=0;i<a;i++)
             {
                 Vector3 dir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+               // EffectManager.GenerateTrailBlack(transform, transform.position + dir * transform.GetChild(0).transform.localScale.x * 1.5f, 5, 1);
                 Enemy.GenerateSelf(transform.position + dir * transform.GetChild(0).transform.localScale.x * 1.5f );
             }
 
@@ -140,6 +141,7 @@ public class Boss : Ball
         Destroy(gameObject);
     }
 
+
     IEnumerator AllowCollide()
     {
         yield return new WaitForSeconds(1);
@@ -169,7 +171,7 @@ public class Boss : Ball
                // Debug.LogFormat("主角距离{0}，boss范围{1}", (playerBall.transform.position - transform.position).sqrMagnitude,sqrShadowRange);
                 Vector3 pos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * dropRange + playerBall.transform.position;
                 pos += new Vector3(0, 10, 0);
-                GameObject shadow = BulletShadow.GenerateShadow(new Vector3(pos.x, 0.05f, pos.z));
+                GameObject shadow = BulletShadow.GenerateShadow(new Vector3(pos.x, 0.15f, pos.z));
                 yield return new WaitForSeconds(preTime);
                 Bullet.GenerateBullet(pos, shadow);
 
