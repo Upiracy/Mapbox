@@ -136,10 +136,11 @@ public class Boss : Ball
         Debug.Log(playerBall);
         while (true)
         {
-            //Debug.LogFormat("主角距离{0}，boss范围{1}", (playerBall.transform.position - transform.position).sqrMagnitude,sqrShadowRange);
+            
             if ((playerBall.transform.position - transform.position).sqrMagnitude <= sqrShadowRange)
             {
                 Debug.Log("掉子弹");
+                Debug.LogFormat("主角距离{0}，boss范围{1}", (playerBall.transform.position - transform.position).sqrMagnitude,sqrShadowRange);
                 Vector3 pos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * dropRange + playerBall.transform.position;
                 pos += new Vector3(0, 10, 0);
                 GameObject shadow = BulletShadow.GenerateShadow(new Vector3(pos.x, 0.05f, pos.z));
