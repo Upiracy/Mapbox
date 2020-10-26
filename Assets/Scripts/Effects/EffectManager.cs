@@ -7,6 +7,7 @@ using TMPro.EditorUtilities;
 public static class EffectManager
 {
     static Shadow shadow;
+    static Power power;
 
     public static void ChangeColor(GameObject go, Collision co, Material target, float time = 1)
     {       
@@ -65,17 +66,17 @@ public static class EffectManager
 
     public static void AttachPower(Transform target, float time)
     {
-        Power power = GameObject.Instantiate(Resources.Load<GameObject>("Effects/Power"), target.position, Quaternion.identity).GetComponent<Power>();
+        power = GameObject.Instantiate(Resources.Load<GameObject>("Effects/Power"), target.position, Quaternion.identity).GetComponent<Power>();
         power.target = target;
         power.Destroy(time);
     }
 
-    public static void BreakPower(Transform target)
+    public static void BreakPower()
     {
-        Power power = target.GetComponent<Power>();
         if(power)
         {
             power.Destroy(0);
+            //power.gameObject.SetActive(false);
         }
     }
 }

@@ -120,6 +120,9 @@ public class GameManager : MonoBehaviour
                 case "grey":
                     greyNum++;
                     break;
+                default:
+                    UnityEngine.Debug.LogErrorFormat("修改小球个数的字符串有误，，{0}", color);
+                    break;
             }
         }
         else
@@ -134,6 +137,9 @@ public class GameManager : MonoBehaviour
                     break;
                 case "grey":
                     greyNum--;
+                    break;
+                default:
+                    UnityEngine.Debug.LogErrorFormat("修改小球个数的字符串有误，，{0}", color);
                     break;
             }
         }
@@ -300,12 +306,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator BeingUnion()
     {
-
-        EffectManager.AttachPower(player.transform, unionTime + Friend.redBalls.Count * unionTimet0);
+        float sumTime = unionTime + Friend.redBalls.Count * unionTimet0;
+        EffectManager.AttachPower(player.transform, sumTime);
         UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * unionTimet0);
         // yield return new WaitForSeconds(unionTime + Friend.redBalls.Count * t0);    
 
-        float sumTime = unionTime + Friend.redBalls.Count * unionTimet0;
+        
         for (float t =Time.time;Time.time - t< sumTime;)
         {
             //UnityEngine.Debug.LogFormat("合体中...此时sumTime={0},Time.time={1}, t = {2}",sumTime,Time.time,t);
@@ -320,7 +326,7 @@ public class GameManager : MonoBehaviour
 
     public void DivideRedBalls(int changeNum)
     {
-        EffectManager.BreakPower(player.transform);
+        EffectManager.BreakPower();
 
         StopCoroutine(coroutine);
         player.transform.localScale = new Vector3(1, 1, 1);
@@ -365,9 +371,9 @@ public class GameManager : MonoBehaviour
         {
             changeBalls[i].GetComponent<Friend>().ChangeSelf();
 
-            //EffectManager.GenerateTrailBlack(player.transform,)
+            EffectManager.GenerateTrailBlack(player.transform, changeBalls[i].transform, 5, 1);
 
-            Enemy.GenerateSelf(changeBalls[i].transform.position);
+            StartCoroutine(waitGeneraterEnmey(changeBalls[i].transform.position,1));
 
             
         }
@@ -384,6 +390,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(t);
         redBall.SetActive(true);
        // UnityEngine.Debug.Log("生成红球");
+    }
+
+    IEnumerator waitGeneraterEnmey(Vector3 pos, float t)
+    {
+        yield return new WaitForSeconds(t);
+        Enemy.GenerateSelf(pos);
     }
 
     public void PlayerWin()

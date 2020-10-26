@@ -104,7 +104,7 @@ public class Boss : Ball
             if (bossHP<=0)
             {
                 Debug.Log("BOSS死亡");
-                GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("Black", false);
+                GameObject.Find("Manager").GetComponent<GameManager>().SetBallNum("black", false);
                 GameObject.Find("Manager").GetComponent<GameManager>().PlayerWin();
 
                 Destroy(gameObject);              
