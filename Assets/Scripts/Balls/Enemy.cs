@@ -231,7 +231,7 @@ public class Enemy : Ball
         }
     }
     
-    protected void DestroySelf()
+    public void DestroySelf()
     {
         rb.velocity = Vector3.zero;
         //Debug.Log("销毁黑球");

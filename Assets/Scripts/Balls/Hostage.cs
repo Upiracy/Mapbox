@@ -160,7 +160,7 @@ public class Hostage : Ball
         }
     }
     
-    protected void DestroySelf()
+    public void DestroySelf()
     {
         rb.velocity = Vector3.zero;
        // Debug.Log("销毁灰球");

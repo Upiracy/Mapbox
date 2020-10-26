@@ -11,8 +11,11 @@ public class Explosion : MonoBehaviour
     [SerializeField] Material c_change = null;
     [SerializeField] Transform greyBalls = null, blackBalls = null;
     [SerializeField] float speed = 5, time = 30;
+    [SerializeField] GameManager gm; 
 
-    List<Renderer> renderers = new List<Renderer>();
+
+    List<Renderer> greys = new List<Renderer>();
+    List<Renderer> blacks = new List<Renderer>();
 
     private void Start()
     {
@@ -31,21 +34,22 @@ public class Explosion : MonoBehaviour
 
     public void Explode(float time)
     {
-        renderers.Clear();
+        greys.Clear();
+        blacks.Clear();
         for (int i = 0; i < greyBalls.childCount; i++)
         {
             Transform child = greyBalls.GetChild(i);
             child.GetComponent<Hostage>().enabled = false;
-            renderers.Add(child.GetComponent<Renderer>());
+            greys.Add(child.GetComponent<Renderer>());
         }
         for (int i = 0; i < blackBalls.childCount; i++)
         {
             Transform child = blackBalls.GetChild(i);
             child.GetComponent<Enemy>().enabled = false;
-            renderers.Add(child.GetComponent<Renderer>());
+            blacks.Add(child.GetComponent<Renderer>());
         }
 
-        foreach (Renderer r in renderers)
+        foreach (Renderer r in greys)
         {
             Material temp = r.material;
             r.material = c_change;
@@ -62,11 +66,34 @@ public class Explosion : MonoBehaviour
     public IEnumerator Explodes(float time)
     {
         float startTime = Time.time;
-        for(;Time.time - startTime <= time;)
+        for (;Time.time - startTime <= time;)
         {
-            foreach (Renderer r in renderers)
+            float range = (Time.time - startTime) * speed;
+            for(int i = 0; i < greys.Count; i++)
             {
-                r.material.SetFloat("_Range", (Time.time - startTime) * speed);
+                Renderer r = greys[i];
+                r.material.SetFloat("_Range", range);
+                if (range > (transform.position - r.transform.position).magnitude)
+                {
+                    greys.Remove(r);
+                    i--;
+                    r.GetComponent<Hostage>().DestroySelf();
+                    gm.SetBallNum("grey", false);
+                    Friend.GenerateSelf(r.transform.position);
+                }
+            }
+            for(int i = 0; i < blacks.Count; i++)
+            {
+                Renderer r = blacks[i];
+                r.material.SetFloat("_Range", range);
+                if (range > (transform.position - r.transform.position).magnitude)
+                {
+                    blacks.Remove(r);
+                    i--;
+                    r.GetComponent<Enemy>().DestroySelf();
+                    gm.SetBallNum("black", false);
+                    Friend.GenerateSelf(r.transform.position);
+                }
             }
             yield return 0;
         }
