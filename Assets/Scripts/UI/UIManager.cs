@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject unionButton;
     [SerializeField] int unionNum;
     [SerializeField] float unionFreezeTime;
+    [SerializeField] float freezeTimet1 = 0.1f; //冷却时间受红球数量影响
 
     bool isFreeze = false;
 
@@ -140,8 +141,8 @@ public class UIManager : MonoBehaviour
         isFreeze = true;
         unionButton.GetComponent<Button>().enabled = false;
 
-        float t1 = 0.01f; //冷却时间受红球数量影响
-        float freezeTime = unionFreezeTime + Friend.redBalls.Count * t1;
+        
+        float freezeTime = unionFreezeTime + Friend.redBalls.Count * freezeTimet1;
         for(float t= Time.time; Time.time - t<=freezeTime;)
         {
             unionButton.transform.GetChild(0).GetChild(0).GetComponent<Image>().fillAmount = (Time.time - t) / freezeTime;
