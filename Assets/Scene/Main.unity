@@ -781,7 +781,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   bossHP: 6
   count: 50
-  dropGap: 0.5
+  dropGap: 2
   preTime: 0.5
   dropRange: 1
   sqrShadowRange: 0
@@ -7744,7 +7744,7 @@ MonoBehaviour:
   winWindow: {fileID: 419782151}
   lostWindow: {fileID: 2038012257}
   newGreyNum: 20
-  newBlackNum: 0
+  newBlackNum: 10
   angle1: 80
   angle2: 60
   angle3: 50
