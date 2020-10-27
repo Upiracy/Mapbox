@@ -27,7 +27,7 @@ public class BossBornEffect : MonoBehaviour
         boss.SetActive(true);
         for (float t=Time.time;Time.time-t<3;)
         {
-            boss.transform.localScale = new Vector3(1, 1, 1) * (float)(Time.time - t) / 3 * 2.2f;
+            boss.transform.localScale = new Vector3(1, 1, 1) * (float)(Time.time - t) / 3 * 2.2f + Vector3.one * 0.01f;
             yield return 0;
         }
 
