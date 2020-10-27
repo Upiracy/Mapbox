@@ -37,6 +37,8 @@ public class RedBallsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         //set = true;
         StartCoroutine(Set());
         
@@ -76,7 +78,7 @@ public class RedBallsManager : MonoBehaviour
     {
         List<Friend> reds = Friend.redBalls;
         List<Hostage> greys = Hostage.greyBalls;
-
+        Debug.Log(reds.Count);
         //因素123清零
         for (int i = 0; i < reds.Count; i++)
         {

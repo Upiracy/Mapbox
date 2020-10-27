@@ -22,8 +22,14 @@ public class Friend : Ball
         playerBall = GameObject.Find("PlayerBall");
        // Debug.Log(playerBall);
         rb = transform.GetComponent<Rigidbody>();
-        friendPool.Clear();
+        
+        
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
+    }
+
+    public static void ClaerPool()
+    {
+        friendPool.Clear();
     }
 
     private void OnEnable()

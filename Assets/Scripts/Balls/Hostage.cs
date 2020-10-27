@@ -24,12 +24,19 @@ public class Hostage : Ball
         //playerBall = GameObject.Find("PlayerBall");
         rb = transform.GetComponent<Rigidbody>();
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
-        hostagePool.Clear();
+        
+        
       //  rb.velocity = maxSpeed * transform.position.normalized;
         StartCoroutine(RandomMove());
      
 
     }
+
+    public static void ClaerPool()
+    {
+        hostagePool.Clear();
+    }
+
 
     IEnumerator RandomMove()
     {
@@ -191,6 +198,7 @@ public class Hostage : Ball
             
         }
 
+        Debug.Log(go);
         go.transform.parent = GameObject.Find("GreyBalls").transform;
         go.transform.position = pos;
         go.GetComponent<Hostage>().enabled = true;
