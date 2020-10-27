@@ -24,6 +24,7 @@ public class Boss : Ball
     // Start is called before the first frame update
     void Start()
     {
+        
         sumHP = bossHP;
         rb = transform.GetComponent<Rigidbody>();
         //playerBall = GameObject.Find("PlayerBall");
@@ -37,11 +38,13 @@ public class Boss : Ball
       //  bornEffect.SetActive(true); 
 
         StartCoroutine(FindPlayer());
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (Physics.SphereCast(transform.position, 1, rb.velocity, out hit, 5, 1 << 10))
             direction = (playerBall.transform.position - transform.position).normalized + hit.normal * rb.velocity.magnitude * 0.1f + Vector3.Cross(hit.normal, Vector3.up).normalized;
         else
@@ -49,6 +52,7 @@ public class Boss : Ball
         direction += Vector3.Cross(Vector3.up, rb.velocity).normalized * Random.Range(-1f, 1f);
         Roll(direction.normalized );
         //rb.AddForce(Vector3.up * -50);
+        
     }
 
     IEnumerator FindPlayer()

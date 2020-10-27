@@ -7745,9 +7745,9 @@ MonoBehaviour:
   lostWindow: {fileID: 2038012257}
   newGreyNum: 20
   newBlackNum: 10
-  angle1: 80
-  angle2: 60
-  angle3: 50
+  angle1: 100
+  angle2: 80
+  angle3: 70
   greyBallR: 0.5
   blackBallR: 0.5
   unionTime: 10
