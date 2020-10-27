@@ -33,8 +33,20 @@ public class GameManager : MonoBehaviour
     AudioSource audioSource;
     Coroutine coroutine;
 
+    private void Awake()
+    {
+        Friend.redBalls.Clear();
+        Hostage.greyBalls.Clear();
+        Enemy.blackBalls.Clear();
+
+        Friend.ClaerPool();
+        Hostage.ClaerPool();
+        Enemy.ClaerPool();
+    }
+
     void Start()
     {
+        
         Time.timeScale = 1;
         redNum = 1;
         blackNum = 0;
@@ -348,7 +360,7 @@ public class GameManager : MonoBehaviour
 
             player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 3, (float)reds.Count / GameManager.sumNum);
             player.GetComponent<Player>().union = true;
-            //UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
+            UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
             coroutine = StartCoroutine(BeingUnion());
         }
     }
@@ -357,7 +369,7 @@ public class GameManager : MonoBehaviour
     {
         float sumTime = unionTime + Friend.redBalls.Count * unionTimet0;
         EffectManager.AttachPower(player.transform, sumTime);
-        //UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * unionTimet0);
+        UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * unionTimet0);
         // yield return new WaitForSeconds(unionTime + Friend.redBalls.Count * t0);    
 
         
@@ -366,7 +378,7 @@ public class GameManager : MonoBehaviour
             //UnityEngine.Debug.LogFormat("合体中...此时sumTime={0},Time.time={1}, t = {2}",sumTime,Time.time,t);
             yield return 0;
         }
-        //UnityEngine.Debug.Log("准备执行解除合体函数");
+        UnityEngine.Debug.Log("准备执行解除合体函数");
 
 
         DivideRedBalls(0);

@@ -26,10 +26,16 @@ public class Enemy : Ball
         playerBall = GameObject.Find("PlayerBall");
         rb = transform.GetComponent<Rigidbody>();
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
-        enemyPool.Clear();
+       
+        
         StartCoroutine(RandomMove());
 
         boss = GameObject.Find("RedBalls").GetComponent<RedBallsManager>().boss;
+    }
+
+    public static void ClaerPool()
+    {
+        enemyPool.Clear();
     }
 
     // Update is called once per frame
