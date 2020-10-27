@@ -24,7 +24,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image mainLogo1, mainLogo2, mainLogo3;
     [SerializeField] Image logo1, logo2;
     float barSize,roundSize;
+    [SerializeField] Image talkingBar;
+    [SerializeField] TMP_Text talk;
+    [SerializeField] float talkTime=5f;
+    float talkPassTime;
+    bool talkActive = false;
+    bool up1=false, up2=false;
     //
+    [SerializeField] Image hint,hintImage;
+    [SerializeField] Button hintButton;
 
     bool isFreeze = false;
 
@@ -37,11 +45,40 @@ public class UIManager : MonoBehaviour
         
         barSize = barAfter.rectTransform.rect.width;
         roundSize = roundEmpty.rectTransform.rect.width;
-        
+
+        talkingBar.enabled = false;talk.enabled = false;
     }
 
+    void Update()
+    {
+        if (talkActive) {
+            if (talkPassTime>0) talkPassTime -= Time.deltaTime;
+            else { talkActive = false;talkingBar.enabled = false; talk.enabled = false; } 
+        }
+    }
+
+
+    public void OnPressStartExit()
+    {
+        hintImage.enabled = false;
+        hint.enabled = false;
+        hintButton.image.enabled = false;
+        hintButton.enabled = false;
+        Time.timeScale = 1;
+    }
+
+    public void OnPressRound()
+    {
+        hintImage.enabled = true;
+        hint.enabled = true;
+        hintButton.enabled = true;
+        hintButton.image.enabled = true;
+        Debug.Log("pressRound");
+        Time.timeScale = 0;
+        
+    }
     //status（Small/Mid/Big）为主角状态
-    
+
     //改变进度条。r,g,b分别为红、灰、黑球数量
     public void SetUpBar(int r,int g,int b) 
     {
@@ -62,6 +99,7 @@ public class UIManager : MonoBehaviour
             mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r / (float)(r + g + b) / upBigPer * (barSize - roundSize) + roundSize);
             logo1.enabled = true;logo2.enabled = false;
             logo1.rectTransform.anchoredPosition = new Vector2(upMidPer / upBigPer * (barSize - roundSize) + roundSize, 0);
+            
         }
         else if (status == 3)
         {
@@ -69,7 +107,7 @@ public class UIManager : MonoBehaviour
             mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r / (float)(r + g + b)  * (barSize - roundSize) + roundSize);
             logo1.enabled = true; logo2.enabled = true;
             logo1.rectTransform.anchoredPosition = new Vector2(upMidPer * (barSize - roundSize) + roundSize, 0);
-            logo1.rectTransform.anchoredPosition = new Vector2(upBigPer * (barSize - roundSize) + roundSize, 0);
+            logo2.rectTransform.anchoredPosition = new Vector2(upBigPer * (barSize - roundSize) + roundSize, 0);
         }
         barAfter.transform.SetParent(mask.transform);
     }
@@ -93,6 +131,27 @@ public class UIManager : MonoBehaviour
         ratioRed.text = r.ToString();ratioGrey.text = g.ToString();ratioBlack.text = b.ToString();
     }
 
+    public void PopTalk(int i)
+    {
+        if (i == 2&&up1==false) { 
+            talkActive = true;
+            talk.text = "level up";
+            up1 = true;
+        }
+        else if (i == 3&&up2==false) { 
+            talkActive = true;
+            talk.text= "level up";
+            up2 = true;
+        }
+        
+
+        if (talkActive)
+        {
+            talkingBar.enabled = true; talk.enabled = true;
+            talkPassTime = talkTime;
+        }
+        
+    }
     /// <summary>
     /// 由GameManager调用，改变ui
     /// </summary>
@@ -132,7 +191,8 @@ public class UIManager : MonoBehaviour
 
         SetUpBar(r, g, b);
         ChangeRatio(r, g, b);
-
+        if (status == 2) PopTalk(2);
+        else if (status == 3) PopTalk(3);
 
     }
 
