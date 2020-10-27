@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
             Vector3 dir = new Vector3(pos.x,0,pos.z).normalized * Random.Range(rangeMax - range, rangeMax);
             if (Physics.Raycast(pos,dir,out hit,40,1<<10))
             {
-                UnityEngine.Debug.Log("射中");
+               // UnityEngine.Debug.Log("射中");
                 Hostage.GenerateSelf(hit.point - dir.normalized*greyBallR);
             }
             else
@@ -293,7 +293,7 @@ public class GameManager : MonoBehaviour
            */
             if (!third)
             {
-                UnityEngine.Debug.LogFormat("第三阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
+               // UnityEngine.Debug.LogFormat("第三阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
                 third = true;
                 bossBornEffect.GetComponent<BossBornEffect>().boss.GetComponent<Boss>().DropBullet();
 
@@ -361,7 +361,7 @@ public class GameManager : MonoBehaviour
 
             player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 3, (float)reds.Count / GameManager.sumNum);
             player.GetComponent<Player>().union = true;
-            UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
+           // UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
             coroutine = StartCoroutine(BeingUnion());
         }
     }
@@ -370,7 +370,7 @@ public class GameManager : MonoBehaviour
     {
         float sumTime = unionTime + Friend.redBalls.Count * unionTimet0;
         EffectManager.AttachPower(player.transform, sumTime);
-        UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * unionTimet0);
+        //UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * unionTimet0);
         // yield return new WaitForSeconds(unionTime + Friend.redBalls.Count * t0);    
 
         
@@ -379,7 +379,7 @@ public class GameManager : MonoBehaviour
             //UnityEngine.Debug.LogFormat("合体中...此时sumTime={0},Time.time={1}, t = {2}",sumTime,Time.time,t);
             yield return 0;
         }
-        UnityEngine.Debug.Log("准备执行解除合体函数");
+       // UnityEngine.Debug.Log("准备执行解除合体函数");
 
 
         DivideRedBalls(0);
@@ -462,7 +462,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerWin()
     {
-        UnityEngine.Debug.Log("玩家胜利！！！！");
+        //UnityEngine.Debug.Log("玩家胜利！！！！");
 
         //Time.timeScale = 0;
         holo.transform.position = player.transform.position;

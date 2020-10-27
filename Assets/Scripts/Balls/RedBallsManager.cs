@@ -78,7 +78,7 @@ public class RedBallsManager : MonoBehaviour
     {
         List<Friend> reds = Friend.redBalls;
         List<Hostage> greys = Hostage.greyBalls;
-        Debug.Log(reds.Count);
+       // Debug.Log(reds.Count);
         //因素123清零
         for (int i = 0; i < reds.Count; i++)
         {

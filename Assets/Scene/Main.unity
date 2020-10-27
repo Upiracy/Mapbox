@@ -23406,7 +23406,6 @@ GameObject:
   - component: {fileID: 1424474540}
   - component: {fileID: 1424474539}
   - component: {fileID: 1424474538}
-  - component: {fileID: 1424474537}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -23433,47 +23432,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 5}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &1424474537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424474535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1020754619c84dc45be33c1bd282722a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ratioRed: {fileID: 0}
-  ratioGrey: {fileID: 0}
-  ratioBlack: {fileID: 0}
-  redBar: {fileID: 0}
-  greyBar: {fileID: 0}
-  blackBar: {fileID: 0}
-  redPoint: {fileID: 0}
-  blackPoint: {fileID: 0}
-  upMidPer: 0.3
-  upBigPer: 0.6
-  unionButton: {fileID: 0}
-  unionNum: 0
-  unionFreezeTime: 0
-  freezeTimet1: 0.1
-  mask: {fileID: 0}
-  barAfter: {fileID: 0}
-  barBefore: {fileID: 0}
-  roundEmpty: {fileID: 0}
-  mainLogo1: {fileID: 0}
-  mainLogo2: {fileID: 0}
-  mainLogo3: {fileID: 0}
-  logo1: {fileID: 0}
-  logo2: {fileID: 0}
-  talkingBar: {fileID: 0}
-  talk: {fileID: 0}
-  talkTime: 5
-  hint: {fileID: 838749057}
-  hintImage: {fileID: 1495453347}
-  hintButton: {fileID: 1424474538}
 --- !u!114 &1424474538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23517,7 +23475,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424474537}
+      - m_Target: {fileID: 89510658}
         m_MethodName: OnPressStartExit
         m_Mode: 1
         m_Arguments:

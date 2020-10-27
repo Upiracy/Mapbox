@@ -198,7 +198,7 @@ public class Hostage : Ball
             
         }
 
-        Debug.Log(go);
+        //Debug.Log(go);
         go.transform.parent = GameObject.Find("GreyBalls").transform;
         go.transform.position = pos;
         go.GetComponent<Hostage>().enabled = true;
