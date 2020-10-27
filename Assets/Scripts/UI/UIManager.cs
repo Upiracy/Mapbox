@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image logo1, logo2;
     float barSize,roundSize;
     [SerializeField] Image talkingBar;
-    [SerializeField] TMP_Text talk;
+    [SerializeField] Text talk;
     [SerializeField] float talkTime=5f;
     float talkPassTime;
     bool talkActive = false;
@@ -135,12 +135,12 @@ public class UIManager : MonoBehaviour
     {
         if (i == 2&&up1==false) { 
             talkActive = true;
-            talk.text = "level up";
+            talk.text = "进入第二阶段，主角可攻击小黑球";
             up1 = true;
         }
         else if (i == 3&&up2==false) { 
             talkActive = true;
-            talk.text= "level up";
+            talk.text= "进入第三阶段，主角合体可攻击大黑球";
             up2 = true;
         }
         
