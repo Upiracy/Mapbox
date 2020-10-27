@@ -1049,7 +1049,7 @@ Transform:
   m_GameObject: {fileID: 368791002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
   m_Children:
   - {fileID: 1755230686}
   m_Father: {fileID: 291702643}
@@ -2427,7 +2427,6 @@ GameObject:
   - component: {fileID: 807750060}
   - component: {fileID: 807750058}
   - component: {fileID: 807750057}
-  - component: {fileID: 807750056}
   m_Layer: 0
   m_Name: Born
   m_TagString: Untagged
@@ -2435,19 +2434,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &807750056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807750055}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 333ccb7a8c5c2104d9877813ec3fab31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 291702643}
 --- !u!199 &807750057
 ParticleSystemRenderer:
   serializedVersion: 6

@@ -11,7 +11,8 @@ public class MiniBall : MonoBehaviour
     void Start()
     {
         rotation = transform.GetChild(0).rotation;
-        scale = transform.lossyScale;
+        scale = transform.localScale;
+        //transform.localPosition = Vector3.up * 150;
     }
 
     // Update is called once per frame
