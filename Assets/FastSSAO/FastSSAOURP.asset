@@ -33,7 +33,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f1a22d534c40f4c846c91adf34e19c, type: 3}
   m_Name: FastSSAOUrp
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     Event: 500
     Intensity: 1

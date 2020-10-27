@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
        
         RaycastHit hit;
         int range = 5;
-         UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
+        //UnityEngine.Debug.LogFormat("灰{0}，黑{1}", greyNum, blackNum);
         for (int i = 0; i < newGreyNum; i++)
         {
             
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
                 inputManager.maxAngle = angle2;
                 if (!second)
                 {
-                    UnityEngine.Debug.LogFormat("第二阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
+                    //UnityEngine.Debug.LogFormat("第二阶段,红{0},灰{1},黑{2}，比例{3}", redNum, greyNum, blackNum, (float)redNum / sumNum);
                     second = true;
                     blackNum++;
                     GenerateBoss();
@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
 
             if (!second)
             {
-                UnityEngine.Debug.LogFormat("sum{0},{1},{2},{3}",sumNum, redNum, greyNum, blackNum);
+                //UnityEngine.Debug.LogFormat("sum{0},{1},{2},{3}",sumNum, redNum, greyNum, blackNum);
                 float per = (float)redNum / sumNum / 0.3f;
                 PostProcessing.SetVignette(Mathf.Lerp(0.443f, 0.35f, per), Mathf.Lerp(0.26f, 0.2f, per));
                 PostProcessing.SetTemperature(Mathf.Lerp(0f, 50f, per));
@@ -259,7 +259,7 @@ public class GameManager : MonoBehaviour
                 bossBornEffect.transform.position = pos + dir;
             }
         }
-        UnityEngine.Debug.LogFormat("大黑特效位置{0}", bossBornEffect.transform.position);
+        //UnityEngine.Debug.LogFormat("大黑特效位置{0}", bossBornEffect.transform.position);
     }
 
     private void checkState()
@@ -348,7 +348,7 @@ public class GameManager : MonoBehaviour
 
             player.transform.localScale = new Vector3(1, 1, 1) * Mathf.Lerp(1f, 3, (float)reds.Count / GameManager.sumNum);
             player.GetComponent<Player>().union = true;
-            UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
+            //UnityEngine.Debug.Log("合体,主角" + player.transform.localScale);
             coroutine = StartCoroutine(BeingUnion());
         }
     }
@@ -357,7 +357,7 @@ public class GameManager : MonoBehaviour
     {
         float sumTime = unionTime + Friend.redBalls.Count * unionTimet0;
         EffectManager.AttachPower(player.transform, sumTime);
-        UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * unionTimet0);
+        //UnityEngine.Debug.LogFormat("等待解除合体，unionTime={0},Friend.redBalls.Count = {1},结果{2}", unionTime, Friend.redBalls.Count, unionTime + Friend.redBalls.Count * unionTimet0);
         // yield return new WaitForSeconds(unionTime + Friend.redBalls.Count * t0);    
 
         
@@ -366,7 +366,7 @@ public class GameManager : MonoBehaviour
             //UnityEngine.Debug.LogFormat("合体中...此时sumTime={0},Time.time={1}, t = {2}",sumTime,Time.time,t);
             yield return 0;
         }
-        UnityEngine.Debug.Log("准备执行解除合体函数");
+        //UnityEngine.Debug.Log("准备执行解除合体函数");
 
 
         DivideRedBalls(0);
@@ -430,7 +430,7 @@ public class GameManager : MonoBehaviour
         
         
 
-        UnityEngine.Debug.Log("解除合体,主角" + player.transform.localScale);
+        //UnityEngine.Debug.Log("解除合体,主角" + player.transform.localScale);
         player.GetComponent<Player>().union = false;
     }
 
@@ -465,7 +465,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerLost()
     {
-        UnityEngine.Debug.Log("玩家失败……");
+        //UnityEngine.Debug.Log("玩家失败……");
         Time.timeScale = 0;
         // gameOver = true;
         //弹一个ui框
