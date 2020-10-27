@@ -42,12 +42,13 @@ public class GameManager : MonoBehaviour
         Friend.ClaerPool();
         Hostage.ClaerPool();
         Enemy.ClaerPool();
+        Time.timeScale = 0;
     }
 
     void Start()
     {
         
-        Time.timeScale = 1;
+        
         redNum = 1;
         blackNum = 0;
         greyNum = 0;
