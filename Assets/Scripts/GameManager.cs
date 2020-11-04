@@ -43,6 +43,16 @@ public class GameManager : MonoBehaviour
         Hostage.ClaerPool();
         Enemy.ClaerPool();
         Time.timeScale = 0;
+
+        Reference data = WebAPI.callback; 
+
+        newGreyNum = data.gm_GreyNum;
+        newBlackNum = data.gm_BlackNum;
+        angle1 = data.gm_Angle1;
+        angle2 = data.gm_Angle2;
+        angle3 = data.gm_Angle3;
+        unionTime = data.gm_UnionTime;
+        fadedMusicTime = data.gm_FadedMusicTime;
     }
 
     void Start()

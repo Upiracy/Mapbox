@@ -36,6 +36,15 @@ public class UIManager : MonoBehaviour
 
     bool isFreeze = false;
 
+    private void Awake()
+    {
+        Reference data = WebAPI.callback;
+
+        unionNum = data.ui_UniomNum;
+        unionFreezeTime = data.ui_UnionFreezeTime;
+        freezeTimet1 = data.ui_FreezeTimet1;
+    }
+
     void Start()
     {
         ratioSize = redBar.rectTransform.rect.width;
